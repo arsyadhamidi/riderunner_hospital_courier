@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riderunner_hospital_courier/model/dokter_model.dart';
+import 'package:riderunner_hospital_courier/ui/modules/detail_courier/detail_courier_page.dart';
 import 'package:side_sheet/side_sheet.dart';
 
 class HomePageView extends StatefulWidget {
@@ -297,206 +298,211 @@ class _HomePageViewState extends State<HomePageView> {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return Card(
-                      shape: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide.none),
-                      elevation: 3,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      listDokter?[index].tglDokter ?? '',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Container(
-                                      height: 30,
-                                      width: 3,
-                                      color: Colors.grey.withOpacity(0.2),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      listDokter?[index].jamDokter ?? '',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: 50,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                    color: Color.fromRGBO(0, 71, 255, 1),
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                    )),
-                                child: Center(
-                                  child: Text(listDokter?[index].idDokter ?? '',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17)),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Row(
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => DetailCourierPage()));
+                      },
+                      child: Card(
+                        shape: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide.none),
+                        elevation: 3,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CircleAvatar(
-                                  radius: 28,
-                                  backgroundColor: Colors.grey,
-                                ),
-                                SizedBox(width: 10),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Nama Doctor",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "Speciallist Doctor",
-                                      style: TextStyle(color: Colors.grey),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 3),
-                          Container(
-                            height: 2,
-                            width: double.infinity,
-                            color: Colors.black,
-                          ),
-                          SizedBox(height: 10),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: 30, right: 20, top: 20, bottom: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    CircleAvatar(
-                                      backgroundColor:
-                                          Color.fromRGBO(144, 98, 98, 1),
-                                      child: Icon(
-                                        Icons.location_on,
-                                        color: Colors.white,
-                                        size: 30,
-                                      ),
-                                      radius: 25,
-                                    ),
-                                    SizedBox(width: 15),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Posisi anda saat ini",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16),
-                                        ),
-                                        Text("Posisi anda saat ini",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.grey)),
-                                      ],
-                                    )
-                                  ],
-                                ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 25),
-                                  child: DottedLine(
-                                    direction: Axis.vertical,
-                                    lineLength: 30,
-                                  ),
-                                ),
-                                Padding(
-                                    padding: EdgeInsets.only(left: 18),
+                                  padding: const EdgeInsets.all(10),
                                   child: Row(
                                     children: [
-                                      Container(
-                                        height: 15,
-                                        width: 15,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          border: Border.all(color: Colors.black)
-                                        ),
+                                      Text(
+                                        listDokter?[index].tglDokter ?? '',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      SizedBox(
-                                        width: 15,
-                                      ),
+                                      SizedBox(width: 10),
                                       Container(
-                                        width: 150,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.withOpacity(0.2),
-                                          borderRadius: BorderRadius.circular(50),
-                                        ),
-                                        child: Center(child: Text(listDokter?[index].jarakDokter ?? '')),
-                                      )
+                                        height: 30,
+                                        width: 3,
+                                        color: Colors.grey.withOpacity(0.2),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        listDokter?[index].jamDokter ?? '',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 25),
-                                  child: DottedLine(
-                                    direction: Axis.vertical,
-                                    lineLength: 30,
+                                Container(
+                                  height: 50,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                      color: Color.fromRGBO(0, 71, 255, 1),
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                      )),
+                                  child: Center(
+                                    child: Text(listDokter?[index].idDokter ?? '',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17)),
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    CircleAvatar(
-                                      backgroundColor:
-                                      Color.fromRGBO(203, 158, 0, 1),
-                                      child: Icon(
-                                        Icons.local_hospital_rounded,
-                                        color: Colors.white,
-                                        size: 30,
-                                      ),
-                                      radius: 25,
-                                    ),
-                                    SizedBox(width: 15),
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${listDokter?[index].lokasiDokter}",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16),
-                                        ),
-                                        Text("Tempat Pengambilan Obat Untuk Pesakit",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.grey)),
-                                      ],
-                                    )
-                                  ],
                                 ),
                               ],
                             ),
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 28,
+                                    backgroundColor: Colors.grey,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Nama Doctor",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Speciallist Doctor",
+                                        style: TextStyle(color: Colors.grey),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 3),
+                            Container(
+                              height: 2,
+                              width: double.infinity,
+                              color: Colors.black,
+                            ),
+                            SizedBox(height: 10),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: 30, right: 20, top: 20, bottom: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor:
+                                            Color.fromRGBO(144, 98, 98, 1),
+                                        child: Icon(
+                                          Icons.location_on,
+                                          color: Colors.white,
+                                          size: 30,
+                                        ),
+                                        radius: 25,
+                                      ),
+                                      SizedBox(width: 15),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Posisi anda saat ini",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16),
+                                          ),
+                                          Text("Posisi anda saat ini",
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey)),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 25),
+                                    child: DottedLine(
+                                      direction: Axis.vertical,
+                                      lineLength: 30,
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 18),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 15,
+                                          width: 15,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            border: Border.all(color: Colors.black)
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+                                        Container(
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey.withOpacity(0.2),
+                                            borderRadius: BorderRadius.circular(50),
+                                          ),
+                                          child: Center(child: Text(listDokter?[index].jarakDokter ?? '')),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 25),
+                                    child: DottedLine(
+                                      direction: Axis.vertical,
+                                      lineLength: 30,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor:
+                                        Color.fromRGBO(203, 158, 0, 1),
+                                        child: Icon(
+                                          Icons.local_hospital_rounded,
+                                          color: Colors.white,
+                                          size: 30,
+                                        ),
+                                        radius: 25,
+                                      ),
+                                      SizedBox(width: 15),
+                                      Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${listDokter?[index].lokasiDokter}",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16),
+                                          ),
+                                          Text("Tempat Pengambilan Obat Untuk Pesakit",
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey)),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
