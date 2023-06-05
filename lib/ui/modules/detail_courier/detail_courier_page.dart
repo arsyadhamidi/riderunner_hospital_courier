@@ -426,6 +426,45 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ),
               Padding(
+                padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                child: MaterialButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Column(
+                          children: [
+                            Spacer(),
+                            Stack(
+                              children: [
+                                Container(
+                                  color: Colors.white,
+                                  height: 200,
+                                  child: Text(""),
+                                ),
+                                Image.asset('assets/images/apply.png',
+                                    width: 100),
+                              ]
+                            ),
+                            Spacer()
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  minWidth: double.infinity,
+                  height: 50,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      side: BorderSide.none),
+                  color: Colors.blue,
+                  child: Text(
+                    "Apply This Job",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -438,8 +477,11 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: ListTile(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailObatPage()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailObatPage()));
                         },
                         title: Text(
                           listObat?[index].namaObat ?? '',
