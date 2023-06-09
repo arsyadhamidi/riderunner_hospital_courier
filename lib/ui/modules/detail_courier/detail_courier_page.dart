@@ -432,22 +432,36 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return Column(
-                          children: [
-                            Spacer(),
-                            Stack(
-                              children: [
-                                Container(
-                                  color: Colors.white,
-                                  height: 200,
-                                  child: Text(""),
+                        return AlertDialog(
+                          title: Text("Are You Sure to Take this job ?", textAlign: TextAlign.center),
+                          content: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              MaterialButton(
+                                onPressed: (){},
+                                elevation: 3,
+                                color: Colors.white,
+                                height: 50,
+                                minWidth: 120,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
-                                Image.asset('assets/images/apply.png',
-                                    width: 100),
-                              ]
-                            ),
-                            Spacer()
-                          ],
+                                child: Text("Not Sure"),
+                              ),
+                              SizedBox(width: 20),
+                              MaterialButton(
+                                onPressed: (){},
+                                elevation: 3,
+                                color: Colors.blue,
+                                height: 50,
+                                minWidth: 120,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Text("Of Course", style: TextStyle(color: Colors.white)),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     );
