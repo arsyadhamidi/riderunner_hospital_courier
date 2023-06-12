@@ -12,6 +12,9 @@ class DetailCourierPage extends StatefulWidget {
 }
 
 class _DetailCourierPageState extends State<DetailCourierPage> {
+
+  bool isApply = true;
+
   @override
   void initState() {
     listObat?.toList(growable: true);
@@ -426,59 +429,6 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                child: MaterialButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text("Are You Sure to Take this job ?", textAlign: TextAlign.center),
-                          content: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              MaterialButton(
-                                onPressed: (){},
-                                elevation: 3,
-                                color: Colors.white,
-                                height: 50,
-                                minWidth: 120,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Text("Not Sure"),
-                              ),
-                              SizedBox(width: 20),
-                              MaterialButton(
-                                onPressed: (){},
-                                elevation: 3,
-                                color: Colors.blue,
-                                height: 50,
-                                minWidth: 120,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Text("Of Course", style: TextStyle(color: Colors.white)),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  minWidth: double.infinity,
-                  height: 50,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      side: BorderSide.none),
-                  color: Colors.blue,
-                  child: Text(
-                    "Apply This Job",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -508,6 +458,66 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                 ),
               )
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar:  Padding(
+        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        child: MaterialButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text("Are You Sure to Take this job ?", textAlign: TextAlign.center),
+                  content: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MaterialButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        elevation: 3,
+                        color: Colors.white,
+                        height: 50,
+                        minWidth: 120,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Text("Not Sure"),
+                      ),
+                      SizedBox(width: 20),
+                      MaterialButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                          setState(() {
+                            isApply = !isApply;
+                          });
+                        },
+                        elevation: 3,
+                        color: Colors.blue,
+                        height: 50,
+                        minWidth: 120,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Text("Of Course", style: TextStyle(color: Colors.white)),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+          minWidth: double.infinity,
+          height: 50,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+              side: BorderSide.none),
+          color: isApply == true ? Colors.blue : Colors.grey,
+          child: Text(
+            isApply == true ? "Apply This Job" : "Waiting for Approve",
+            style: TextStyle(color: isApply == true ? Colors.white : Colors.black),
           ),
         ),
       ),
