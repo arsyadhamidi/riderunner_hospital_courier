@@ -451,7 +451,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                           listObat?[index].namaObat ?? '',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: isApply == true ? Icon(Icons.arrow_forward_ios) : Icon(CupertinoIcons.checkmark_seal_fill, color: Colors.green,),
                       ),
                     );
                   },
