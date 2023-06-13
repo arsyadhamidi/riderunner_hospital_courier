@@ -2,6 +2,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/dokter_model.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_courier/detail_courier_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/history_courier/history_courier_page.dart';
@@ -67,7 +68,7 @@ class _HomePageViewState extends State<HomePageView> {
                                 children: [
                                   Spacer(),
                                   Text(
-                                    "Nama Courier",
+                                    dataGlobal.data?.user?.name ?? '',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,

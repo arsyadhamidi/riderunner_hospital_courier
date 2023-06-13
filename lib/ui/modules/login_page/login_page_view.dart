@@ -57,6 +57,7 @@ class _LoginPageViewState extends State<LoginPageView> {
                         ),
                       ),
                       TextFormField(
+                        controller: loginProvider.isphoneNumberTxt,
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
                             prefixIcon: DropdownButton<String>(
@@ -106,6 +107,7 @@ class _LoginPageViewState extends State<LoginPageView> {
                       ),
                       SizedBox(height: 10),
                       TextFormField(
+                        controller: loginProvider.isPasswordTxt,
                         obscureText: loginProvider.isObsurce,
                         decoration: InputDecoration(
                           hintText: "Password",
@@ -134,7 +136,9 @@ class _LoginPageViewState extends State<LoginPageView> {
                       ),
                       SizedBox(height: 15),
                       MaterialButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          loginProvider.loginAuth(context);
+                        },
                         minWidth: double.infinity,
                         height: 48,
                         color: Color.fromRGBO(0, 71, 255, 1),
