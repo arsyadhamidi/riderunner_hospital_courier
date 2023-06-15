@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:riderunner_hospital_courier/api/api_config.dart';
+import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/user_model.dart';
 import 'package:riderunner_hospital_courier/ui/modules/home_page/home_page_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,7 +44,8 @@ class LoginPageProvider extends ChangeNotifier{
       print('${dataUser.user?.name}, ${dataUser.user?.level}');
 
       if(dataUser.status == 'success'){
-        await saveSharedPreference(dataUser);
+        SharedPreferences prefsUser = await SharedPreferences.getInstance();
+        var dataPref = prefsUser.setString("dataUser", jsonEncode(dataUser));
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePageView()), (route) => false);
         return dataUser;
       }else{
@@ -57,11 +59,6 @@ class LoginPageProvider extends ChangeNotifier{
 
   }
 
-
-  Future<void> saveSharedPreference(ModelUser dataUser) async{
-    SharedPreferences prefsUser = await SharedPreferences.getInstance();
-    prefsUser.setString("dataUser", jsonEncode(dataUser));
-  }
 
 
 }
