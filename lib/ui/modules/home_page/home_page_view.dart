@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
-import 'package:riderunner_hospital_courier/model/dokter_model.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_courier/detail_courier_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/history_courier/history_courier_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/home_page/home_page_provider.dart';
@@ -24,12 +23,6 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageViewState extends State<HomePageView> {
   DateTime datePicked = DateTime.now();
-
-  @override
-  void initState() {
-    listDokter?.toList(growable: true);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -294,6 +287,7 @@ class _HomePageViewState extends State<HomePageView> {
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide.none),
                         child: TextFormField(
+                          onChanged: (data) => homeProvider.filterPesakitList(data),
                           decoration: InputDecoration(
                               hintText: "Search Alamat terdekat, Rumah...",
                               suffixIcon: Icon(Icons.search),
@@ -328,7 +322,7 @@ class _HomePageViewState extends State<HomePageView> {
                                 children: [
                                   Center(
                                     child: Text(
-                                      '${datePicked.day} ${DateFormat('MMMM').format(DateTime(datePicked.month))} ${datePicked.year}',
+                                      '${datePicked.day}/${datePicked.month}/${datePicked.year}',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 16),
                                     ),
@@ -342,7 +336,7 @@ class _HomePageViewState extends State<HomePageView> {
                       ),
                       SizedBox(height: 20),
                       ListView.builder(
-                        itemCount: listDokter?.length,
+                        itemCount: homeProvider.filterDokterList?.length ?? 0,
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
@@ -365,7 +359,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              listDokter?[index].tglDokter ?? '',
+                                              homeProvider.filterDokterList?[index].tanggal ?? '',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
@@ -377,7 +371,7 @@ class _HomePageViewState extends State<HomePageView> {
                                             ),
                                             SizedBox(width: 10),
                                             Text(
-                                              listDokter?[index].jamDokter ?? '',
+                                              homeProvider.filterDokterList?[index].jam ?? '',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
@@ -393,7 +387,7 @@ class _HomePageViewState extends State<HomePageView> {
                                               topRight: Radius.circular(20),
                                             )),
                                         child: Center(
-                                          child: Text(listDokter?[index].idDokter ?? '',
+                                          child: Text(homeProvider.filterDokterList?[index].nama.toString() ?? '',
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -502,7 +496,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                   color: Colors.grey.withOpacity(0.2),
                                                   borderRadius: BorderRadius.circular(50),
                                                 ),
-                                                child: Center(child: Text(listDokter?[index].jarakDokter ?? '')),
+                                                child: Center(child: Text('3,0 Km - 10 Menit')),
                                               )
                                             ],
                                           ),
@@ -532,7 +526,7 @@ class _HomePageViewState extends State<HomePageView> {
                                               CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "${listDokter?[index].lokasiDokter}",
+                                                  "${homeProvider.filterDokterList?[index].hospital}",
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       fontSize: 16),
