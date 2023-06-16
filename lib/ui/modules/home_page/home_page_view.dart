@@ -12,6 +12,8 @@ import 'package:riderunner_hospital_courier/ui/modules/role_pesanan/complete_pag
 import 'package:riderunner_hospital_courier/ui/modules/role_pesanan/sedang_kirim_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/role_pesanan/tobe_pickup_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/role_pesanan/waiting_confirmed_page.dart';
+import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:side_sheet/side_sheet.dart';
 
 class HomePageView extends StatefulWidget {
@@ -22,7 +24,9 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  bool dateSearch = true;
   DateTime datePicked = DateTime.now();
+  String date = "";
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +66,12 @@ class _HomePageViewState extends State<HomePageView> {
                                       backgroundColor: Colors.white,
                                       radius: 40,
                                       child: Image.network(
-                                        "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}"
-                                      ),
+                                          "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}"),
                                     ),
                                     SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Spacer(),
                                         Text(
@@ -93,7 +97,7 @@ class _HomePageViewState extends State<HomePageView> {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Row(
                                           children: [
@@ -113,12 +117,16 @@ class _HomePageViewState extends State<HomePageView> {
                                     ),
                                     SizedBox(height: 30),
                                     InkWell(
-                                      onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => WaitingConfirmedPage()));
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    WaitingConfirmedPage()));
                                       },
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
@@ -139,12 +147,16 @@ class _HomePageViewState extends State<HomePageView> {
                                     ),
                                     SizedBox(height: 30),
                                     InkWell(
-                                      onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => TobePickUpPage()));
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    TobePickUpPage()));
                                       },
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
@@ -165,12 +177,16 @@ class _HomePageViewState extends State<HomePageView> {
                                     ),
                                     SizedBox(height: 30),
                                     InkWell(
-                                      onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => SedangKirimPage()));
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SedangKirimPage()));
                                       },
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
@@ -191,12 +207,16 @@ class _HomePageViewState extends State<HomePageView> {
                                     ),
                                     SizedBox(height: 30),
                                     InkWell(
-                                      onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => ComplatePage()));
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ComplatePage()));
                                       },
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
@@ -217,12 +237,16 @@ class _HomePageViewState extends State<HomePageView> {
                                     ),
                                     SizedBox(height: 30),
                                     InkWell(
-                                      onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => HistoryCourierPage()));
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HistoryCourierPage()));
                                       },
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
@@ -244,7 +268,7 @@ class _HomePageViewState extends State<HomePageView> {
                                     SizedBox(height: 30),
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Row(
                                           children: [
@@ -262,6 +286,35 @@ class _HomePageViewState extends State<HomePageView> {
                                         // Text("1"),
                                       ],
                                     ),
+                                    SizedBox(height: 30),
+                                    InkWell(
+                                      onTap: () async {
+                                        var prefs = await SharedPreferences
+                                            .getInstance();
+                                        prefs.clear();
+                                        homeProvider.logoutAuth(context);
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.logout,
+                                                size: 40,
+                                              ),
+                                              SizedBox(width: 10),
+                                              Text(
+                                                "Logout",
+                                                style: TextStyle(fontSize: 16),
+                                              )
+                                            ],
+                                          ),
+                                          // Text("1"),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -269,7 +322,8 @@ class _HomePageViewState extends State<HomePageView> {
                           ),
                           context: context);
                     },
-                    icon: Icon(Icons.format_align_justify, color: Colors.black)),
+                    icon:
+                        Icon(Icons.format_align_justify, color: Colors.black)),
                 SizedBox(width: 10),
               ],
             ),
@@ -287,11 +341,13 @@ class _HomePageViewState extends State<HomePageView> {
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide.none),
                         child: TextFormField(
-                          onChanged: (data) => homeProvider.filterPesakitList(data),
+                          onChanged: (data) =>
+                              homeProvider.filterPesakitList(data),
                           decoration: InputDecoration(
                               hintText: "Search Alamat terdekat, Rumah...",
                               suffixIcon: Icon(Icons.search),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 20),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
                                   borderSide: BorderSide())),
@@ -302,13 +358,27 @@ class _HomePageViewState extends State<HomePageView> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           InkWell(
-                            onTap: () {
-                              showDatePicker(
+                            onTap: () async {
+                              DateTime? newDate = await showDatePicker(
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(2000),
                                 lastDate: DateTime(2050),
                               );
+
+                              if (newDate == null) return;
+
+                              String day = newDate.day.toString().padLeft(2, '0');
+                              String month = newDate.month.toString().padLeft(2, '0');
+                              String year = newDate.year.toString();
+
+                              setState(() {
+                                dateSearch = !dateSearch;
+                                date =
+                                    "${newDate.day}/${newDate.month}/${newDate.year}";
+                                homeProvider.isDateSearchTxt.text = "${newDate.day}/${newDate.month}/${newDate.year}";
+                                homeProvider.filterTanggalDokterList("${day}/${month}/${year}");
+                              });
                             },
                             child: Container(
                               width: 160,
@@ -320,14 +390,31 @@ class _HomePageViewState extends State<HomePageView> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Center(
-                                    child: Text(
+                                  Container(
+                                    width: 100,
+                                    child:  dateSearch ? Text(
                                       '${datePicked.day}/${datePicked.month}/${datePicked.year}',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 16),
+                                          color: Colors.white,
+                                          fontSize: 16),
+                                    ) : TextFormField(
+                                      style: TextStyle(color: Colors.white),
+                                      enabled: false,
+                                      controller: homeProvider.isDateSearchTxt,
+                                      onChanged: (value) => homeProvider.filterTanggalDokterList(value),
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(vertical: 18),
+                                        hintStyle: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                        )
+                                      ),
                                     ),
                                   ),
-                                  Icon(Icons.arrow_drop_down, color: Colors.white),
+                                  Icon(Icons.arrow_drop_down,
+                                      color: Colors.white),
                                 ],
                               ),
                             ),
@@ -341,8 +428,12 @@ class _HomePageViewState extends State<HomePageView> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailCourierPage()));
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          DetailCourierPage()));
                             },
                             child: Card(
                               shape: OutlineInputBorder(
@@ -352,14 +443,18 @@ class _HomePageViewState extends State<HomePageView> {
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: Row(
                                           children: [
                                             Text(
-                                              homeProvider.filterDokterList?[index].tanggal ?? '',
+                                              homeProvider
+                                                      .filterDokterList?[index]
+                                                      .tanggal ??
+                                                  '',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
@@ -367,11 +462,15 @@ class _HomePageViewState extends State<HomePageView> {
                                             Container(
                                               height: 30,
                                               width: 3,
-                                              color: Colors.grey.withOpacity(0.2),
+                                              color:
+                                                  Colors.grey.withOpacity(0.2),
                                             ),
                                             SizedBox(width: 10),
                                             Text(
-                                              homeProvider.filterDokterList?[index].jam ?? '',
+                                              homeProvider
+                                                      .filterDokterList?[index]
+                                                      .jam ??
+                                                  '',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
@@ -382,12 +481,18 @@ class _HomePageViewState extends State<HomePageView> {
                                         height: 50,
                                         width: 120,
                                         decoration: BoxDecoration(
-                                            color: Color.fromRGBO(0, 71, 255, 1),
+                                            color:
+                                                Color.fromRGBO(0, 71, 255, 1),
                                             borderRadius: BorderRadius.only(
                                               topRight: Radius.circular(20),
                                             )),
                                         child: Center(
-                                          child: Text(homeProvider.filterDokterList?[index].nama.toString() ?? '',
+                                          child: Text(
+                                              homeProvider
+                                                      .filterDokterList?[index]
+                                                      .nama
+                                                      .toString() ??
+                                                  '',
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
@@ -400,23 +505,35 @@ class _HomePageViewState extends State<HomePageView> {
                                     padding: const EdgeInsets.all(20),
                                     child: Row(
                                       children: [
-                                        CircleAvatar(
-                                          radius: 28,
-                                          backgroundColor: Colors.grey,
+                                        Container(
+                                          height: 50,
+                                          width: 50,
+                                          child: ClipRRect(
+                                            child: Image.network(
+                                              "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].profil}",
+                                                fit: BoxFit.cover,
+                                              errorBuilder: (context, error, stackTrace) {
+                                                return CircularProgressIndicator();
+                                              },
+                                            ),
+                                            borderRadius: BorderRadius.circular(50),
+                                          ),
                                         ),
                                         SizedBox(width: 10),
                                         Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Nama Doctor",
+                                              "${homeProvider.filterDokterList?[index].name}",
                                               style: TextStyle(
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
-                                              "Speciallist Doctor",
-                                              style: TextStyle(color: Colors.grey),
+                                              "${homeProvider.filterDokterList?[index].specialist}",
+                                              style:
+                                                  TextStyle(color: Colors.grey),
                                             )
                                           ],
                                         )
@@ -432,15 +549,19 @@ class _HomePageViewState extends State<HomePageView> {
                                   SizedBox(height: 10),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 30, right: 20, top: 20, bottom: 20),
+                                        left: 30,
+                                        right: 20,
+                                        top: 20,
+                                        bottom: 20),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
                                             CircleAvatar(
-                                              backgroundColor:
-                                              Color.fromRGBO(144, 98, 98, 1),
+                                              backgroundColor: Color.fromRGBO(
+                                                  144, 98, 98, 1),
                                               child: Icon(
                                                 Icons.location_on,
                                                 color: Colors.white,
@@ -451,25 +572,28 @@ class _HomePageViewState extends State<HomePageView> {
                                             SizedBox(width: 15),
                                             Column(
                                               crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "Posisi anda saat ini",
+                                                  "${homeProvider.currentAddress}",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
                                                 Text("Posisi anda saat ini",
                                                     style: TextStyle(
                                                         fontSize: 12,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.grey)),
                                               ],
                                             )
                                           ],
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 25),
+                                          padding:
+                                              const EdgeInsets.only(left: 25),
                                           child: DottedLine(
                                             direction: Axis.vertical,
                                             lineLength: 30,
@@ -483,9 +607,11 @@ class _HomePageViewState extends State<HomePageView> {
                                                 height: 15,
                                                 width: 15,
                                                 decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(50),
-                                                    border: Border.all(color: Colors.black)
-                                                ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                    border: Border.all(
+                                                        color: Colors.black)),
                                               ),
                                               SizedBox(
                                                 width: 15,
@@ -493,16 +619,21 @@ class _HomePageViewState extends State<HomePageView> {
                                               Container(
                                                 width: 150,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.grey.withOpacity(0.2),
-                                                  borderRadius: BorderRadius.circular(50),
+                                                  color: Colors.grey
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
                                                 ),
-                                                child: Center(child: Text('3,0 Km - 10 Menit')),
+                                                child: Center(
+                                                    child: Text(
+                                                        '3,0 Km - 10 Menit')),
                                               )
                                             ],
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 25),
+                                          padding:
+                                              const EdgeInsets.only(left: 25),
                                           child: DottedLine(
                                             direction: Axis.vertical,
                                             lineLength: 30,
@@ -511,8 +642,8 @@ class _HomePageViewState extends State<HomePageView> {
                                         Row(
                                           children: [
                                             CircleAvatar(
-                                              backgroundColor:
-                                              Color.fromRGBO(203, 158, 0, 1),
+                                              backgroundColor: Color.fromRGBO(
+                                                  203, 158, 0, 1),
                                               child: Icon(
                                                 Icons.local_hospital_rounded,
                                                 color: Colors.white,
@@ -523,18 +654,21 @@ class _HomePageViewState extends State<HomePageView> {
                                             SizedBox(width: 15),
                                             Column(
                                               crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "${homeProvider.filterDokterList?[index].hospital}",
+                                                  "${homeProvider.filterDokterList?[index].hospital?.rumahSakit}",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
-                                                Text("Tempat Pengambilan Obat Untuk Pesakit",
+                                                Text(
+                                                    "Tempat Pengambilan Obat Untuk Pesakit",
                                                     style: TextStyle(
                                                         fontSize: 12,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.grey)),
                                               ],
                                             )

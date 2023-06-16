@@ -36,6 +36,7 @@ class DataDokter {
   int? id;
   String? nama;
   String? userId;
+  String? hospitalId;
   String? tanggal;
   String? jam;
   String? statusBatch;
@@ -43,14 +44,16 @@ class DataDokter {
   DateTime? createdAt;
   DateTime? updatedAt;
   String? name;
-  String? hospital;
+  String? profil;
   String? specialist;
   List<Pesakit>? pesakit;
+  Hospital? hospital;
 
   DataDokter({
     this.id,
     this.nama,
     this.userId,
+    this.hospitalId,
     this.tanggal,
     this.jam,
     this.statusBatch,
@@ -58,15 +61,17 @@ class DataDokter {
     this.createdAt,
     this.updatedAt,
     this.name,
-    this.hospital,
+    this.profil,
     this.specialist,
     this.pesakit,
+    this.hospital,
   });
 
   factory DataDokter.fromJson(Map<String, dynamic> json) => DataDokter(
     id: json["id"],
     nama: json["nama"],
     userId: json["user_id"],
+    hospitalId: json["hospital_id"],
     tanggal: json["tanggal"],
     jam: json["jam"],
     statusBatch: json["status_batch"],
@@ -74,15 +79,17 @@ class DataDokter {
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     name: json["name"],
-    hospital: json["hospital"],
+    profil: json["profil"],
     specialist: json["specialist"],
     pesakit: json["pesakit"] == null ? [] : List<Pesakit>.from(json["pesakit"]!.map((x) => Pesakit.fromJson(x))),
+    hospital: json["hospital"] == null ? null : Hospital.fromJson(json["hospital"]),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "nama": nama,
     "user_id": userId,
+    "hospital_id": hospitalId,
     "tanggal": tanggal,
     "jam": jam,
     "status_batch": statusBatch,
@@ -90,9 +97,42 @@ class DataDokter {
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
     "name": name,
-    "hospital": hospital,
+    "profil": profil,
     "specialist": specialist,
     "pesakit": pesakit == null ? [] : List<dynamic>.from(pesakit!.map((x) => x.toJson())),
+    "hospital": hospital?.toJson(),
+  };
+}
+
+class Hospital {
+  int? id;
+  String? rumahSakit;
+  String? latitude;
+  String? longitude;
+  String? alamat;
+
+  Hospital({
+    this.id,
+    this.rumahSakit,
+    this.latitude,
+    this.longitude,
+    this.alamat,
+  });
+
+  factory Hospital.fromJson(Map<String, dynamic> json) => Hospital(
+    id: json["id"],
+    rumahSakit: json["rumah_sakit"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
+    alamat: json["alamat"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "rumah_sakit": rumahSakit,
+    "latitude": latitude,
+    "longitude": longitude,
+    "alamat": alamat,
   };
 }
 
