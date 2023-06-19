@@ -28,6 +28,7 @@ class HomePageProvider extends ChangeNotifier {
   TextEditingController isDateSearchTxt = TextEditingController();
   final MapController mapController = MapController();
   String currentAddress = 'Your Location';
+  bool isLoading = true;
 
   Future<void> getDataUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

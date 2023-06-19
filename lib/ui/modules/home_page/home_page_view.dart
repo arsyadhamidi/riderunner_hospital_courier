@@ -424,267 +424,271 @@ class _HomePageViewState extends State<HomePageView> {
                         ],
                       ),
                       SizedBox(height: 20),
-                      ListView.builder(
-                        itemCount: homeProvider.filterDokterList?.length ?? 0,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          DetailCourierPage()));
-                            },
-                            child: Card(
-                              shape: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: BorderSide.none),
-                              elevation: 3,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                      homeProvider.isLoading ? (
+                          homeProvider.listDokter == null ? Text("No Data") : ListView.builder(
+                            itemCount: homeProvider.filterDokterList?.length ?? 0,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              DetailCourierPage(
+                                                data: homeProvider.listDokter?[index],
+                                              )));
+                                },
+                                child: Card(
+                                  shape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      borderSide: BorderSide.none),
+                                  elevation: 3,
+                                  child: Column(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              homeProvider
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  homeProvider
                                                       .filterDokterList?[index]
                                                       .tanggal ??
-                                                  '',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(width: 10),
-                                            Container(
-                                              height: 30,
-                                              width: 3,
-                                              color:
+                                                      '',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox(width: 10),
+                                                Container(
+                                                  height: 30,
+                                                  width: 3,
+                                                  color:
                                                   Colors.grey.withOpacity(0.2),
-                                            ),
-                                            SizedBox(width: 10),
-                                            Text(
-                                              homeProvider
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  homeProvider
                                                       .filterDokterList?[index]
                                                       .jam ??
-                                                  '',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
+                                                      '',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 50,
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                            color:
+                                          ),
+                                          Container(
+                                            height: 50,
+                                            width: 120,
+                                            decoration: BoxDecoration(
+                                                color:
                                                 Color.fromRGBO(0, 71, 255, 1),
-                                            borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(20),
-                                            )),
-                                        child: Center(
-                                          child: Text(
-                                              homeProvider
+                                                borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(20),
+                                                )),
+                                            child: Center(
+                                              child: Text(
+                                                  homeProvider
                                                       .filterDokterList?[index]
                                                       .nama
                                                       .toString() ??
-                                                  '',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 17)),
+                                                      '',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 17)),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Row(
+                                          children: [
+                                            homeProvider.listDokter?[index].profil == null ? CircularProgressIndicator() : Container(
+                                              height: 50,
+                                              width: 50,
+                                              child: ClipRRect(
+                                                child: Image.network(
+                                                  "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].profil}",
+                                                  fit: BoxFit.cover,
+                                                  errorBuilder: (context, error, stackTrace) {
+                                                    return CircularProgressIndicator();
+                                                  },
+                                                ),
+                                                borderRadius: BorderRadius.circular(50),
+                                              ),
+                                            ),
+                                            SizedBox(width: 10),
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "${homeProvider.filterDokterList?[index].name}",
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  "${homeProvider.filterDokterList?[index].specialist}",
+                                                  style:
+                                                  TextStyle(color: Colors.grey),
+                                                )
+                                              ],
+                                            )
+                                          ],
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(20),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          height: 50,
-                                          width: 50,
-                                          child: ClipRRect(
-                                            child: Image.network(
-                                              "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].profil}",
-                                                fit: BoxFit.cover,
-                                              errorBuilder: (context, error, stackTrace) {
-                                                return CircularProgressIndicator();
-                                              },
-                                            ),
-                                            borderRadius: BorderRadius.circular(50),
-                                          ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Column(
+                                      SizedBox(height: 3),
+                                      Container(
+                                        height: 2,
+                                        width: double.infinity,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(height: 10),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 30,
+                                            right: 20,
+                                            top: 20,
+                                            bottom: 20),
+                                        child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "${homeProvider.filterDokterList?[index].name}",
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            Text(
-                                              "${homeProvider.filterDokterList?[index].specialist}",
-                                              style:
-                                                  TextStyle(color: Colors.grey),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 3),
-                                  Container(
-                                    height: 2,
-                                    width: double.infinity,
-                                    color: Colors.black,
-                                  ),
-                                  SizedBox(height: 10),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 30,
-                                        right: 20,
-                                        top: 20,
-                                        bottom: 20),
-                                    child: Column(
-                                      crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
                                           children: [
-                                            CircleAvatar(
-                                              backgroundColor: Color.fromRGBO(
-                                                  144, 98, 98, 1),
-                                              child: Icon(
-                                                Icons.location_on,
-                                                color: Colors.white,
-                                                size: 30,
-                                              ),
-                                              radius: 25,
-                                            ),
-                                            SizedBox(width: 15),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                            Row(
                                               children: [
-                                                Text(
-                                                  "${homeProvider.currentAddress}",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 16),
+                                                CircleAvatar(
+                                                  backgroundColor: Color.fromRGBO(
+                                                      144, 98, 98, 1),
+                                                  child: Icon(
+                                                    Icons.location_on,
+                                                    color: Colors.white,
+                                                    size: 30,
+                                                  ),
+                                                  radius: 25,
                                                 ),
-                                                Text("Posisi anda saat ini",
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
+                                                SizedBox(width: 15),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${homeProvider.currentAddress}",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 16),
+                                                    ),
+                                                    Text("Posisi anda saat ini",
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            fontWeight:
                                                             FontWeight.bold,
-                                                        color: Colors.grey)),
+                                                            color: Colors.grey)),
+                                                  ],
+                                                )
                                               ],
-                                            )
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
+                                            ),
+                                            Padding(
+                                              padding:
                                               const EdgeInsets.only(left: 25),
-                                          child: DottedLine(
-                                            direction: Axis.vertical,
-                                            lineLength: 30,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 18),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 15,
-                                                width: 15,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
+                                              child: DottedLine(
+                                                direction: Axis.vertical,
+                                                lineLength: 30,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 18),
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    height: 15,
+                                                    width: 15,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
                                                         BorderRadius.circular(
                                                             50),
-                                                    border: Border.all(
-                                                        color: Colors.black)),
-                                              ),
-                                              SizedBox(
-                                                width: 15,
-                                              ),
-                                              Container(
-                                                width: 150,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
+                                                        border: Border.all(
+                                                            color: Colors.black)),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 15,
+                                                  ),
+                                                  Container(
+                                                    width: 150,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                      borderRadius:
                                                       BorderRadius.circular(50),
-                                                ),
-                                                child: Center(
-                                                    child: Text(
-                                                        '3,0 Km - 10 Menit')),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 25),
-                                          child: DottedLine(
-                                            direction: Axis.vertical,
-                                            lineLength: 30,
-                                          ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            CircleAvatar(
-                                              backgroundColor: Color.fromRGBO(
-                                                  203, 158, 0, 1),
-                                              child: Icon(
-                                                Icons.local_hospital_rounded,
-                                                color: Colors.white,
-                                                size: 30,
+                                                    ),
+                                                    child: Center(
+                                                        child: Text(
+                                                            '3,0 Km - 10 Menit')),
+                                                  )
+                                                ],
                                               ),
-                                              radius: 25,
                                             ),
-                                            SizedBox(width: 15),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                            Padding(
+                                              padding:
+                                              const EdgeInsets.only(left: 25),
+                                              child: DottedLine(
+                                                direction: Axis.vertical,
+                                                lineLength: 30,
+                                              ),
+                                            ),
+                                            Row(
                                               children: [
-                                                Text(
-                                                  "${homeProvider.filterDokterList?[index].hospital?.rumahSakit}",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 16),
+                                                CircleAvatar(
+                                                  backgroundColor: Color.fromRGBO(
+                                                      203, 158, 0, 1),
+                                                  child: Icon(
+                                                    Icons.local_hospital_rounded,
+                                                    color: Colors.white,
+                                                    size: 30,
+                                                  ),
+                                                  radius: 25,
                                                 ),
-                                                Text(
-                                                    "Tempat Pengambilan Obat Untuk Pesakit",
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
+                                                SizedBox(width: 15),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "${homeProvider.filterDokterList?[index].hospital?.rumahSakit}",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.bold,
+                                                          fontSize: 16),
+                                                    ),
+                                                    Text(
+                                                        "Tempat Pengambilan Obat Untuk Pesakit",
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            fontWeight:
                                                             FontWeight.bold,
-                                                        color: Colors.grey)),
+                                                            color: Colors.grey)),
+                                                  ],
+                                                )
                                               ],
-                                            )
+                                            ),
                                           ],
                                         ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                      ) : CircularProgressIndicator(),
                     ],
                   ),
                 ),
