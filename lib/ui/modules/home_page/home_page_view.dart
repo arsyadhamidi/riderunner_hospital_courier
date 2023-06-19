@@ -48,265 +48,238 @@ class _HomePageViewState extends State<HomePageView> {
                     onPressed: () {
                       SideSheet.right(
                           sheetColor: Colors.white,
-                          body: Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Color.fromRGBO(0, 71, 255, 1),
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(25),
-                                      bottomRight: Radius.circular(25),
-                                    )),
-                                height: 200,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 40,
-                                      child: Image.network(
-                                          "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}"),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Spacer(),
-                                        Text(
-                                          dataGlobal.data?.user?.name ?? '',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                              fontSize: 17),
-                                        ),
-                                        Text(
-                                          "${dataGlobal.data?.user?.level}",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        Spacer(),
-                                      ],
-                                    )
-                                  ],
+                          body: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Color.fromRGBO(0, 71, 255, 1),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(25),
+                                        bottomRight: Radius.circular(25),
+                                      )),
+                                  height: 200,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        radius: 40,
+                                        child: Image.network(
+                                            "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}"),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Spacer(),
+                                          Text(
+                                            dataGlobal.data?.user?.name ?? '',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                                fontSize: 17),
+                                          ),
+                                          Text(
+                                            "${dataGlobal.data?.user?.level}",
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                          Spacer(),
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
+                                Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                CupertinoIcons.doc_append,
+                                                size: 40,
+                                              ),
+                                              SizedBox(width: 10),
+                                              Text(
+                                                "Job List",
+                                                style: TextStyle(fontSize: 16),
+                                              )
+                                            ],
+                                          ),
+                                          Text("99+")
+                                        ],
+                                      ),
+                                      SizedBox(height: 30),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      WaitingConfirmedPage()));
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Icon(
-                                              CupertinoIcons.doc_append,
-                                              size: 40,
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.doc_append,
+                                                  size: 40,
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  "Waiting Confirmed",
+                                                  style: TextStyle(fontSize: 16),
+                                                )
+                                              ],
                                             ),
-                                            SizedBox(width: 10),
-                                            Text(
-                                              "Job List",
-                                              style: TextStyle(fontSize: 16),
-                                            )
+                                            Text("1"),
                                           ],
                                         ),
-                                        Text("99+")
-                                      ],
-                                    ),
-                                    SizedBox(height: 30),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    WaitingConfirmedPage()));
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.doc_append,
-                                                size: 40,
-                                              ),
-                                              SizedBox(width: 10),
-                                              Text(
-                                                "Waiting Confirmed",
-                                                style: TextStyle(fontSize: 16),
-                                              )
-                                            ],
-                                          ),
-                                          Text("1"),
-                                        ],
                                       ),
-                                    ),
-                                    SizedBox(height: 30),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    TobePickUpPage()));
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.doc_append,
-                                                size: 40,
-                                              ),
-                                              SizedBox(width: 10),
-                                              Text(
-                                                "To Be Pick Up",
-                                                style: TextStyle(fontSize: 16),
-                                              )
-                                            ],
-                                          ),
-                                          // Text("1"),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 30),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SedangKirimPage()));
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.doc_append,
-                                                size: 40,
-                                              ),
-                                              SizedBox(width: 10),
-                                              Text(
-                                                "Sedang Dikirim",
-                                                style: TextStyle(fontSize: 16),
-                                              )
-                                            ],
-                                          ),
-                                          // Text("1"),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 30),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ComplatePage()));
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.doc_append,
-                                                size: 40,
-                                              ),
-                                              SizedBox(width: 10),
-                                              Text(
-                                                "Complete",
-                                                style: TextStyle(fontSize: 16),
-                                              )
-                                            ],
-                                          ),
-                                          // Text("1"),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 30),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HistoryCourierPage()));
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.doc_append,
-                                                size: 40,
-                                              ),
-                                              SizedBox(width: 10),
-                                              Text(
-                                                "History",
-                                                style: TextStyle(fontSize: 16),
-                                              )
-                                            ],
-                                          ),
-                                          // Text("1"),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 30),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
+                                      SizedBox(height: 30),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      TobePickUpPage()));
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Icon(
-                                              CupertinoIcons.doc_append,
-                                              size: 40,
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.doc_append,
+                                                  size: 40,
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  "To Be Pick Up",
+                                                  style: TextStyle(fontSize: 16),
+                                                )
+                                              ],
                                             ),
-                                            SizedBox(width: 10),
-                                            Text(
-                                              "Rejected",
-                                              style: TextStyle(fontSize: 16),
-                                            )
+                                            // Text("1"),
                                           ],
                                         ),
-                                        // Text("1"),
-                                      ],
-                                    ),
-                                    SizedBox(height: 30),
-                                    InkWell(
-                                      onTap: () async {
-                                        var prefs = await SharedPreferences
-                                            .getInstance();
-                                        prefs.clear();
-                                        homeProvider.logoutAuth(context);
-                                      },
-                                      child: Row(
+                                      ),
+                                      SizedBox(height: 30),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SedangKirimPage()));
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.doc_append,
+                                                  size: 40,
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  "Sedang Dikirim",
+                                                  style: TextStyle(fontSize: 16),
+                                                )
+                                              ],
+                                            ),
+                                            // Text("1"),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 30),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ComplatePage()));
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.doc_append,
+                                                  size: 40,
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  "Complete",
+                                                  style: TextStyle(fontSize: 16),
+                                                )
+                                              ],
+                                            ),
+                                            // Text("1"),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 30),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HistoryCourierPage()));
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  CupertinoIcons.doc_append,
+                                                  size: 40,
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  "History",
+                                                  style: TextStyle(fontSize: 16),
+                                                )
+                                              ],
+                                            ),
+                                            // Text("1"),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 30),
+                                      Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
                                               Icon(
-                                                Icons.logout,
+                                                CupertinoIcons.doc_append,
                                                 size: 40,
                                               ),
                                               SizedBox(width: 10),
                                               Text(
-                                                "Logout",
+                                                "Rejected",
                                                 style: TextStyle(fontSize: 16),
                                               )
                                             ],
@@ -314,11 +287,40 @@ class _HomePageViewState extends State<HomePageView> {
                                           // Text("1"),
                                         ],
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(height: 30),
+                                      InkWell(
+                                        onTap: () async {
+                                          var prefs = await SharedPreferences
+                                              .getInstance();
+                                          prefs.clear();
+                                          homeProvider.logoutAuth(context);
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.logout,
+                                                  size: 40,
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  "Logout",
+                                                  style: TextStyle(fontSize: 16),
+                                                )
+                                              ],
+                                            ),
+                                            // Text("1"),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           context: context);
                     },
