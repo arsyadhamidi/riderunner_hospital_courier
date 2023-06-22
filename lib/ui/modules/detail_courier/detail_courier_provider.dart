@@ -1,8 +1,10 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
@@ -10,6 +12,7 @@ import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
 import 'package:riderunner_hospital_courier/network/network_provider.dart';
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class DetailCourierProvider extends ChangeNotifier {
 
@@ -17,6 +20,8 @@ class DetailCourierProvider extends ChangeNotifier {
   List<DataPesakit>? listPesakit;
   bool isLoading = true;
   List<LatLng> routeCoords = [];
+  String latMaps = '';
+  String longMaps = '';
 
   DetailCourierProvider(this.id) {
     listDataPesakit(id);

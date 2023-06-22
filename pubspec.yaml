@@ -47,6 +47,9 @@ dependencies:
   flutter_map: ^4.0.0
   latlng: ^1.0.0
   flutter_polyline_points: ^1.0.0
+  firebase_core: ^2.14.0
+  cloud_firestore: ^4.8.1
+  firebase_database: ^10.2.3
 
 dev_dependencies:
   flutter_test:

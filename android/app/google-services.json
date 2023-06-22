@@ -1,0 +1,377 @@
+{
+  "project_info": {
+    "project_number": "445363733245",
+    "firebase_url": "https://rider-runner.firebaseio.com",
+    "project_id": "rider-runner",
+    "storage_bucket": "rider-runner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445363733245:android:e1fa72eb17a6c90eee7494",
+        "android_client_info": {
+          "package_name": "com.example.riderunner_hospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALEWC2JtA8Joxz-3SQjDDczLPr7U3vn40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445363733245-2q1i5p5jhpdqumefg96nolob1ig4fm1m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "my.riderunner.new-app-client",
+                "app_store_id": "1544021589"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445363733245:android:98b115eb1225039eee7494",
+        "android_client_info": {
+          "package_name": "com.example.riderunner_hospital_courier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALEWC2JtA8Joxz-3SQjDDczLPr7U3vn40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445363733245-2q1i5p5jhpdqumefg96nolob1ig4fm1m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "my.riderunner.new-app-client",
+                "app_store_id": "1544021589"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445363733245:android:6b3dde72fd49d786ee7494",
+        "android_client_info": {
+          "package_name": "my.riderunner.app_client1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445363733245-5jdcu3im9dfec003gpngmv5i0vs4kkiv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "d404f70bd45efb20de7dd79b090b22d9be51133c"
+          }
+        },
+        {
+          "client_id": "445363733245-c9hfijiq2v2g8s49krgbqt7afbscp1s1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "9a318fe802e49568793d2ce76ffbe71eeb1c0876"
+          }
+        },
+        {
+          "client_id": "445363733245-gdriufnui4gd1nr31j3umda53ai29qrt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "827517a37919057237f8d4997206fe7cf683ff03"
+          }
+        },
+        {
+          "client_id": "445363733245-nqgsuf9ijefnph8u1cfac243aq0lj7ag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "400d0479cd0665112e20e39c191b3cc7f94461cb"
+          }
+        },
+        {
+          "client_id": "445363733245-q8u17f6a99g9q42h4kaopcua4k2f90ir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "4c2b10b00fac645cdb8dd7e0d905984e99923d09"
+          }
+        },
+        {
+          "client_id": "445363733245-t1t84f804b5kunj8jpqmr2cltbqfei4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "78510d96c8c9356271f40efb0f346c3233b948e4"
+          }
+        },
+        {
+          "client_id": "445363733245-udb96ft8l7qur4bj2qpjh7jq1iblq516.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "5fc047508e2094ddf29745a482ee04ad72e8a50f"
+          }
+        },
+        {
+          "client_id": "445363733245-v213lj9j6u48f43p74m870qhqt18qpti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "840d47b1a4cda3016c080f108fd280fd54719d20"
+          }
+        },
+        {
+          "client_id": "445363733245-v6k97em8j3o42k46ul5dfob5pv3onih6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_client1",
+            "certificate_hash": "17373030d13142e17b774f2e988e2a672f280430"
+          }
+        },
+        {
+          "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALEWC2JtA8Joxz-3SQjDDczLPr7U3vn40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445363733245-2q1i5p5jhpdqumefg96nolob1ig4fm1m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "my.riderunner.new-app-client",
+                "app_store_id": "1544021589"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445363733245:android:d8b53aa56a410910ee7494",
+        "android_client_info": {
+          "package_name": "my.riderunner.app_rider1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445363733245-2neh98jfddh7uh5elvlhq9dbm4sftsv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_rider1",
+            "certificate_hash": "400d0479cd0665112e20e39c191b3cc7f94461cb"
+          }
+        },
+        {
+          "client_id": "445363733245-7u08dj0tsdvgqipnlmpapi1f4p2fooed.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_rider1",
+            "certificate_hash": "9a318fe802e49568793d2ce76ffbe71eeb1c0876"
+          }
+        },
+        {
+          "client_id": "445363733245-pecmnnllag51leeh3qge4f80gnme1tca.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_rider1",
+            "certificate_hash": "17373030d13142e17b774f2e988e2a672f280430"
+          }
+        },
+        {
+          "client_id": "445363733245-ubugg17rpgmkku7fq1mtjiqr4co4b3te.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.app_rider1",
+            "certificate_hash": "827517a37919057237f8d4997206fe7cf683ff03"
+          }
+        },
+        {
+          "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALEWC2JtA8Joxz-3SQjDDczLPr7U3vn40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445363733245-2q1i5p5jhpdqumefg96nolob1ig4fm1m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "my.riderunner.new-app-client",
+                "app_store_id": "1544021589"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445363733245:android:0cf358e2cb76ac38ee7494",
+        "android_client_info": {
+          "package_name": "my.riderunner.new_app_client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445363733245-07fe7voe4jctompmo4up0jro9i54lqfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.new_app_client",
+            "certificate_hash": "17373030d13142e17b774f2e988e2a672f280430"
+          }
+        },
+        {
+          "client_id": "445363733245-jiookp08jl324n4pfvubmqt91o7hfurs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.new_app_client",
+            "certificate_hash": "78510d96c8c9356271f40efb0f346c3233b948e4"
+          }
+        },
+        {
+          "client_id": "445363733245-l49m5t54ntontac0aomdu06favrnh5ec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.new_app_client",
+            "certificate_hash": "5fc047508e2094ddf29745a482ee04ad72e8a50f"
+          }
+        },
+        {
+          "client_id": "445363733245-qk1egaqj5uqo0h0gtq9hl1l4r6s3f1ja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.new_app_client",
+            "certificate_hash": "840d47b1a4cda3016c080f108fd280fd54719d20"
+          }
+        },
+        {
+          "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALEWC2JtA8Joxz-3SQjDDczLPr7U3vn40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445363733245-2q1i5p5jhpdqumefg96nolob1ig4fm1m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "my.riderunner.new-app-client",
+                "app_store_id": "1544021589"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445363733245:android:333a723dcc2a7d5aee7494",
+        "android_client_info": {
+          "package_name": "my.riderunner.new_app_rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445363733245-nrr3a597ajvpvai2oeq2i1n3b2jgldcg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.riderunner.new_app_rider",
+            "certificate_hash": "17373030d13142e17b774f2e988e2a672f280430"
+          }
+        },
+        {
+          "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALEWC2JtA8Joxz-3SQjDDczLPr7U3vn40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445363733245-9h92npqged80m0oacn016n1e2ockgfrb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445363733245-2q1i5p5jhpdqumefg96nolob1ig4fm1m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "my.riderunner.new-app-client",
+                "app_store_id": "1544021589"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

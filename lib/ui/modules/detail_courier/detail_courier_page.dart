@@ -83,7 +83,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     children: [
                                       CircleAvatar(
                                         backgroundColor: Colors.white,
@@ -94,7 +94,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                       SizedBox(width: 10),
                                       Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Spacer(),
                                           Text(
@@ -107,7 +107,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           Text(
                                             "${dataGlobal.data?.user?.level}",
                                             style:
-                                                TextStyle(color: Colors.white),
+                                            TextStyle(color: Colors.white),
                                           ),
                                           Spacer(),
                                         ],
@@ -121,13 +121,13 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                     children: [
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
                                               Icon(
                                                 CupertinoIcons.doc_append,
-                                                size: 40,
+                                                size: 28,
                                               ),
                                               SizedBox(width: 10),
                                               Text(
@@ -139,7 +139,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           Text("99+")
                                         ],
                                       ),
-                                      SizedBox(height: 30),
+                                      SizedBox(height: 20),
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
@@ -150,19 +150,19 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
                                                 Icon(
                                                   CupertinoIcons.doc_append,
-                                                  size: 40,
+                                                  size: 28,
                                                 ),
                                                 SizedBox(width: 10),
                                                 Text(
                                                   "Waiting Confirmed",
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -170,7 +170,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 30),
+                                      SizedBox(height: 20),
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
@@ -181,19 +181,19 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
                                                 Icon(
                                                   CupertinoIcons.doc_append,
-                                                  size: 40,
+                                                  size: 28,
                                                 ),
                                                 SizedBox(width: 10),
                                                 Text(
                                                   "To Be Pick Up",
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -201,7 +201,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 30),
+                                      SizedBox(height: 20),
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
@@ -212,19 +212,19 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
                                                 Icon(
                                                   CupertinoIcons.doc_append,
-                                                  size: 40,
+                                                  size: 28,
                                                 ),
                                                 SizedBox(width: 10),
                                                 Text(
                                                   "Sedang Dikirim",
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -232,7 +232,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 30),
+                                      SizedBox(height: 20),
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
@@ -243,19 +243,19 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
                                                 Icon(
                                                   CupertinoIcons.doc_append,
-                                                  size: 40,
+                                                  size: 28,
                                                 ),
                                                 SizedBox(width: 10),
                                                 Text(
                                                   "Complete",
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -263,7 +263,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 30),
+                                      SizedBox(height: 20),
                                       InkWell(
                                         onTap: () {
                                           Navigator.push(
@@ -274,19 +274,19 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
                                                 Icon(
                                                   CupertinoIcons.doc_append,
-                                                  size: 40,
+                                                  size: 28,
                                                 ),
                                                 SizedBox(width: 10),
                                                 Text(
                                                   "History",
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -294,16 +294,16 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 30),
+                                      SizedBox(height: 20),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
                                               Icon(
                                                 CupertinoIcons.doc_append,
-                                                size: 40,
+                                                size: 28,
                                               ),
                                               SizedBox(width: 10),
                                               Text(
@@ -315,7 +315,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                           // Text("1"),
                                         ],
                                       ),
-                                      SizedBox(height: 30),
+                                      SizedBox(height: 20),
                                       InkWell(
                                         onTap: () async {
                                           var prefs = await SharedPreferences
@@ -325,19 +325,19 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
                                                 Icon(
                                                   Icons.logout,
-                                                  size: 40,
+                                                  size: 28,
                                                 ),
                                                 SizedBox(width: 10),
                                                 Text(
                                                   "Logout",
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -354,7 +354,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                           context: context);
                     },
                     icon:
-                        Icon(Icons.format_align_justify, color: Colors.black)),
+                    Icon(Icons.format_align_justify, color: Colors.black)),
                 SizedBox(width: 10),
               ],
             ),

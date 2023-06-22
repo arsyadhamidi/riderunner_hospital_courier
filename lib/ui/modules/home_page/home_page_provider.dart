@@ -12,6 +12,7 @@ import 'package:riderunner_hospital_courier/network/network_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePageProvider extends ChangeNotifier {
   HomePageProvider() {
@@ -123,7 +124,7 @@ class HomePageProvider extends ChangeNotifier {
       await placemarkFromCoordinates(position.latitude, position.longitude);
       print(placemarks);
       Placemark place = placemarks[0];
-      currentAddress = '${place.subAdministrativeArea}, ${place.country}';
+      currentAddress = '${place.subLocality}, ${place.locality}, ${place.country}';
       notifyListeners();
     }catch(exp){
       print(exp);
