@@ -26,4 +26,6 @@ class NetworkProvider{
     return getPesakit;
   }
 
+  
+
 }

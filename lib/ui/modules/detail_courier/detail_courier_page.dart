@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/model_dokter.dart';
-import 'package:riderunner_hospital_courier/model/obat_model.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_courier/detail_courier_provider.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_courier/detail_maps_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_page.dart';
@@ -30,12 +29,6 @@ class DetailCourierPage extends StatefulWidget {
 
 class _DetailCourierPageState extends State<DetailCourierPage> {
   bool isApply = true;
-
-  @override
-  void initState() {
-    listObat?.toList(growable: true);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -497,6 +490,9 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                           StreamBuilder(
                             stream: Geolocator.getPositionStream(),
                             builder: (context, snapshot) {
+                              if(!snapshot.hasData){
+                                return Center(child: CircularProgressIndicator());
+                              }
                               final position = snapshot.data as Position;
                               final myPosition =
                                   LatLng(position.latitude, position.longitude);
@@ -525,11 +521,10 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                   MarkerLayer(
                                     markers: [
                                       Marker(
-                                        point: LatLng(
-                                            double.parse(
-                                                '${widget.data?.hospital?.latitude}'),
-                                            double.parse(
-                                                '${widget.data?.hospital?.longitude}')),
+                                        point: detailProvider
+                                                .routeCoords.isNotEmpty
+                                            ? detailProvider.routeCoords.last
+                                            : myPosition,
                                         builder: (context) {
                                           return Image.asset(
                                               'assets/images/pin.png');
@@ -546,7 +541,10 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                   ),
                                   PolylineLayer(
                                     polylines: [
-                                      Polyline(points: [hospital, myPosition])
+                                      Polyline(
+                                        color: Colors.blue,
+                                          strokeWidth: 3.0,
+                                          points: detailProvider.routeCoords)
                                     ],
                                   ),
                                 ],
@@ -626,7 +624,10 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      DetailObatPage()));
+                                                      DetailObatPage(
+                                                          data: detailProvider
+                                                                  .listPesakit?[
+                                                              index])));
                                         },
                                         title: Text(
                                           detailProvider.listPesakit?[index]

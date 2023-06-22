@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:latlng/latlng.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
@@ -64,5 +64,4 @@ class DetailCourierProvider extends ChangeNotifier {
         .cast<LatLng>();
     notifyListeners();
   }
-
 }
