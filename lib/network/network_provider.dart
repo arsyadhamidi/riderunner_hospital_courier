@@ -8,8 +8,19 @@ import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
 class NetworkProvider{
 
   Future<ModelDokter?> getDataDokter() async{
-    final response = await http.get(Uri.parse(ApiConfig.url + "api/branch"),
+    final response = await http.get(Uri.parse(ApiConfig.url + "api/branch/tasker"),
     headers: <String, String>{'Authorization': 'Bearer ${dataGlobal.data?.token}'});
+
+    print(response.statusCode);
+    print("Token : ${dataGlobal.data?.token}");
+
+    ModelDokter getDokter = await modelDokterFromJson(response.body);
+    return getDokter;
+  }
+
+  Future<ModelDokter?> getDataNoApplyDokter() async{
+    final response = await http.get(Uri.parse(ApiConfig.url + "api/branch"),
+        headers: <String, String>{'Authorization': 'Bearer ${dataGlobal.data?.token}'});
 
     print(response.statusCode);
     print("Token : ${dataGlobal.data?.token}");

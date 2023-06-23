@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:riderunner_hospital_courier/model/detail_history_model.dart';
+import 'package:riderunner_hospital_courier/ui/modules/detail_history_courier_rinci/detail_history_courier_rinci_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/proof_page/proof_page_view.dart';
 
 class DetailHistoryCourierPage extends StatefulWidget {
@@ -71,7 +72,7 @@ class _DetailHistoryCourierPageState extends State<DetailHistoryCourierPage> {
                               MaterialButton(
                                 onPressed: () {},
                                 height: 45,
-                                minWidth: 70,
+                                minWidth: 50,
                                 color: Colors.blue,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -152,79 +153,88 @@ class _DetailHistoryCourierPageState extends State<DetailHistoryCourierPage> {
                               ),
                             ),
                           ),
-                          Card(
-                            child: Padding(
-                              padding: EdgeInsets.all(15),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 30,
-                                        backgroundColor: Colors.grey,
-                                      ),
-                                      SizedBox(width: 10),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailHistoryCourierRinciPage()));
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: EdgeInsets.all(15),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: 60,
+                                          height: 60,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(50),
+                                            child: Image.asset('assets/images/foto-profile.png', fit: BoxFit.cover,),
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Imam Taufiq Al - Hafidz",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 17)),
+                                            SizedBox(height: 5),
+                                            Row(
+                                              children: [
+                                                Icon(CupertinoIcons.doc_append,
+                                                    size: 20),
+                                                SizedBox(width: 5),
+                                                Text("Diagnosis Penyakit"),
+                                              ],
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 20),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20),
+                                      child: Row(
                                         children: [
-                                          Text("Imam Taufiq Al - Hafidz",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 17)),
-                                          SizedBox(height: 5),
-                                          Row(
-                                            children: [
-                                              Icon(CupertinoIcons.doc_append,
-                                                  size: 20),
-                                              SizedBox(width: 5),
-                                              Text("Diagnosis Penyakit"),
-                                            ],
-                                          )
+                                          Icon(Icons.phone),
+                                          SizedBox(width: 25),
+                                          Text("(+60) 1234567890"),
                                         ],
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(height: 20),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.phone),
-                                        SizedBox(width: 25),
-                                        Text("(+60) 1234567890"),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 15),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.location_on),
-                                        SizedBox(width: 25),
-                                        Container(
-                                          width: 220,
-                                            child: Text(
-                                                "13, Jalan Kota Kecil, Bandar Kota Tinggi, 81900 Kota Tinggi, Johor, Malaysia")),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 15),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Row(
-                                      children: [
-                                        Icon(CupertinoIcons.car),
-                                        SizedBox(width: 25),
-                                        Container(
+                                    SizedBox(height: 15),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.location_on),
+                                          SizedBox(width: 25),
+                                          Container(
                                             width: 220,
-                                            child: Text(
-                                                "RM 2")),
-                                      ],
+                                              child: Text(
+                                                  "13, Jalan Kota Kecil, Bandar Kota Tinggi, 81900 Kota Tinggi, Johor, Malaysia")),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(height: 15),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20),
+                                      child: Row(
+                                        children: [
+                                          Icon(CupertinoIcons.car),
+                                          SizedBox(width: 25),
+                                          Container(
+                                              width: 220,
+                                              child: Text(
+                                                  "RM 2")),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

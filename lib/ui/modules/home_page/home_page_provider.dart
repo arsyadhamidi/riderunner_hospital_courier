@@ -42,9 +42,9 @@ class HomePageProvider extends ChangeNotifier {
 
   Future<List<DataDokter>?> listDataDokter() async {
     try {
-      final response = await NetworkProvider().getDataDokter();
+      final response = await NetworkProvider().getDataNoApplyDokter();
       listDokter = response?.data ?? [];
-      filterDokterList = response?.data ?? [];
+      filterDokterList = response?.data?.where((e) => e.statusBatch == 'confirm courier').toList() ?? [];
       notifyListeners();
       return listDokter;
     } catch (e) {
@@ -54,8 +54,11 @@ class HomePageProvider extends ChangeNotifier {
 
   void filterPesakitList(String query) {
     filterDokterList = listDokter
-        ?.where((pesakit) =>
-            pesakit.nama!.toLowerCase().contains(query.toLowerCase()))
+        ?.where((pesakit) {
+          return (pesakit.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
+              (pesakit.nama?.toLowerCase().contains(query.toLowerCase()) ?? false)  ||
+              (pesakit.hospital?.alamat!.toLowerCase().contains(query.toLowerCase()) ?? false);
+    })
         .toList();
     notifyListeners();
   }

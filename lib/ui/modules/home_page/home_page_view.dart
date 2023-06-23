@@ -58,11 +58,16 @@ class _HomePageViewState extends State<HomePageView> {
                                       )),
                                   height: 200,
                                   child: InkWell(
-                                    onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePageView()));
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ProfilePageView()));
                                     },
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -87,8 +92,8 @@ class _HomePageViewState extends State<HomePageView> {
                                             ),
                                             Text(
                                               "${dataGlobal.data?.user?.level}",
-                                              style:
-                                                  TextStyle(color: Colors.white),
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                             ),
                                             Spacer(),
                                           ],
@@ -382,8 +387,11 @@ class _HomePageViewState extends State<HomePageView> {
                               ),
                               Container(
                                 width: 180,
-                                child: Text("${homeProvider.currentAddress}", maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,),
+                                child: Text(
+                                  "${homeProvider.currentAddress}",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               )
                             ],
                           ),
@@ -569,10 +577,9 @@ class _HomePageViewState extends State<HomePageView> {
                                                   homeProvider
                                                               .listDokter?[
                                                                   index]
-                                                              .profil ==
+                                                              .profil !=
                                                           null
-                                                      ? CircularProgressIndicator()
-                                                      : Container(
+                                                      ? Container(
                                                           height: 50,
                                                           width: 50,
                                                           child: ClipRRect(
@@ -584,7 +591,13 @@ class _HomePageViewState extends State<HomePageView> {
                                                                   (context,
                                                                       error,
                                                                       stackTrace) {
-                                                                return CircularProgressIndicator();
+                                                                return Container(
+                                                                    child: Image.asset(
+                                                                        'assets/images/foto-profile.png',
+                                                                        fit:
+                                                                        BoxFit.cover),
+                                                                    width: 50,
+                                                                    height: 50);
                                                               },
                                                             ),
                                                             borderRadius:
@@ -592,7 +605,14 @@ class _HomePageViewState extends State<HomePageView> {
                                                                     .circular(
                                                                         50),
                                                           ),
-                                                        ),
+                                                        )
+                                                      : Container(
+                                                          child: Image.asset(
+                                                              'assets/images/foto-profile.png',
+                                                              fit:
+                                                                  BoxFit.cover),
+                                                          width: 50,
+                                                          height: 50),
                                                   SizedBox(width: 10),
                                                   Column(
                                                     crossAxisAlignment:
@@ -600,7 +620,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        "${homeProvider.filterDokterList?[index].name}",
+                                                        "${homeProvider.filterDokterList?[index].name.toString()}",
                                                         style: TextStyle(
                                                             fontSize: 18,
                                                             fontWeight:
@@ -706,16 +726,21 @@ class _HomePageViewState extends State<HomePageView> {
                                               decoration: BoxDecoration(
                                                   color: Color.fromRGBO(
                                                       100, 169, 0, 1),
-                                              borderRadius: BorderRadius.only(
-                                                bottomRight: Radius.circular(20),
-                                                bottomLeft: Radius.circular(20),
-                                              )),
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomRight:
+                                                        Radius.circular(20),
+                                                    bottomLeft:
+                                                        Radius.circular(20),
+                                                  )),
                                               child: Center(
                                                   child: Text(
                                                 "RM 150",
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                fontSize: 20, fontWeight: FontWeight.w700),
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w700),
                                               )),
                                             ),
                                           ],

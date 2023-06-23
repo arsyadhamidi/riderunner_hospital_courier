@@ -504,7 +504,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                               detailProvider.getRoute(myPosition, hospital);
                               return FlutterMap(
                                 options: MapOptions(
-                                  center: myPosition,
+                                  center: hospital,
                                   zoom: 15.0,
                                 ),
                                 nonRotatedChildren: [],
@@ -521,30 +521,12 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                   MarkerLayer(
                                     markers: [
                                       Marker(
-                                        point: detailProvider
-                                                .routeCoords.isNotEmpty
-                                            ? detailProvider.routeCoords.last
-                                            : myPosition,
+                                        point: hospital,
                                         builder: (context) {
                                           return Image.asset(
                                               'assets/images/pin.png');
                                         },
                                       ),
-                                      Marker(
-                                        point: myPosition,
-                                        builder: (context) {
-                                          return Image.asset(
-                                              'assets/images/pin.png');
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  PolylineLayer(
-                                    polylines: [
-                                      Polyline(
-                                        color: Colors.blue,
-                                          strokeWidth: 3.0,
-                                          points: detailProvider.routeCoords)
                                     ],
                                   ),
                                 ],
