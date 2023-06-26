@@ -43,7 +43,10 @@ class _TobePickUpPageState extends State<TobePickUpPage> {
               child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                  child: ListView.builder(
+                  child: tobeProvider.isLoading
+                      ? (tobeProvider.listTobe == null
+                      ? Center(child: Text("Data Empty"))
+                      : ListView.builder(
                     itemCount: tobeProvider.listTobe?.length ?? 0,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -197,7 +200,9 @@ class _TobePickUpPageState extends State<TobePickUpPage> {
                         ),
                       );
                     },
-                  ),
+                  )
+                  )
+                      : Center(child: CircularProgressIndicator()),
                 ),
               ),
             ),

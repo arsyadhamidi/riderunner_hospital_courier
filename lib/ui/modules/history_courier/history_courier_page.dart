@@ -48,7 +48,25 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                   child: Column(
                     children: [
                       MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                  width: double.infinity,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Text("Filter History")
+                                    ],
+                                  ),
+                                );
+                              },
+                          );
+                        },
                         minWidth: double.infinity,
                         height: 50,
                         shape: RoundedRectangleBorder(
@@ -57,10 +75,13 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                         child: Text("Filter"),
                       ),
                       SizedBox(height: 20),
-                      ListView.builder(
+                      historyProvider.isLoading
+                          ? (historyProvider.listHistory == null
+                          ? Center(child: CircularProgressIndicator())
+                          : ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: historyProvider.listHistory?.length,
+                        itemCount: historyProvider.listHistory?.length ?? 0,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
@@ -87,16 +108,16 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                             width: 200,
                                             child: Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   historyProvider
-                                                          .listHistory?[index]
-                                                          .nama ??
+                                                      .listHistory?[index]
+                                                      .nama ??
                                                       '',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 17),
                                                 ),
                                                 SizedBox(height: 5),
@@ -115,8 +136,8 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                   minWidth: 70,
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
+                                                    BorderRadius.circular(
+                                                        10),
                                                   ),
                                                   child: Text(
                                                     "Task Complete",
@@ -130,7 +151,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                           SizedBox(width: 10),
                                           Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                 height: 50,
@@ -155,15 +176,15 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                               ),
                                               SizedBox(height: 5),
                                               Container(
-                                                width: 100,
+                                                  width: 100,
                                                   child: Text(
-                                                "${historyProvider.listHistory?[index].name}",
-                                                style: TextStyle(
-                                                    fontWeight:
+                                                    "${historyProvider.listHistory?[index].name}",
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                         FontWeight.w700),
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 2,
-                                              ))
+                                                  ))
                                             ],
                                           ),
                                         ],
@@ -185,7 +206,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                               SizedBox(height: 10),
                                               Text("5 Pesakit",
                                                   style:
-                                                      TextStyle(fontSize: 12)),
+                                                  TextStyle(fontSize: 12)),
                                             ],
                                           ),
                                           SizedBox(width: 40),
@@ -197,7 +218,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                               SizedBox(height: 10),
                                               Text("10 Obat",
                                                   style:
-                                                      TextStyle(fontSize: 12)),
+                                                  TextStyle(fontSize: 12)),
                                             ],
                                           ),
                                           SizedBox(width: 40),
@@ -209,7 +230,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                               SizedBox(height: 10),
                                               Text("5 Address",
                                                   style:
-                                                      TextStyle(fontSize: 12)),
+                                                  TextStyle(fontSize: 12)),
                                             ],
                                           ),
                                           SizedBox(width: 40),
@@ -221,7 +242,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                               SizedBox(height: 10),
                                               Text("RM 25",
                                                   style:
-                                                      TextStyle(fontSize: 12)),
+                                                  TextStyle(fontSize: 12)),
                                             ],
                                           ),
                                         ],
@@ -233,7 +254,8 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                             ),
                           );
                         },
-                      ),
+                      ))
+                          : Center(child: CircularProgressIndicator()),
                     ],
                   ),
                 ),

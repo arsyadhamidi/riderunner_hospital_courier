@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/model_dokter.dart';
@@ -12,7 +13,6 @@ import 'package:riderunner_hospital_courier/network/network_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePageProvider extends ChangeNotifier {
   HomePageProvider() {
@@ -30,6 +30,9 @@ class HomePageProvider extends ChangeNotifier {
   final MapController mapController = MapController();
   String currentAddress = 'Your Location';
   bool isLoading = true;
+  double distance = 0.0;
+  double travelTime = 0.0;
+  int travelTimeInMinutes = 0;
 
   Future<void> getDataUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -122,6 +125,28 @@ class HomePageProvider extends ChangeNotifier {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy:  LocationAccuracy.high
     );
+
+    LatLng currentLocation = LatLng(position.latitude, position.longitude);
+
+    List<LatLng>? destinationLocation = filterDokterList?.map((e) {
+      return LatLng(double.parse('${e.hospital?.latitude}'), double.parse('${e.hospital?.longitude}'));
+    }).toList();
+
+
+    if (currentLocation != null && destinationLocation != null && destinationLocation.isNotEmpty) {
+      distance = Distance().as(
+        LengthUnit.Kilometer,
+        currentLocation,
+        destinationLocation[0],
+      );
+    }
+
+    double averageSpeed = 50.0; // Kecepatan rata-rata dalam km/jam
+    travelTime = (distance / averageSpeed) * 60.0; // Waktu perjalanan dalam jam
+
+    travelTimeInMinutes = travelTime.round();
+    notifyListeners();
+
     try{
       List<Placemark> placemarks =
       await placemarkFromCoordinates(position.latitude, position.longitude);
@@ -136,5 +161,6 @@ class HomePageProvider extends ChangeNotifier {
     return position;
 
   }
+
 
 }

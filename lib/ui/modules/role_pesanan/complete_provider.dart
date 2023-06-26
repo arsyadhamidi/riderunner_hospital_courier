@@ -6,6 +6,7 @@ import 'package:riderunner_hospital_courier/network/network_provider.dart';
 class CompleteProvider extends ChangeNotifier{
 
   List<DataDokter>? listComplete;
+  bool isLoading = true;
 
   CompleteProvider(){
     listDataComplete();

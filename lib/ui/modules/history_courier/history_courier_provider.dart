@@ -5,6 +5,7 @@ import 'package:riderunner_hospital_courier/network/network_provider.dart';
 class HistoryCourierProvider extends ChangeNotifier{
 
   List<DataDokter>? listHistory;
+  bool isLoading = true;
 
   HistoryCourierProvider(){
     listDataHistory();
@@ -13,7 +14,7 @@ class HistoryCourierProvider extends ChangeNotifier{
   Future<List<DataDokter>?> listDataHistory() async{
     try{
       final response = await NetworkProvider().getDataDokter();
-      listHistory = await response?.data?.where((e) => e.statusBatch == 'Telah Terselesaikan').toList() ?? [];
+      listHistory = response?.data?.where((e) => e.statusBatch == 'Telah Terselesaikan').toList() ?? [];
       notifyListeners();
       return listHistory;
     }catch(e){

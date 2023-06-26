@@ -695,7 +695,6 @@ class _HomePageViewState extends State<HomePageView> {
                                                           Row(
                                                             children: [
                                                               Container(
-                                                                width: 150,
                                                                 decoration:
                                                                     BoxDecoration(
                                                                   color: Colors
@@ -707,9 +706,12 @@ class _HomePageViewState extends State<HomePageView> {
                                                                           .circular(
                                                                               50),
                                                                 ),
-                                                                child: Center(
-                                                                    child: Text(
-                                                                        '3,0 Km - 10 Menit')),
+                                                                child: Padding(
+                                                                  padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3, top: 3),
+                                                                  child: Center(
+                                                                      child: Text(
+                                                                          '${homeProvider.distance.toStringAsFixed(0)} KM - ${homeProvider.travelTimeInMinutes} Minutes')),
+                                                                ),
                                                               )
                                                             ],
                                                           ),

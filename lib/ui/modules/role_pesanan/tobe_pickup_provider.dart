@@ -6,6 +6,7 @@ import 'package:riderunner_hospital_courier/network/network_provider.dart';
 class TobePickupProvider extends ChangeNotifier{
 
   List<DataDokter>? listTobe;
+  bool isLoading = true;
 
   TobePickupProvider(){
     listDataTobePickup();

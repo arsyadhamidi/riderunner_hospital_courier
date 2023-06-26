@@ -5,6 +5,7 @@ import 'package:riderunner_hospital_courier/network/network_provider.dart';
 class SedangDikirimProvider extends ChangeNotifier{
 
   List<DataDokter>? listDikirm;
+  bool isLoading = true;
 
   SedangDikirimProvider(){
     listDataSedangDikirim();
