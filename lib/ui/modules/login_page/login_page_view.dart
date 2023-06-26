@@ -16,7 +16,7 @@ class _LoginPageViewState extends State<LoginPageView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => LoginPageProvider(),
+        create: (context) => LoginPageProvider(context),
       child: Consumer<LoginPageProvider>(
         builder: (context, loginProvider, child) {
           return Scaffold(

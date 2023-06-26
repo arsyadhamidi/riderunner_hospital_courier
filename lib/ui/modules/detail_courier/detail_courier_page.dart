@@ -20,8 +20,9 @@ import 'package:side_sheet/side_sheet.dart';
 
 class DetailCourierPage extends StatefulWidget {
   final DataDokter? data;
+  final dynamic shipping;
 
-  DetailCourierPage({Key? key, required this.data}) : super(key: key);
+  DetailCourierPage({Key? key, required this.data, required this.shipping}) : super(key: key);
 
   @override
   State<DetailCourierPage> createState() => _DetailCourierPageState();
@@ -440,7 +441,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18)),
                               SizedBox(height: 7),
-                              Text("5 Pesakit",
+                              Text("${detailProvider.rowCount} Pesakit",
                                   style: TextStyle(color: Colors.grey)),
                             ],
                           ),
@@ -473,7 +474,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18)),
                               SizedBox(height: 7),
-                              Text("RM 25",
+                              Text("RM${widget.shipping}",
                                   style: TextStyle(color: Colors.grey)),
                             ],
                           ),
@@ -511,11 +512,12 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                 children: [
                                   TileLayer(
                                     urlTemplate:
-                                        'https://api.mapbox.com/styles/v1/dzikrul1616/clf7lunv700co01mo8n22ee5m/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWRhY29kaW5nIiwiYSI6ImNrbGtwNjlxMDB0YjYycGx5bHc3NHg0b2sifQ.wCgrcy4tnqhPTAD9PVvypg',
+                                        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWRhY29kaW5nIiwiYSI6ImNrbGtwNjlxMDB0YjYycGx5bHc3NHg0b2sifQ.wCgrcy4tnqhPTAD9PVvypg',
                                     userAgentPackageName: 'com.example.app',
                                     additionalOptions: {
                                       'accessToken':
                                           'pk.eyJ1IjoidWRhY29kaW5nIiwiYSI6ImNrbGtwNjlxMDB0YjYycGx5bHc3NHg0b2sifQ.wCgrcy4tnqhPTAD9PVvypg',
+                                      'id': 'mapbox/streets-v12',
                                     },
                                   ),
                                   MarkerLayer(

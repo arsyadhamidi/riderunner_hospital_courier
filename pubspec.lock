@@ -504,6 +504,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  pushy_flutter:
+    dependency: "direct main"
+    description:
+      name: pushy_flutter
+      sha256: "56757f581e06697ca86ddc86927dd7af14031b2a77042d01d6b3031631873f29"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.12"
   shared_preferences:
     dependency: "direct main"
     description:

@@ -47,11 +47,12 @@ class DetailMapsPage extends StatelessWidget {
                         children: [
                           TileLayer(
                             urlTemplate:
-                            'https://api.mapbox.com/styles/v1/dzikrul1616/clf7lunv700co01mo8n22ee5m/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZHppa3J1bDE2MTYiLCJhIjoiY2xleWJ6aTdlMGc0ODQxcXZsaDZlaDhwciJ9.Nz95V3UL1b8AfExigWUllA',
+                            'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidWRhY29kaW5nIiwiYSI6ImNrbGtwNjlxMDB0YjYycGx5bHc3NHg0b2sifQ.wCgrcy4tnqhPTAD9PVvypg',
                             userAgentPackageName: 'com.example.app',
                             additionalOptions: {
                               'accessToken':
-                              'pk.eyJ1IjoiZHppa3J1bDE2MTYiLCJhIjoiY2xleWJ6aTdlMGc0ODQxcXZsaDZlaDhwciJ9.Nz95V3UL1b8AfExigWUllA',
+                              'pk.eyJ1IjoidWRhY29kaW5nIiwiYSI6ImNrbGtwNjlxMDB0YjYycGx5bHc3NHg0b2sifQ.wCgrcy4tnqhPTAD9PVvypg',
+                              'id': 'mapbox/streets-v12',
                             },
                           ),
                           MarkerLayer(

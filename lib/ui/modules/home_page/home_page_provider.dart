@@ -33,6 +33,11 @@ class HomePageProvider extends ChangeNotifier {
   double distance = 0.0;
   double travelTime = 0.0;
   int travelTimeInMinutes = 0;
+  double travelCost = 0;
+
+  Future<void> refreshR() async{
+    await listDataDokter();
+  }
 
   Future<void> getDataUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -61,7 +66,7 @@ class HomePageProvider extends ChangeNotifier {
           return (pesakit.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
               (pesakit.nama?.toLowerCase().contains(query.toLowerCase()) ?? false)  ||
               (pesakit.hospital?.alamat!.toLowerCase().contains(query.toLowerCase()) ?? false);
-    })
+    }).where((pesakit) => pesakit.statusBatch == 'confirm courier')
         .toList();
     notifyListeners();
   }
@@ -69,7 +74,7 @@ class HomePageProvider extends ChangeNotifier {
   void filterTanggalDokterList(String query) {
     filterDokterList = listDokter
         ?.where((pesakit) =>
-            pesakit.tanggal!.toLowerCase().contains(query.toLowerCase()))
+            pesakit.tanggal!.toLowerCase().contains(query.toLowerCase())).where((pesakit) => pesakit.statusBatch == 'confirm courier')
         .toList();
     notifyListeners();
   }
@@ -141,10 +146,11 @@ class HomePageProvider extends ChangeNotifier {
       );
     }
 
+
     double averageSpeed = 50.0; // Kecepatan rata-rata dalam km/jam
     travelTime = (distance / averageSpeed) * 60.0; // Waktu perjalanan dalam jam
-
     travelTimeInMinutes = travelTime.round();
+    travelCost = distance * 0.05;
     notifyListeners();
 
     try{

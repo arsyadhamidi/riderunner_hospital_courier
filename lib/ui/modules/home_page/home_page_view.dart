@@ -345,13 +345,14 @@ class _HomePageViewState extends State<HomePageView> {
                 SizedBox(width: 10),
               ],
             ),
-            body: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: SingleChildScrollView(
-                  child: Column(
+            body: RefreshIndicator(
+              onRefresh: homeProvider.refreshR,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: ListView(
                     children: [
                       Card(
                         elevation: 3,
@@ -471,8 +472,8 @@ class _HomePageViewState extends State<HomePageView> {
                       ),
                       SizedBox(height: 20),
                       homeProvider.isLoading
-                          ? (homeProvider.listDokter == null
-                              ? Text("No Data")
+                          ? ( homeProvider.filterDokterList?.length == 0
+                              ? Center(child: Text('No Data'))
                               : ListView.builder(
                                   itemCount:
                                       homeProvider.filterDokterList?.length ??
@@ -489,6 +490,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                     DetailCourierPage(
                                                       data: homeProvider
                                                           .listDokter?[index],
+                                                      shipping: homeProvider.travelCost,
                                                     )));
                                       },
                                       child: Card(
@@ -594,8 +596,8 @@ class _HomePageViewState extends State<HomePageView> {
                                                                 return Container(
                                                                     child: Image.asset(
                                                                         'assets/images/foto-profile.png',
-                                                                        fit:
-                                                                        BoxFit.cover),
+                                                                        fit: BoxFit
+                                                                            .cover),
                                                                     width: 50,
                                                                     height: 50);
                                                               },
@@ -707,10 +709,21 @@ class _HomePageViewState extends State<HomePageView> {
                                                                               50),
                                                                 ),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsets.only(left: 10, right: 10, bottom: 3, top: 3),
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right: 10,
+                                                                      bottom: 3,
+                                                                      top: 3),
                                                                   child: Center(
-                                                                      child: Text(
-                                                                          '${homeProvider.distance.toStringAsFixed(0)} KM - ${homeProvider.travelTimeInMinutes} Minutes')),
+                                                                    child: homeProvider.distance >= 100
+                                                                        ? Text(
+                                                                            '${homeProvider.distance.toStringAsFixed(0)} KM - ${homeProvider.travelTimeInMinutes} Minutes',
+                                                                          )
+                                                                        : Text(
+                                                                            '${homeProvider.distance.toStringAsFixed(0)} KM - ${homeProvider.travelTime} Minutes',
+                                                                          ),
+                                                                  ),
                                                                 ),
                                                               )
                                                             ],
@@ -737,7 +750,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                   )),
                                               child: Center(
                                                   child: Text(
-                                                "RM 150",
+                                                "RM${homeProvider.travelCost}",
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 20,
@@ -751,7 +764,7 @@ class _HomePageViewState extends State<HomePageView> {
                                     );
                                   },
                                 ))
-                          : CircularProgressIndicator(),
+                          : Text("No Data"),
                     ],
                   ),
                 ),

@@ -13,7 +13,7 @@ class DetailMapsProvider extends ChangeNotifier{
     final url =
         "https://api.mapbox.com/directions/v5/mapbox/driving/${origin
         .longitude},${origin.latitude};${destination.longitude},${destination
-        .latitude}?alternatives=true&exclude=toll&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1IjoiZHppa3J1bDE2MTYiLCJhIjoiY2xleWJ6aTdlMGc0ODQxcXZsaDZlaDhwciJ9.Nz95V3UL1b8AfExigWUllA";
+        .latitude}?alternatives=true&exclude=toll&geometries=geojson&language=en&overview=simplified&steps=true&access_token=pk.eyJ1IjoidWRhY29kaW5nIiwiYSI6ImNrbGtwNjlxMDB0YjYycGx5bHc3NHg0b2sifQ.wCgrcy4tnqhPTAD9PVvypg";
 
     final response = await http.get(Uri.parse(url));
     final data = jsonDecode(response.body);
