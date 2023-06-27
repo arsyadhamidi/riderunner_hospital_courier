@@ -150,7 +150,7 @@ class HomePageProvider extends ChangeNotifier {
     double averageSpeed = 50.0; // Kecepatan rata-rata dalam km/jam
     travelTime = (distance / averageSpeed) * 60.0; // Waktu perjalanan dalam jam
     travelTimeInMinutes = travelTime.round();
-    travelCost = distance * 0.05;
+    travelCost = distance * 0.55;
     notifyListeners();
 
     try{

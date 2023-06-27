@@ -489,10 +489,11 @@ class _HomePageViewState extends State<HomePageView> {
                                                 builder: (context) =>
                                                     DetailCourierPage(
                                                       data: homeProvider
-                                                          .listDokter?[index],
+                                                          .filterDokterList?[index],
                                                       shipping: homeProvider.travelCost,
                                                       jarak: homeProvider.distance,
                                                       waktu: homeProvider.travelTimeInMinutes,
+                                                      batchId: homeProvider.filterDokterList?[index].id,
                                                     )));
                                       },
                                       child: Card(

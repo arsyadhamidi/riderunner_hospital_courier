@@ -92,7 +92,10 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              DetailHistoryCourierPage()));
+                                              DetailHistoryCourierPage(
+                                                batchId: historyProvider.listHistory?[index].id,
+                                                tglPesakit: historyProvider.listHistory?[index].tanggal,
+                                                jamPesakit: historyProvider.listHistory?[index].jam,)));
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 10),

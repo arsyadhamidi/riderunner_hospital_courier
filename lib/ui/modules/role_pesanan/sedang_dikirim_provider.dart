@@ -9,6 +9,11 @@ class SedangDikirimProvider extends ChangeNotifier{
 
   SedangDikirimProvider(){
     listDataSedangDikirim();
+    refreshSedangKirim();
+  }
+
+  Future<void> refreshSedangKirim() async{
+    listDataSedangDikirim();
   }
 
   Future<List<DataDokter>?> listDataSedangDikirim() async{

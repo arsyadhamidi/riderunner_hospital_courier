@@ -10,6 +10,11 @@ class CompleteProvider extends ChangeNotifier{
 
   CompleteProvider(){
     listDataComplete();
+    refreshComplete();
+  }
+
+  Future<void> refreshComplete()async{
+    await listDataComplete();
   }
 
   Future<List<DataDokter>?> listDataComplete() async{
