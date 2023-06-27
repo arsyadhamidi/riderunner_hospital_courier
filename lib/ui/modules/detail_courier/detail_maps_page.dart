@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
@@ -9,8 +10,10 @@ class DetailMapsPage extends StatelessWidget {
 
   final dynamic latitude;
   final dynamic longitude;
+  final dynamic jarak;
+  final dynamic waktu;
 
-  DetailMapsPage({Key? key, required this.latitude, required this.longitude}) : super(key: key);
+  DetailMapsPage({Key? key, required this.latitude, required this.longitude, required this.jarak, required this.waktu}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +66,7 @@ class DetailMapsPage extends StatelessWidget {
                                     ? detailMapsProvider.routeCoords.last
                                     : myPosition,
                                 builder: (context) {
-                                  return Image.asset(
-                                      'assets/images/pin.png');
+                                  return Icon(Icons.location_on, color: Colors.red);
                                 },
                               ),
                               Marker(
@@ -88,43 +90,86 @@ class DetailMapsPage extends StatelessWidget {
                       );
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.white,
-                                child: IconButton(
-                                    onPressed: (){
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Icon(Icons.arrow_back, color: Colors.black,)
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    child: IconButton(
+                                        onPressed: (){
+                                          Navigator.pop(context);
+                                        },
+                                        icon: Icon(Icons.arrow_back, color: Colors.black,)
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.all(20),
+                            //   child: Row(
+                            //     children: [
+                            //       CircleAvatar(
+                            //         backgroundColor: Colors.white,
+                            //         child: IconButton(
+                            //             onPressed: (){
+                            //               detailMapsProvider.mapController.move(
+                            //                   LatLng(double.parse('${detailMapsProvider.latitude}'), double.parse('${detailMapsProvider.longitude}')), detailMapsProvider.zoomIn);
+                            //             },
+                            //             icon: Icon(Icons.gps_fixed, color: Colors.black,)
+                            //         ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: 100,
+                        width: double.infinity,
+                        child: Card(
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text("${waktu} Minutes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+                                    SizedBox(width: 7),
+                                    Text("(${jarak} km)", style: TextStyle(fontSize: 20, color: Colors.grey)),
+                                    SizedBox(width: 7),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Colors.amber
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4),
+                                        child: Icon(CupertinoIcons.location_north_fill, size: 12),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              )
-                            ],
+                                SizedBox(height: 10),
+                                Text("Rute tercepat saat ini sesuai kondisi lalu lintas")
+                              ],
+                            ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.white,
-                                child: IconButton(
-                                    onPressed: (){},
-                                    icon: Icon(Icons.gps_fixed, color: Colors.black,)
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

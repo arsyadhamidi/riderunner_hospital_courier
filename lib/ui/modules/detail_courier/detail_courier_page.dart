@@ -21,8 +21,10 @@ import 'package:side_sheet/side_sheet.dart';
 class DetailCourierPage extends StatefulWidget {
   final DataDokter? data;
   final dynamic shipping;
+  final dynamic jarak;
+  final dynamic waktu;
 
-  DetailCourierPage({Key? key, required this.data, required this.shipping}) : super(key: key);
+  DetailCourierPage({Key? key, required this.data, required this.shipping, required this.jarak, required this.waktu}) : super(key: key);
 
   @override
   State<DetailCourierPage> createState() => _DetailCourierPageState();
@@ -547,6 +549,8 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                   '${widget.data?.hospital?.latitude}'),
                                               longitude: double.parse(
                                                   '${widget.data?.hospital?.longitude}'),
+                                              jarak: widget.jarak,
+                                              waktu: widget.waktu,
                                             )));
                               },
                               child: Container(

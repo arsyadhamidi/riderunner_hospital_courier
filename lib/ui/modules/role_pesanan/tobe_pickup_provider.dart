@@ -10,6 +10,11 @@ class TobePickupProvider extends ChangeNotifier{
 
   TobePickupProvider(){
     listDataTobePickup();
+    refreshTobe();
+  }
+
+  Future<void> refreshTobe() async{
+    await listDataTobePickup();
   }
 
   Future<List<DataDokter>?> listDataTobePickup() async{

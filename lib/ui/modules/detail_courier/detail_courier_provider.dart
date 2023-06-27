@@ -11,7 +11,6 @@ import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
 import 'package:riderunner_hospital_courier/network/network_provider.dart';
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
-import 'package:sqflite/sqflite.dart';
 
 class DetailCourierProvider extends ChangeNotifier {
 
@@ -70,4 +69,5 @@ class DetailCourierProvider extends ChangeNotifier {
         .cast<LatLng>();
     notifyListeners();
   }
+
 }

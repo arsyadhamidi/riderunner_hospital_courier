@@ -2,12 +2,22 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 
 class DetailMapsProvider extends ChangeNotifier{
 
   List<LatLng> routeCoords = [];
+  double latitude = 0.0;
+  double longitude = 0.0;
+  double zoomIn = 15.0;
+  MapController mapController = MapController();
+
+  DetailMapsProvider(){
+    getCurrentLocation();
+  }
 
   Future<void> getRoute(origin, destination) async {
     final url =
@@ -23,6 +33,40 @@ class DetailMapsProvider extends ChangeNotifier{
         .toList()
         .cast<LatLng>();
     notifyListeners();
+  }
+
+  void getCurrentLocation() async{
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Check if location services are enabled
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      print('Location services are disabled.');
+      return;
+    }
+
+    // Check and request location permission
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission != LocationPermission.whileInUse &&
+          permission != LocationPermission.always) {
+        print('Location permissions are denied.');
+        return;
+      }
+    }
+
+    // Get the current position
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    latitude = position.latitude;
+    longitude = position.longitude;
+
+    print('Latitude: $latitude');
+    print('Longitude: $longitude');
   }
 
 }

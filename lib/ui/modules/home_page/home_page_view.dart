@@ -491,6 +491,8 @@ class _HomePageViewState extends State<HomePageView> {
                                                       data: homeProvider
                                                           .listDokter?[index],
                                                       shipping: homeProvider.travelCost,
+                                                      jarak: homeProvider.distance,
+                                                      waktu: homeProvider.travelTimeInMinutes,
                                                     )));
                                       },
                                       child: Card(
