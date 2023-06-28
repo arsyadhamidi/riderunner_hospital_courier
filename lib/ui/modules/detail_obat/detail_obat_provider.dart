@@ -1,11 +1,61 @@
 
+import 'dart:io';
+
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:http/http.dart' as http;
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
 
 class DetailObatProvider extends ChangeNotifier{
+
+  File? imageFiles;
+  CameraController? controller;
+
+  Future<void> initializeCamera() async{
+    var cameras = await availableCameras();
+    controller = CameraController(cameras[0], ResolutionPreset.max);
+    await controller?.initialize();
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
+
+  Future<File?> takePhoto() async {
+    Directory root = await getTemporaryDirectory();
+    String directoryPath = '${root.path}/Guided_Camera';
+    await Directory(directoryPath).create(recursive: true);
+    String filePath = '$directoryPath/${DateTime.now().millisecondsSinceEpoch}.jpg';
+
+    try {
+      XFile? picture = await controller?.takePicture();
+      imageFiles = File(picture!.path);
+      notifyListeners();
+      await imageFiles!.copy(filePath);
+      return imageFiles;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  Future<void> pickImageFromGallery() async {
+    try{
+      var image = await ImagePicker.platform.pickImage(
+          source: ImageSource.gallery
+      );
+      imageFiles = File(image!.path);
+      notifyListeners();
+    }catch(exp){
+      print(exp);
+    }
+  }
 
   void logoutAuth(BuildContext context) async {
     final response = await http.delete(Uri.parse(ApiConfig.url + "api/logout"),

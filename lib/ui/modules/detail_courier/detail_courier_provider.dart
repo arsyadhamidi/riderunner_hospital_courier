@@ -1,7 +1,6 @@
 
 import 'dart:convert';
 
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -24,7 +23,7 @@ class DetailCourierProvider extends ChangeNotifier {
   double latMaps = 0.0;
   double longMaps = 0.0;
   int rowCount = 0;
-  late bool isButtonClicked;
+  late bool isButtonClicked = false;
 
   DetailCourierProvider(this.id) {
     listDataPesakit(id);

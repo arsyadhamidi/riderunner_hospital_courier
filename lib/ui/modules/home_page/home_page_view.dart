@@ -596,13 +596,16 @@ class _HomePageViewState extends State<HomePageView> {
                                                                   (context,
                                                                       error,
                                                                       stackTrace) {
-                                                                return Container(
-                                                                    child: Image.asset(
-                                                                        'assets/images/foto-profile.png',
-                                                                        fit: BoxFit
-                                                                            .cover),
-                                                                    width: 50,
-                                                                    height: 50);
+                                                                return ClipRRect(
+                                                                  borderRadius: BorderRadius.circular(50),
+                                                                  child: Container(
+                                                                      child: Image.asset(
+                                                                          'assets/images/foto-profile.png',
+                                                                          fit: BoxFit
+                                                                              .cover),
+                                                                      width: 50,
+                                                                      height: 50),
+                                                                );
                                                               },
                                                             ),
                                                             borderRadius:
@@ -611,13 +614,16 @@ class _HomePageViewState extends State<HomePageView> {
                                                                         50),
                                                           ),
                                                         )
-                                                      : Container(
-                                                          child: Image.asset(
-                                                              'assets/images/foto-profile.png',
-                                                              fit:
-                                                                  BoxFit.cover),
-                                                          width: 50,
-                                                          height: 50),
+                                                      : ClipRRect(
+                                                        child: Container(
+                                                            child: Image.asset(
+                                                                'assets/images/foto-profile.png',
+                                                                fit:
+                                                                    BoxFit.cover),
+                                                            width: 50,
+                                                            height: 50),
+                                                    borderRadius: BorderRadius.circular(50),
+                                                      ),
                                                   SizedBox(width: 10),
                                                   Column(
                                                     crossAxisAlignment:
@@ -753,7 +759,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                   )),
                                               child: Center(
                                                   child: Text(
-                                                "RM${homeProvider.travelCost}",
+                                                "RM${homeProvider.travelCost.toStringAsFixed(2)}",
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 20,

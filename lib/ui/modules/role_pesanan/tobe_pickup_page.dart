@@ -198,7 +198,7 @@ class _TobePickUpPageState extends State<TobePickUpPage> {
                                                         SizedBox(width: 10),
                                                         Container(
                                                             width: 90,
-                                                            child: Text("RM 20 - RM 30",
+                                                            child: Text("RM ${tobeProvider.travelCost}",
                                                                 style: TextStyle(
                                                                     fontSize: 13))),
                                                       ],

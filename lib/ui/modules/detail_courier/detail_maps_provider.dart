@@ -14,6 +14,10 @@ class DetailMapsProvider extends ChangeNotifier{
   double longitude = 0.0;
   double zoomIn = 15.0;
   MapController mapController = MapController();
+  double distance = 0.0;
+  double travelTime = 0.0;
+  int travelTimeInMinutes = 0;
+  double travelCost = 0;
 
   DetailMapsProvider(){
     getCurrentLocation();
