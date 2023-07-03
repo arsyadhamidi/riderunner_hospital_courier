@@ -13,7 +13,7 @@ class TobePickupProvider extends ChangeNotifier{
   double distance = 0.0;
   double travelTime = 0.0;
   int travelTimeInMinutes = 0;
-  double travelCost = 0;
+  double travelCost = 0.0;
   String currentAddress = 'Your Location';
 
   TobePickupProvider(){
@@ -31,6 +31,7 @@ class TobePickupProvider extends ChangeNotifier{
     notifyListeners();
     return listTobe;
   }
+
 
   //getLatLong
   Future<Position> getGeolocationPosition() async{
@@ -69,7 +70,6 @@ class TobePickupProvider extends ChangeNotifier{
       return LatLng(double.parse('${e.hospital?.latitude}'), double.parse('${e.hospital?.longitude}'));
     }).toList();
 
-
     if (currentLocation != null && destinationLocation != null && destinationLocation.isNotEmpty) {
       distance = Distance().as(
         LengthUnit.Kilometer,
@@ -78,11 +78,10 @@ class TobePickupProvider extends ChangeNotifier{
       );
     }
 
-
     double averageSpeed = 50.0; // Kecepatan rata-rata dalam km/jam
     travelTime = (distance / averageSpeed) * 60.0; // Waktu perjalanan dalam jam
     travelTimeInMinutes = travelTime.round();
-    travelCost = distance * 0.05;
+    travelCost = distance * 0.55;
     notifyListeners();
 
     try{

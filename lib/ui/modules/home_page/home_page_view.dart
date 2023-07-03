@@ -472,7 +472,7 @@ class _HomePageViewState extends State<HomePageView> {
                       ),
                       SizedBox(height: 20),
                       homeProvider.isLoading
-                          ? ( homeProvider.filterDokterList?.length == 0
+                          ? (homeProvider.filterDokterList?.length == 0
                               ? Center(child: Text('No Data'))
                               : ListView.builder(
                                   itemCount:
@@ -489,11 +489,18 @@ class _HomePageViewState extends State<HomePageView> {
                                                 builder: (context) =>
                                                     DetailCourierPage(
                                                       data: homeProvider
-                                                          .filterDokterList?[index],
-                                                      shipping: homeProvider.travelCost,
-                                                      jarak: homeProvider.distance,
-                                                      waktu: homeProvider.travelTimeInMinutes,
-                                                      batchId: homeProvider.filterDokterList?[index].id,
+                                                              .filterDokterList?[
+                                                          index],
+                                                      shipping: homeProvider
+                                                          .travelCost,
+                                                      jarak:
+                                                      homeProvider.distance >= 1000 ? '${homeProvider.kilometers.toStringAsFixed(1)} KM' : '${homeProvider.meters} Meters',
+                                                      waktu: homeProvider
+                                                          .timeString,
+                                                      batchId: homeProvider
+                                                          .filterDokterList?[
+                                                              index]
+                                                          .id,
                                                     )));
                                       },
                                       child: Card(
@@ -597,14 +604,18 @@ class _HomePageViewState extends State<HomePageView> {
                                                                       error,
                                                                       stackTrace) {
                                                                 return ClipRRect(
-                                                                  borderRadius: BorderRadius.circular(50),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
                                                                   child: Container(
                                                                       child: Image.asset(
                                                                           'assets/images/foto-profile.png',
                                                                           fit: BoxFit
                                                                               .cover),
                                                                       width: 50,
-                                                                      height: 50),
+                                                                      height:
+                                                                          50),
                                                                 );
                                                               },
                                                             ),
@@ -615,15 +626,17 @@ class _HomePageViewState extends State<HomePageView> {
                                                           ),
                                                         )
                                                       : ClipRRect(
-                                                        child: Container(
-                                                            child: Image.asset(
-                                                                'assets/images/foto-profile.png',
-                                                                fit:
-                                                                    BoxFit.cover),
-                                                            width: 50,
-                                                            height: 50),
-                                                    borderRadius: BorderRadius.circular(50),
-                                                      ),
+                                                          child: Container(
+                                                              child: Image.asset(
+                                                                  'assets/images/foto-profile.png',
+                                                                  fit: BoxFit
+                                                                      .cover),
+                                                              width: 50,
+                                                              height: 50),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(50),
+                                                        ),
                                                   SizedBox(width: 10),
                                                   Column(
                                                     crossAxisAlignment:
@@ -725,13 +738,17 @@ class _HomePageViewState extends State<HomePageView> {
                                                                       bottom: 3,
                                                                       top: 3),
                                                                   child: Center(
-                                                                    child: homeProvider.distance >= 100
-                                                                        ? Text(
-                                                                            '${homeProvider.distance.toStringAsFixed(0)} KM - ${homeProvider.travelTimeInMinutes} Minutes',
-                                                                          )
-                                                                        : Text(
-                                                                            '${homeProvider.distance.toStringAsFixed(0)} KM - ${homeProvider.travelTime} Minutes',
-                                                                          ),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          homeProvider.distance >= 1000 ? '${homeProvider.kilometers.toStringAsFixed(1)} KM' : '${homeProvider.meters} Meters'
+                                                                        ),
+                                                                        SizedBox(width: 5),
+                                                                        Text("-"),
+                                                                        SizedBox(width: 5),
+                                                                        Text('${homeProvider.timeString}')
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               )

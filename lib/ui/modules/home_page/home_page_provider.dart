@@ -31,9 +31,14 @@ class HomePageProvider extends ChangeNotifier {
   String currentAddress = 'Your Location';
   bool isLoading = true;
   double distance = 0.0;
-  double travelTime = 0.0;
-  int travelTimeInMinutes = 0;
-  double travelCost = 0;
+  double travelCost = 0.0;
+  double kilometers = 0.0;
+  double meters = 0.0;
+  int hours = 0;
+  int minutes = 0;
+  int seconds = 0;
+  double timeInSeconds = 0.0;
+  String timeString =  '';
 
   Future<void> refreshR() async{
     await listDataDokter();
@@ -137,19 +142,39 @@ class HomePageProvider extends ChangeNotifier {
       return LatLng(double.parse('${e.hospital?.latitude}'), double.parse('${e.hospital?.longitude}'));
     }).toList();
 
-
     if (currentLocation != null && destinationLocation != null && destinationLocation.isNotEmpty) {
       distance = Distance().as(
-        LengthUnit.Kilometer,
+        LengthUnit.Meter,
         currentLocation,
         destinationLocation[0],
       );
     }
 
+    if(distance >= 1000){
+      final jarakKm = distance / 1000;
+      kilometers = jarakKm;
+      notifyListeners();
+    }else{
+      meters =  distance;
+      notifyListeners();
+    }
 
-    double averageSpeed = 50.0; // Kecepatan rata-rata dalam km/jam
-    travelTime = (distance / averageSpeed) * 60.0; // Waktu perjalanan dalam jam
-    travelTimeInMinutes = travelTime.round();
+    timeInSeconds = distance / 50.0;
+    hours = (timeInSeconds / 3600).floor();
+    minutes = ((timeInSeconds % 3600) / 60).floor();
+    seconds = (timeInSeconds % 60).floor();
+    notifyListeners();
+
+    if (hours > 0) {
+      timeString += '${hours} Hours ';
+      notifyListeners();
+    }
+
+    if (minutes > 0) {
+      timeString += '${minutes} Minutes ';
+      notifyListeners();
+    }
+
     travelCost = distance * 0.55;
     notifyListeners();
 

@@ -12,7 +12,7 @@ import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashs
 
 class DetailObatProvider extends ChangeNotifier{
 
-  File? imageFiles;
+  File? imageFiles = null;
   CameraController? controller;
 
   Future<void> initializeCamera() async{
@@ -36,7 +36,6 @@ class DetailObatProvider extends ChangeNotifier{
     try {
       XFile? picture = await controller?.takePicture();
       imageFiles = File(picture!.path);
-      notifyListeners();
       await imageFiles!.copy(filePath);
       return imageFiles;
     } catch (e) {

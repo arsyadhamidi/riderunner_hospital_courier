@@ -107,6 +107,7 @@ class Obat {
   String? hargaObat;
   String? jumlahObat;
   int? totalHarga;
+  bool? isChecked;
 
   Obat({
     this.pesakitId,
@@ -115,6 +116,7 @@ class Obat {
     this.hargaObat,
     this.jumlahObat,
     this.totalHarga,
+    this.isChecked = false,
   });
 
   factory Obat.fromJson(Map<String, dynamic> json) => Obat(

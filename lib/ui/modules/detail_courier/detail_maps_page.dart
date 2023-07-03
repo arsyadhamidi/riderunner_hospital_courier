@@ -146,9 +146,9 @@ class DetailMapsPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Text("${waktu} Minutes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+                                    Text("${waktu}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
                                     SizedBox(width: 7),
-                                    Text("(${jarak} km)", style: TextStyle(fontSize: 20, color: Colors.grey)),
+                                    Text("(${jarak})", style: TextStyle(fontSize: 18, color: Colors.grey)),
                                     SizedBox(width: 7),
                                     Container(
                                       decoration: BoxDecoration(

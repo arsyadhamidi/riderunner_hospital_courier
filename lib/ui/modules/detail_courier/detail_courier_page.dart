@@ -642,7 +642,8 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                     DetailObatPage(
                                                         data: detailProvider
                                                             .listPesakit?[
-                                                        index], statusBatch: widget.data?.statusBatch,)));
+                                                        index], statusBatch: widget.data?.statusBatch,
+                                                    shippingCost: widget.shipping,)));
                                       },
                                       title: Text(
                                         detailProvider
@@ -1378,7 +1379,8 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                         data: detailProvider
                                                             .listPesakit?[
                                                         index],
-                                                      statusBatch: widget.data?.statusBatch,)));
+                                                      statusBatch: widget.data?.statusBatch,
+                                                    shippingCost: widget.shipping,)));
                                       },
                                       title: Text(
                                         detailProvider
