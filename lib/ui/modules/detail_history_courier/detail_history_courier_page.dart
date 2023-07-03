@@ -56,14 +56,21 @@ class _DetailHistoryCourierPageState extends State<DetailHistoryCourierPage> {
                       padding: EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          MaterialButton(
-                            onPressed: () {},
-                            minWidth: double.infinity,
-                            height: 50,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                side: BorderSide(color: Colors.grey)),
-                            child: Text("Filter"),
+                          Card(
+                            elevation: 3,
+                            shape: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: BorderSide.none),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  hintText: "Search Alamat terdekat, Rumah...",
+                                  suffixIcon: Icon(Icons.search),
+                                  contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 20),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide())),
+                            ),
                           ),
                           SizedBox(height: 20),
                           ListView.builder(

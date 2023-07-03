@@ -7,6 +7,7 @@ class DetailHistoryCourierProvider extends ChangeNotifier{
 
   int? id;
   List<DataPesakit>? listPesakit;
+  List<DataPesakit>? filterHistoryList = [];
 
   DetailHistoryCourierProvider(this.id){
     listHistoryPesakit(id);
@@ -23,6 +24,7 @@ class DetailHistoryCourierProvider extends ChangeNotifier{
     notifyListeners();
     return listPesakit;
   }
+
 
 
 }

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
 import 'package:riderunner_hospital_courier/ui/modules/attachments_page/attachments_page_view.dart';
 import 'package:riderunner_hospital_courier/ui/modules/camera_page/camera_page_view.dart';
+import 'package:riderunner_hospital_courier/ui/modules/detail_gallery_page/detail_gallery_page_view.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_provider.dart';
 import 'package:side_sheet/side_sheet.dart';
 
@@ -13,8 +14,9 @@ class DetailObatPage extends StatefulWidget {
   final DataPesakit? data;
   final dynamic statusBatch;
   final dynamic shippingCost;
+  final dynamic fileImage;
 
-  DetailObatPage({Key? key, required this.data, required this.statusBatch, required this.shippingCost})
+  DetailObatPage({Key? key, required this.data, required this.statusBatch, required this.shippingCost,  required this.fileImage})
       : super(key: key);
 
   @override
@@ -25,6 +27,7 @@ class _DetailObatPageState extends State<DetailObatPage> {
 
   @override
   Widget build(BuildContext context) {
+
     if (widget.statusBatch == 'confirm courier') {
       return ChangeNotifierProvider(
         create: (context) => DetailObatProvider(),
@@ -744,7 +747,7 @@ class _DetailObatPageState extends State<DetailObatPage> {
                         InkWell(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => AttachmentsPageView(
-                                imageView: detailObatProvider.imageFiles!)));
+                                imageView: widget.fileImage!)));
                           },
                           child: Container(
                             height: 250,
@@ -753,9 +756,9 @@ class _DetailObatPageState extends State<DetailObatPage> {
                               color: Colors.grey.withOpacity(0.1),
                             ),
                             child: Center(
-                              child: detailObatProvider.imageFiles == null
-                                  ? Text("No Image")
-                                  : Image.file(detailObatProvider.imageFiles!),
+                              child: widget.fileImage != null
+                                  ? Image.file(widget.fileImage)
+                                  : Text("No Image")
                             ),
                           ),
                         ),
@@ -790,6 +793,11 @@ class _DetailObatPageState extends State<DetailObatPage> {
                                           onTap: () {
                                             detailObatProvider
                                                 .pickImageFromGallery();
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGalleryPageView(
+                                                imageView: detailObatProvider.imageFiles,
+                                                obats: widget.data,
+                                                statusBatch: widget.statusBatch
+                                            )));
                                           },
                                           child: Row(
                                             children: [

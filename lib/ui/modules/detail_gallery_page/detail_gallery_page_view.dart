@@ -7,24 +7,24 @@ import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_provider.dart';
 
-class DetailCameraPageView extends StatefulWidget {
+class DetailGalleryPageView extends StatefulWidget {
 
   final dynamic imageView;
   final DataPesakit? obats;
   final dynamic statusBatch;
 
-  DetailCameraPageView({Key? key, required this.imageView, required this.obats, required this.statusBatch}) : super(key: key);
+  DetailGalleryPageView({Key? key, required this.imageView, required this.obats, required this.statusBatch}) : super(key: key);
 
   @override
-  State<DetailCameraPageView> createState() => _DetailCameraPageViewState();
+  State<DetailGalleryPageView> createState() => _DetailGalleryPageViewState();
 }
 
-class _DetailCameraPageViewState extends State<DetailCameraPageView> {
+class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => DetailObatProvider(),
+      create: (context) => DetailObatProvider(),
       child: Consumer<DetailObatProvider>(
         builder: (context, detailObatProvider, child) {
           return Scaffold(
@@ -33,7 +33,7 @@ class _DetailCameraPageViewState extends State<DetailCameraPageView> {
               children: [
                 AspectRatio(
                   aspectRatio: MediaQuery.of(context).size.width / MediaQuery.of(context).size.height,
-                  child: Image.file(widget.imageView, fit: BoxFit.cover,),
+                  child: Image.file(widget.imageView!, fit: BoxFit.cover,),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40, left: 20),
@@ -78,10 +78,10 @@ class _DetailCameraPageViewState extends State<DetailCameraPageView> {
                             // )));
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>
                                 DetailObatPage(
-                                    data: widget.obats,
-                                    statusBatch: widget.statusBatch,
+                                  data: widget.obats,
+                                  statusBatch: widget.statusBatch,
                                   shippingCost: null,
-                                  fileImage: widget.imageView,
+                                  fileImage: widget.imageView!,
                                 ),
                             ));
 

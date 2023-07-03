@@ -5,6 +5,8 @@ import 'package:riderunner_hospital_courier/network/network_provider.dart';
 class HistoryCourierProvider extends ChangeNotifier{
 
   List<DataDokter>? listHistory;
+  List<DataDokter>? filterHistoryList = [];
+  TextEditingController isDateSearchTxt = TextEditingController();
   bool isLoading = true;
   int rowPesakit = 0;
   int rowObat = 0;
@@ -22,6 +24,7 @@ class HistoryCourierProvider extends ChangeNotifier{
     try{
       final response = await NetworkProvider().getDataDokter();
       listHistory = response?.data?.where((e) => e.statusBatch == 'Telah Terselesaikan').toList() ?? [];
+      filterHistoryList = response?.data?.where((e) => e.statusBatch == 'Telah Terselesaikan').toList() ?? [];
       rowPesakit = listHistory?.length ?? 0;
       rowObat = listHistory?.map((e) => e.pesakit).length ?? 0;
       notifyListeners();
@@ -29,6 +32,24 @@ class HistoryCourierProvider extends ChangeNotifier{
     }catch(e){
       print(e);
     }
+  }
+
+  void filterPesakitList(String query) {
+    filterHistoryList = listHistory
+        ?.where((pesakit) {
+      return (pesakit.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
+          (pesakit.nama?.toLowerCase().contains(query.toLowerCase()) ?? false);
+    }).where((pesakit) => pesakit.statusBatch == 'Telah Terselesaikan')
+        .toList();
+    notifyListeners();
+  }
+
+  void filterTanggalDokterList(String query) {
+    filterHistoryList = listHistory
+        ?.where((pesakit) =>
+        pesakit.tanggal!.toLowerCase().contains(query.toLowerCase())).where((pesakit) => pesakit.statusBatch == 'Telah Terselesaikan')
+        .toList();
+    notifyListeners();
   }
 
 

@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -90,6 +91,42 @@ class DetailCourierProvider extends ChangeNotifier {
         .toList()
         .cast<LatLng>();
     notifyListeners();
+  }
+
+  Future<void> addOrUpdateDataInRealtimeDatabase(BuildContext context, String batchId) async {
+    final ref = FirebaseDatabase.instance.ref().child('Orders_kkm').child(batchId);
+
+    // Periksa apakah data sudah ada di realtime database
+    final dataSnapshot = await ref.once();
+    final isDataExist = dataSnapshot.snapshot.value != null;
+
+    if (isDataExist) {
+      // Data sudah ada, lakukan update
+      await updateDataInRealtimeDatabase(ref);
+    } else {
+      // Data belum ada, tambahkan data baru
+      await addDataToRealtimeDatabase(ref, batchId);
+    }
+  }
+
+  Future<void> addDataToRealtimeDatabase(DatabaseReference ref, String batchId) async {
+    try {
+      final postData = {
+        'batch_id': batchId.toString(),
+        'status_batch': 'waiting confirmed',
+      };
+      await ref.set(postData);
+    } catch (e) {
+      print('Error adding data to realtime database: $e');
+    }
+  }
+
+  Future<void> updateDataInRealtimeDatabase(DatabaseReference ref) async {
+    try {
+      await ref.update({'status_batch': 'waiting confirmed'});
+    } catch (e) {
+      print('Error updating data in realtime database: $e');
+    }
   }
 
   Future<void> addApplyThisJob(BuildContext context, String batchId, double latitude, double longitude) async{

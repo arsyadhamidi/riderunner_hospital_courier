@@ -36,6 +36,8 @@ class DetailObatProvider extends ChangeNotifier{
     try {
       XFile? picture = await controller?.takePicture();
       imageFiles = File(picture!.path);
+      notifyListeners();
+      print('Contoh Take Gambar : ${imageFiles}');
       await imageFiles!.copy(filePath);
       return imageFiles;
     } catch (e) {
@@ -49,8 +51,9 @@ class DetailObatProvider extends ChangeNotifier{
       var image = await ImagePicker.platform.pickImage(
           source: ImageSource.gallery
       );
-      imageFiles = File(image!.path);
+      var takeGallery = imageFiles = File(image!.path);
       notifyListeners();
+      print('Contoh Satunya : ${takeGallery}');
     }catch(exp){
       print(exp);
     }

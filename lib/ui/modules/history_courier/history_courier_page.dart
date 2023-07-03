@@ -14,6 +14,11 @@ class HistoryCourierPage extends StatefulWidget {
 }
 
 class _HistoryCourierPageState extends State<HistoryCourierPage> {
+
+  bool dateSearch = true;
+  DateTime datePicked = DateTime.now();
+  String date = "";
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -50,41 +55,109 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                       padding: EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          MaterialButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return Container(
-                                    width: double.infinity,
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Text("Filter History")
-                                      ],
-                                    ),
+                          Card(
+                            elevation: 3,
+                            shape: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: BorderSide.none),
+                            child: TextFormField(
+                              onChanged: (data) => historyProvider.filterPesakitList(data),
+                              decoration: InputDecoration(
+                                  hintText: "Search Alamat terdekat, Rumah...",
+                                  suffixIcon: Icon(Icons.search),
+                                  contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 20),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide())),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  DateTime? newDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2050),
                                   );
+
+                                  if (newDate == null) return;
+
+                                  String day =
+                                  newDate.day.toString().padLeft(2, '0');
+                                  String month =
+                                  newDate.month.toString().padLeft(2, '0');
+                                  String year = newDate.year.toString();
+
+                                  setState(() {
+                                    dateSearch = !dateSearch;
+                                    date =
+                                    "${newDate.day}/${newDate.month}/${newDate.year}";
+                                    historyProvider.isDateSearchTxt.text =
+                                    "${newDate.day}/${newDate.month}/${newDate.year}";
+                                    historyProvider.filterTanggalDokterList(
+                                        "${day}/${month}/${year}");
+                                  });
                                 },
-                              );
-                            },
-                            minWidth: double.infinity,
-                            height: 50,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                side: BorderSide(color: Colors.grey)),
-                            child: Text("Filter"),
+                                child: Container(
+                                  width: 160,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(0, 71, 255, 1),
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 100,
+                                        child: dateSearch
+                                            ? Text(
+                                          '${datePicked.day}/${datePicked.month}/${datePicked.year}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16),
+                                        )
+                                            : TextFormField(
+                                          style:
+                                          TextStyle(color: Colors.white),
+                                          enabled: false,
+                                          controller:
+                                          historyProvider.isDateSearchTxt,
+                                          onChanged: (value) => historyProvider
+                                              .filterTanggalDokterList(value),
+                                          decoration: InputDecoration(
+                                              contentPadding:
+                                              EdgeInsets.symmetric(
+                                                  vertical: 18),
+                                              hintStyle: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                              border: OutlineInputBorder(
+                                                borderSide: BorderSide.none,
+                                              )),
+                                        ),
+                                      ),
+                                      Icon(Icons.arrow_drop_down,
+                                          color: Colors.white),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 20),
                           historyProvider.isLoading
-                              ? (historyProvider.listHistory == null
+                              ? (historyProvider == null
                               ? Center(child: CircularProgressIndicator())
                               : ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: historyProvider.listHistory?.length ?? 0,
+                            itemCount: historyProvider.filterHistoryList?.length ?? 0,
                             itemBuilder: (context, index) {
                               return InkWell(
                                 onTap: () {
@@ -93,9 +166,9 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                       MaterialPageRoute(
                                           builder: (context) =>
                                               DetailHistoryCourierPage(
-                                                batchId: historyProvider.listHistory?[index].id,
-                                                tglPesakit: historyProvider.listHistory?[index].tanggal,
-                                                jamPesakit: historyProvider.listHistory?[index].jam,)));
+                                                batchId: historyProvider.filterHistoryList?[index].id,
+                                                tglPesakit: historyProvider.filterHistoryList?[index].tanggal,
+                                                jamPesakit: historyProvider.filterHistoryList?[index].jam,)));
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 10),
@@ -118,7 +191,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                   children: [
                                                     Text(
                                                       historyProvider
-                                                          .listHistory?[index]
+                                                          .filterHistoryList?[index]
                                                           .nama ??
                                                           '',
                                                       style: TextStyle(
@@ -128,7 +201,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                     ),
                                                     SizedBox(height: 5),
                                                     Text(
-                                                        "${historyProvider.listHistory?[index].tanggal} | ${historyProvider.listHistory?[index].jam}",
+                                                        "${historyProvider.filterHistoryList?[index].tanggal} | ${historyProvider.filterHistoryList?[index].jam}",
                                                         style: TextStyle(
                                                             color: Color.fromRGBO(
                                                                 80, 80, 80, 1))),
@@ -165,7 +238,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                     child: ClipRRect(
                                                       borderRadius: BorderRadius.circular(50),
                                                       child: Image.network(
-                                                        "${ApiConfig.urlFoto}${historyProvider.listHistory?[index].profil}",
+                                                        "${ApiConfig.urlFoto}${historyProvider.filterHistoryList?[index].profil}",
                                                         fit: BoxFit.cover,
                                                         errorBuilder: (context, error, stackTrace) {
                                                           return Container(
@@ -184,7 +257,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                   Container(
                                                       width: 100,
                                                       child: Text(
-                                                        "${historyProvider.listHistory?[index].name}",
+                                                        "${historyProvider.filterHistoryList?[index].name}",
                                                         style: TextStyle(
                                                             fontWeight:
                                                             FontWeight.w700),

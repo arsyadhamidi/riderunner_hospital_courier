@@ -19,6 +19,7 @@ class CameraPageView extends StatefulWidget {
 }
 
 class _CameraPageViewState extends State<CameraPageView> {
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -56,7 +57,9 @@ class _CameraPageViewState extends State<CameraPageView> {
                               if (!detailObatProvider.controller!.value.isTakingPicture) {
                                 File? imageFile = await detailObatProvider.takePhoto();
                                 if (imageFile != null) {
-                                  detailObatProvider.imageFiles = imageFile;
+                                  setState(() {
+                                    detailObatProvider.imageFiles = imageFile;
+                                  });
                                 }
                                 Navigator.push(context, MaterialPageRoute(builder: (context) =>
                                     DetailCameraPageView(

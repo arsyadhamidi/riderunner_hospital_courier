@@ -40,8 +40,6 @@ class DetailCourierPage extends StatefulWidget {
 
 class _DetailCourierPageState extends State<DetailCourierPage> {
 
-
-
   @override
   Widget build(BuildContext context) {
     if(widget.data?.statusBatch == 'confirm courier'){
@@ -643,7 +641,9 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                         data: detailProvider
                                                             .listPesakit?[
                                                         index], statusBatch: widget.data?.statusBatch,
-                                                    shippingCost: widget.shipping,)));
+                                                    shippingCost: widget.shipping,
+                                                    fileImage: null,)
+                                            ));
                                       },
                                       title: Text(
                                         detailProvider
@@ -725,13 +725,9 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                 MaterialButton(
                                   onPressed: () {
                                     detailProvider.saveButtonStatus(true);
-                                    detailProvider.addApplyThisJob(
-                                      context,
-                                      widget.batchId.toString(),
-                                      double.parse(
-                                          '${detailProvider.latMaps}'),
-                                      double.parse(
-                                          '${detailProvider.longMaps}'),
+                                    detailProvider.addOrUpdateDataInRealtimeDatabase(
+                                        context,
+                                        widget.batchId.toString(),
                                     );
                                     detailProvider.updateDataCost(
                                       context,
@@ -1380,6 +1376,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                             .listPesakit?[
                                                         index],
                                                       statusBatch: widget.data?.statusBatch,
+                                                    fileImage: null,
                                                     shippingCost: widget.shipping,)));
                                       },
                                       title: Text(

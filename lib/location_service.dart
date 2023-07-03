@@ -40,6 +40,7 @@ class LocationService{
     Future.delayed(Duration(minutes: 5), () async {
       try {
         final ref = FirebaseDatabase.instance.ref();
+        final userRef = ref.child('DriversTesting').child('${dataGlobal.data?.user?.id}');
         final postData = {
           'id': dataGlobal.data?.user?.id.toString(),
           'name': dataGlobal.data?.user?.name.toString(),
@@ -56,15 +57,19 @@ class LocationService{
           'longitude': '$longitude',
         };
 
-        await ref
-            .child('DriversTesting')
-            .child('${dataGlobal.data?.user?.id}')
-            .update(postData);
-        await ref
-            .child('DriversTesting')
-            .child('${dataGlobal.data?.user?.id}')
-            .child('location')
-            .update(LatLngMaps);
+        // Check if the user exists in the database
+        final dataSnapshot = await userRef.once();
+        final isUserExist = dataSnapshot.snapshot.value != null;
+
+        if (isUserExist) {
+          // User exists, update the data
+          await userRef.update(postData);
+          await userRef.child('location').update(LatLngMaps);
+        } else {
+          // User doesn't exist, add the data
+          await userRef.set(postData);
+          await userRef.child('location').set(LatLngMaps);
+        }
       } catch (exp) {
         print(exp);
       }

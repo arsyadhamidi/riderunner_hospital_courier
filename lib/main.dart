@@ -10,6 +10,7 @@ import 'package:pushy_flutter/pushy_flutter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   Pushy.listen();
   Pushy.setNotificationIcon('ic_notification');
   Pushy.toggleInAppBanner(true);
