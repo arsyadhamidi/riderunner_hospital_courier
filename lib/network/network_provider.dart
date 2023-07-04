@@ -4,6 +4,7 @@ import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:http/http.dart' as http;
 import 'package:riderunner_hospital_courier/model/model_dokter.dart';
 import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
+import 'package:riderunner_hospital_courier/model/model_waiting.dart';
 
 class NetworkProvider{
 
@@ -35,6 +36,14 @@ class NetworkProvider{
 
     ModelPesakit getPesakit = await modelPesakitFromJson(response.body);
     return getPesakit;
+  }
+
+  Future<ModelWaiting?> getDataRealTime(id) async{
+    final response = await http.get(Uri.parse(ApiConfig.url + "api/branch/${id}"),
+        headers: <String, String>{'Authorization': 'Bearer ${dataGlobal.data?.token}'});
+
+    ModelWaiting getWaiting = await modelWaitingFromJson(response.body);
+    return getWaiting;
   }
 
 

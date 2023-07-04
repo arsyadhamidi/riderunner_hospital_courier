@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:riderunner_hospital_courier/model/model_dokter.dart';
+import 'package:riderunner_hospital_courier/model/model_waiting.dart';
 import 'package:riderunner_hospital_courier/network/network_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SedangDikirimProvider extends ChangeNotifier{
 
-  List<DataDokter>? listDikirm;
+  Data? getDikirm;
   bool isLoading = true;
+  String token = '';
 
   SedangDikirimProvider(){
-    listDataSedangDikirim();
-    refreshSedangKirim();
+    getPref();
   }
 
-  Future<void> refreshSedangKirim() async{
-    listDataSedangDikirim();
-  }
-
-  Future<List<DataDokter>?> listDataSedangDikirim() async{
-    final response = await NetworkProvider().getDataDokter();
-    listDikirm = response?.data?.where((e) => e.statusBatch == 'Sedang Dikirim').toList() ?? [];
+  getPref() async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    token = pref.getString("batch_id") ?? '';
+    listDataSedangDikirim(token);
     notifyListeners();
-    return listDikirm;
+  }
+
+  Future<void> listDataSedangDikirim(id) async{
+    final response = await NetworkProvider().getDataRealTime(token);
+    getDikirm = response?.data;
+    notifyListeners();
   }
 
 }

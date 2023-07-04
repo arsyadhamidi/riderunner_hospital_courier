@@ -30,24 +30,19 @@ class DetailCourierProvider extends ChangeNotifier {
     listDataPesakit(id);
     getpositionMaps();
     refreshCourier(id);
-    loadButtonStatus();
+    // loadButtonStatus();
   }
 
   Future<void> refreshCourier(id) async{
     await listDataPesakit(id);
   }
 
-  Future<void> loadButtonStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? buttonStatus = prefs.getBool('buttonStatus');
-    isButtonClicked = buttonStatus ?? false;
-    notifyListeners();
-  }
-
-  Future<void> saveButtonStatus(bool status) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('buttonStatus', status);
-  }
+  // Future<void> loadButtonStatus() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   bool? buttonStatus = prefs.getBool('buttonStatus');
+  //   isButtonClicked = buttonStatus ?? false;
+  //   notifyListeners();
+  // }
 
   Future<void> listDataPesakit(id) async {
     final response = await NetworkProvider().getDataPesakit(id);
@@ -103,9 +98,11 @@ class DetailCourierProvider extends ChangeNotifier {
     if (isDataExist) {
       // Data sudah ada, lakukan update
       await updateDataInRealtimeDatabase(ref);
+      await saveBatchId(batchId);
     } else {
       // Data belum ada, tambahkan data baru
       await addDataToRealtimeDatabase(ref, batchId);
+      await saveBatchId(batchId);
     }
   }
 
@@ -127,6 +124,11 @@ class DetailCourierProvider extends ChangeNotifier {
     } catch (e) {
       print('Error updating data in realtime database: $e');
     }
+  }
+
+  Future<void> saveBatchId(String batchId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('batch_id', batchId);
   }
 
   Future<void> addApplyThisJob(BuildContext context, String batchId, double latitude, double longitude) async{

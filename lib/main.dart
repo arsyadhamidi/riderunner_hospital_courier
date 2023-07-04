@@ -9,6 +9,7 @@ import 'package:pushy_flutter/pushy_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Pushy.toggleMethodSwizzling(false);
   await Firebase.initializeApp();
 
   Pushy.listen();
@@ -19,7 +20,7 @@ void main() async {
   BackgroundFetch.configure(
     BackgroundFetchConfig(
       minimumFetchInterval: 5, // Interval waktu pembaruan (dalam menit)
-      stopOnTerminate: false, // Tetap berjalan saat aplikasi di-close
+      stopOnTerminate: true, // Tetap berjalan saat aplikasi di-close
       enableHeadless: true, // Mengaktifkan mode headless background fetch
       requiresBatteryNotLow: false,
       requiresCharging: false,
@@ -51,8 +52,14 @@ void backgroundFetchHeadlessTask(String taskId) async {
 }
 
 void backgroundNotificationListener(Map<String, dynamic> data) {
-  // Print notification payload data
   print('Received notification: $data');
+
+  String notificationTitle = data['title'] ?? 'MyApp';
+  String notificationText = data['message'] ?? 'Hello World!';
+  Pushy.notify(notificationTitle, notificationText, data);
+
+  // Clear iOS app badge number
+  Pushy.clearBadge();
 }
 
 
