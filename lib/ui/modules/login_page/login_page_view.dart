@@ -87,6 +87,7 @@ class _LoginPageViewState extends State<LoginPageView> {
                                     child: Row(
                                       children: [
                                         CircleAvatar(
+                                          backgroundColor: Colors.grey.withOpacity(0.2),
                                           backgroundImage: AssetImage('assets/images/malaysia.jpg'),
                                         ),
                                         SizedBox(width: 5),

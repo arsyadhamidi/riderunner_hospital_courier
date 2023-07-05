@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SedangDikirimProvider extends ChangeNotifier{
 
   Data? getDikirm;
-  bool isLoading = true;
   String token = '';
 
   SedangDikirimProvider(){

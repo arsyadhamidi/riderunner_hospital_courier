@@ -9,11 +9,23 @@ import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:http/http.dart' as http;
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailObatProvider extends ChangeNotifier{
 
   File? imageFiles = null;
   CameraController? controller;
+  String token = '';
+
+  DetailObatProvider(){
+    getPref();
+  }
+
+  getPref() async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    token = pref.getString("batch_id") ?? '';
+    notifyListeners();
+  }
 
   Future<void> initializeCamera() async{
     var cameras = await availableCameras();

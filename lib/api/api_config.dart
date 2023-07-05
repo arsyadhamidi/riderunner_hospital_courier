@@ -1,4 +1,4 @@
 class ApiConfig{
-  static String url = 'https://kkm-hospital.mukernasfornassosma.site/';
-  static String urlFoto = 'https://kkm-hospital.mukernasfornassosma.site/storage/';
+  static String url = 'http://192.168.100.86:8000/';
+  static String urlFoto = 'http://192.168.100.86:8000/';
 }

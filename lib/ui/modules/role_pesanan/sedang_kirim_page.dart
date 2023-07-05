@@ -233,7 +233,7 @@ class _SedangKirimPageState extends State<SedangKirimPage> {
                                                       Container(
                                                           width: 90,
                                                           child: Text(
-                                                              "RM 20 - RM 30",
+                                                              "RM ${dikirimProvider.getDikirm?.cost}",
                                                               style: TextStyle(
                                                                   fontSize:
                                                                   13))),
@@ -256,7 +256,7 @@ class _SedangKirimPageState extends State<SedangKirimPage> {
                                       'assets/images/empty.png'),
                                   SizedBox(height: 20),
                                   Text(
-                                    "Data Empty",
+                                    "No Order Available",
                                     style: TextStyle(fontSize: 20),
                                   )
                                 ],

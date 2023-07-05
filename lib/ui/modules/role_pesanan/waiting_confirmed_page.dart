@@ -291,7 +291,7 @@ class _WaitingConfirmedPageState extends State<WaitingConfirmedPage> {
                                                 'assets/images/empty.png'),
                                             SizedBox(height: 20),
                                             Text(
-                                              "Data Empty",
+                                              "No Order Available",
                                               style: TextStyle(fontSize: 20),
                                             )
                                           ],

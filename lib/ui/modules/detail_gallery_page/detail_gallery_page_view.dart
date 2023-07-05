@@ -8,19 +8,22 @@ import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_p
 import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_provider.dart';
 
 class DetailGalleryPageView extends StatefulWidget {
-
   final dynamic imageView;
   final DataPesakit? obats;
   final dynamic statusBatch;
 
-  DetailGalleryPageView({Key? key, required this.imageView, required this.obats, required this.statusBatch}) : super(key: key);
+  DetailGalleryPageView(
+      {Key? key,
+      required this.imageView,
+      required this.obats,
+      required this.statusBatch})
+      : super(key: key);
 
   @override
   State<DetailGalleryPageView> createState() => _DetailGalleryPageViewState();
 }
 
 class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -32,8 +35,15 @@ class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
             body: Stack(
               children: [
                 AspectRatio(
-                  aspectRatio: MediaQuery.of(context).size.width / MediaQuery.of(context).size.height,
-                  child: Image.file(widget.imageView!, fit: BoxFit.cover,),
+                  aspectRatio: MediaQuery.of(context).size.width /
+                      MediaQuery.of(context).size.height,
+                  child: widget.imageView != null
+                      ? Image.file(widget.imageView as File)
+                      : Container(
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40, left: 20),
@@ -56,7 +66,7 @@ class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
                     ),
                   ),
                 ),
-                Positioned(
+                widget.imageView != false && widget.imageView != null ? Positioned(
                   bottom: 30,
                   right: 160,
                   child: Align(
@@ -76,20 +86,22 @@ class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
                             // Navigator.push(context, MaterialPageRoute(builder: (context) => Testing(
                             //   fileImage: widget.imageView,
                             // )));
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                                DetailObatPage(
-                                  data: widget.obats,
-                                  statusBatch: widget.statusBatch,
-                                  shippingCost: null,
-                                  fileImage: widget.imageView!,
-                                ),
-                            ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailObatPage(
+                                    data: widget.obats,
+                                    statusBatch: widget.statusBatch,
+                                    shippingCost: null,
+                                    fileImage: widget.imageView!,
+                                  ),
+                                ));
 
                             setState(() {
-                              var dataY = detailObatProvider.imageFiles = widget.imageView!;
+                              var dataY = detailObatProvider.imageFiles =
+                                  widget.imageView!;
                               print('Gambar Print : ${dataY}');
                             });
-
                           },
                           shape: CircleBorder(),
                           color: Colors.white,
@@ -100,7 +112,7 @@ class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
                       ),
                     ),
                   ),
-                ),
+                ) : Container(),
               ],
             ),
           );

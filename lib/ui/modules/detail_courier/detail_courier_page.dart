@@ -25,6 +25,8 @@ class DetailCourierPage extends StatefulWidget {
   final dynamic jarak;
   final dynamic waktu;
   final dynamic batchId;
+  final dynamic latitude;
+  final dynamic longitude;
 
   DetailCourierPage(
       {Key? key,
@@ -32,7 +34,9 @@ class DetailCourierPage extends StatefulWidget {
       required this.shipping,
       required this.jarak,
       required this.waktu,
-      required this.batchId})
+      required this.batchId,
+        required this.latitude,
+        required this.longitude})
       : super(key: key);
 
   @override
@@ -723,6 +727,11 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                 context,
                                                 widget.batchId.toString(),
                                               );
+                                              detailProvider.addApplyThisJob(context,
+                                                  widget.batchId.toString(),
+                                                  widget.latitude,
+                                                  widget.longitude,
+                                              );
                                               detailProvider.updateDataCost(
                                                 context,
                                                 widget.data?.id.toString(),
@@ -766,7 +775,8 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                     },
                   ),
                 );
-              }if(dataMap != null && dataMap['status_batch'] == 'waiting confirmed'){
+              }
+              if(dataMap != null && dataMap['status_batch'] == 'waiting confirmed'){
                 return ChangeNotifierProvider(
                   create: (context) => DetailCourierProvider(widget.data?.id),
                   child: Consumer<DetailCourierProvider>(
@@ -2032,8 +2042,8 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                     FontWeight.bold),
                                               ),
                                               trailing: Icon(
-                                                Icons.arrow_forward_ios,
-                                                size: 15,
+                                                Icons.verified,
+                                                color: Colors.green,
                                               ),
                                             ),
                                           );

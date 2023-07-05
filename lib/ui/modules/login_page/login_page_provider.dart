@@ -1,14 +1,16 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:pushy_flutter/pushy_flutter.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
-import 'package:riderunner_hospital_courier/global/data_global.dart';
+import 'package:riderunner_hospital_courier/conn/connectivity_check.dart';
 import 'package:riderunner_hospital_courier/model/user_model.dart';
 import 'package:riderunner_hospital_courier/ui/modules/home_page/home_page_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPageProvider extends ChangeNotifier{
 
@@ -126,12 +128,27 @@ class LoginPageProvider extends ChangeNotifier{
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePageView()), (route) => false);
         return dataUser;
       }else{
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            backgroundColor: Colors.red,
-            content: Text("Login Failed", style: TextStyle(color: Colors.white))));
+        Fluttertoast.showToast(
+          msg: "Number Phone and Password Wrong!",
+          toastLength: Toast.LENGTH_SHORT, // Durasi toast (Toast.LENGTH_SHORT atau Toast.LENGTH_LONG)
+          gravity: ToastGravity.BOTTOM, // Posisi toast (ToastGravity.TOP, ToastGravity.CENTER, atau ToastGravity.BOTTOM)
+          timeInSecForIosWeb: 1, // Durasi toast untuk iOS dan web (dalam detik)
+          backgroundColor: Colors.black54, // Warna latar belakang toast
+          textColor: Colors.white, // Warna teks toast
+          fontSize: 16.0, // Ukuran teks toast
+        );
       }
     }catch(e){
-      print(e);
+      if (e is SocketException) {
+        // Tidak ada koneksi jaringan
+        ConnectivitCheck().showNoInternetConnection();
+      } else if (e is HttpException) {
+        // Server error
+        ConnectivitCheck().showServerError();
+      } else {
+        // Tidak dapat terhubung
+        ConnectivitCheck().showConnectionError();
+      }
     }
 
   }

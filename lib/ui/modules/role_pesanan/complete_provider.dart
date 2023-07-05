@@ -1,28 +1,30 @@
 
 import 'package:flutter/material.dart';
-import 'package:riderunner_hospital_courier/model/model_dokter.dart';
+import 'package:riderunner_hospital_courier/model/model_waiting.dart';
 import 'package:riderunner_hospital_courier/network/network_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CompleteProvider extends ChangeNotifier{
 
-  List<DataDokter>? listComplete;
-  bool isLoading = true;
+  Data? getComplete;
+  String token = '';
 
   CompleteProvider(){
-    listDataComplete();
-    refreshComplete();
+    getPref();
   }
 
-  Future<void> refreshComplete()async{
-    await listDataComplete();
+  getPref() async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    token = pref.getString("batch_id") ?? '';
+    listDataComplete(token);
+    notifyListeners();
   }
 
-  Future<List<DataDokter>?> listDataComplete() async{
+  Future<void> listDataComplete(id) async{
     try{
-      final response = await NetworkProvider().getDataDokter();
-      listComplete = response?.data?.where((e) => e.statusBatch == 'Telah Terselesaikan').toList() ?? [];
+      final response = await NetworkProvider().getDataRealTime(token);
+      getComplete = response?.data;
       notifyListeners();
-      return listComplete;
     }catch(e){
       print(e);
     }

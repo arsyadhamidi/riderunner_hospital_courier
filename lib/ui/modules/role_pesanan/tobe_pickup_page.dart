@@ -125,7 +125,7 @@ class _TobePickUpPageState extends State<TobePickUpPage> {
                                                                       return CircularProgressIndicator();
                                                                     },
                                                                   )
-                                                                      : Image.asset('assets/image/foto-profile.png'),
+                                                                      : Image.asset('assets/images/foto-profile.png'),
                                                                 ),
                                                               ),
                                                             ),
@@ -285,7 +285,7 @@ class _TobePickUpPageState extends State<TobePickUpPage> {
                                         Image.asset('assets/images/empty.png'),
                                         SizedBox(height: 20),
                                         Text(
-                                          "Data Empty",
+                                          "No Order Available",
                                           style: TextStyle(fontSize: 20),
                                         )
                                       ],

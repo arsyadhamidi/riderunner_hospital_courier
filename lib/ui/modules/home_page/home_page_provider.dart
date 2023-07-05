@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
+import 'package:riderunner_hospital_courier/conn/connectivity_check.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/model_dokter.dart';
 import 'package:riderunner_hospital_courier/model/user_model.dart';
@@ -39,6 +42,9 @@ class HomePageProvider extends ChangeNotifier {
   int seconds = 0;
   double timeInSeconds = 0.0;
   String timeString =  '';
+  String countDokter = '';
+  double latMaps = 0.0;
+  double longMaps = 0.0;
 
   Future<void> refreshR() async{
     await listDataDokter();
@@ -58,7 +64,9 @@ class HomePageProvider extends ChangeNotifier {
       final response = await NetworkProvider().getDataNoApplyDokter();
       listDokter = response?.data ?? [];
       filterDokterList = response?.data?.where((e) => e.statusBatch == 'confirm courier').toList() ?? [];
+      countDokter = (response?.data?.where((e) => e.statusBatch == 'confirm courier').length).toString();
       notifyListeners();
+      countDokter = int.parse(countDokter) > 10 ? "9+" : countDokter;
       return listDokter;
     } catch (e) {
       print(e);
@@ -85,23 +93,39 @@ class HomePageProvider extends ChangeNotifier {
   }
 
   void logoutAuth(BuildContext context) async {
-    final response = await http.delete(Uri.parse(ApiConfig.url + "api/logout"),
-        headers: <String, String>{
-          'Authorization': 'Bearer ${dataGlobal.data?.token}'
-        });
+    try{
+      final response = await http.delete(Uri.parse(ApiConfig.url + "api/logout"),
+          headers: <String, String>{
+            'Authorization': 'Bearer ${dataGlobal.data?.token}'
+          });
 
-    if (response.statusCode == 200) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (contex) => SplashScreenPageView()),
-          (route) => false);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(
-            "Logout Failed!",
-            style: TextStyle(color: Colors.white),
-          )));
+      if (response.statusCode == 200) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (contex) => SplashScreenPageView()),
+                (route) => false);
+      } else {
+        Fluttertoast.showToast(
+          msg: "Number Phone and Password Wrong!",
+          toastLength: Toast.LENGTH_SHORT, // Durasi toast (Toast.LENGTH_SHORT atau Toast.LENGTH_LONG)
+          gravity: ToastGravity.BOTTOM, // Posisi toast (ToastGravity.TOP, ToastGravity.CENTER, atau ToastGravity.BOTTOM)
+          timeInSecForIosWeb: 1, // Durasi toast untuk iOS dan web (dalam detik)
+          backgroundColor: Colors.black54, // Warna latar belakang toast
+          textColor: Colors.white, // Warna teks toast
+          fontSize: 16.0, // Ukuran teks toast
+        );
+      }
+    }catch(e){
+      if (e is SocketException) {
+        // Tidak ada koneksi jaringan
+        ConnectivitCheck().showNoInternetConnection();
+      } else if (e is HttpException) {
+        // Server error
+        ConnectivitCheck().showServerError();
+      } else {
+        // Tidak dapat terhubung
+        ConnectivitCheck().showConnectionError();
+      }
     }
   }
 
@@ -135,6 +159,10 @@ class HomePageProvider extends ChangeNotifier {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy:  LocationAccuracy.high
     );
+
+    latMaps = position.latitude;
+    longMaps = position.longitude;
+    notifyListeners();
 
     LatLng currentLocation = LatLng(position.latitude, position.longitude);
 
