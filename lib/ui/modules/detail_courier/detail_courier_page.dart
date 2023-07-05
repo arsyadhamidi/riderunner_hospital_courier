@@ -93,7 +93,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                             ),
                             title: Center(
                                 child: Text(
-                                  "Detail Task ${widget.data?.nama}",
+                                  "Detail Task ${widget.data?.batch?.nama}",
                                   style: TextStyle(color: Colors.black),
                                 )),
                             actions: [
@@ -407,7 +407,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         padding: const EdgeInsets.all(20),
                                         child: Row(
                                           children: [
-                                            widget.data?.profil == null
+                                            widget.data?.doctor?.profil == null
                                                 ? CircularProgressIndicator()
                                                 : Container(
                                               height: 70,
@@ -420,7 +420,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                 borderRadius:
                                                 BorderRadius.circular(10),
                                                 child: Image.network(
-                                                  "${ApiConfig.urlFoto}${widget.data?.profil}",
+                                                  "${ApiConfig.urlFoto}${widget.data?.doctor?.profil}",
                                                   fit: BoxFit.cover,
                                                   errorBuilder:
                                                       (context, error, stackTrace) {
@@ -435,12 +435,12 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                               children: [
                                                 Container(
                                                     width: 240,
-                                                    child: Text("${widget.data?.name}",
+                                                    child: Text("${widget.data?.doctor?.name}",
                                                         style: TextStyle(
                                                             fontWeight: FontWeight.bold,
                                                             fontSize: 16))),
                                                 const SizedBox(height: 5),
-                                                Text("${widget.data?.specialist}",
+                                                Text("${widget.data?.doctor?.specialist}",
                                                     style: TextStyle(
                                                         fontSize: 13, color: Colors.grey)),
                                               ],
@@ -502,7 +502,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                         fontWeight: FontWeight.bold,
                                                         fontSize: 18)),
                                                 SizedBox(height: 7),
-                                                Text("${widget.data?.jam}",
+                                                Text("${widget.data?.batch?.jam}",
                                                     style: TextStyle(color: Colors.grey)),
                                               ],
                                             ),
@@ -806,7 +806,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                             ),
                             title: Center(
                                 child: Text(
-                                  "Detail Task ${widget.data?.nama}",
+                                  "Detail Task ${widget.data?.batch?.nama}",
                                   style: TextStyle(color: Colors.black),
                                 )),
                             actions: [
@@ -1120,7 +1120,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                         padding: const EdgeInsets.all(20),
                                         child: Row(
                                           children: [
-                                            widget.data?.profil == null
+                                            widget.data?.doctor?.profil == null
                                                 ? CircularProgressIndicator()
                                                 : Container(
                                               height: 70,
@@ -1133,7 +1133,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                 borderRadius:
                                                 BorderRadius.circular(10),
                                                 child: Image.network(
-                                                  "${ApiConfig.urlFoto}${widget.data?.profil}",
+                                                  "${ApiConfig.urlFoto}${widget.data?.doctor?.profil}",
                                                   fit: BoxFit.cover,
                                                   errorBuilder:
                                                       (context, error, stackTrace) {
@@ -1148,12 +1148,12 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                               children: [
                                                 Container(
                                                     width: 240,
-                                                    child: Text("${widget.data?.name}",
+                                                    child: Text("${widget.data?.doctor?.name}",
                                                         style: TextStyle(
                                                             fontWeight: FontWeight.bold,
                                                             fontSize: 16))),
                                                 const SizedBox(height: 5),
-                                                Text("${widget.data?.specialist}",
+                                                Text("${widget.data?.doctor?.specialist}",
                                                     style: TextStyle(
                                                         fontSize: 13, color: Colors.grey)),
                                               ],
@@ -1215,7 +1215,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                         fontWeight: FontWeight.bold,
                                                         fontSize: 18)),
                                                 SizedBox(height: 7),
-                                                Text("${widget.data?.jam}",
+                                                Text("${widget.data?.batch?.jam}",
                                                     style: TextStyle(color: Colors.grey)),
                                               ],
                                             ),
@@ -1458,7 +1458,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                           ),
                           title: Center(
                               child: Text(
-                                "Detail Task ${widget.data?.nama}",
+                                "Detail Task ${widget.data?.batch?.nama}",
                                 style: TextStyle(color: Colors.black),
                               )),
                           actions: [
@@ -1772,7 +1772,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                       padding: const EdgeInsets.all(20),
                                       child: Row(
                                         children: [
-                                          widget.data?.profil == null
+                                          widget.data?.doctor?.profil == null
                                               ? CircularProgressIndicator()
                                               : Container(
                                             height: 70,
@@ -1785,7 +1785,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                               borderRadius:
                                               BorderRadius.circular(10),
                                               child: Image.network(
-                                                "${ApiConfig.urlFoto}${widget.data?.profil}",
+                                                "${ApiConfig.urlFoto}${widget.data?.doctor?.profil}",
                                                 fit: BoxFit.cover,
                                                 errorBuilder:
                                                     (context, error, stackTrace) {
@@ -1800,12 +1800,12 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                             children: [
                                               Container(
                                                   width: 240,
-                                                  child: Text("${widget.data?.name}",
+                                                  child: Text("${widget.data?.doctor?.name}",
                                                       style: TextStyle(
                                                           fontWeight: FontWeight.bold,
                                                           fontSize: 16))),
                                               const SizedBox(height: 5),
-                                              Text("${widget.data?.specialist}",
+                                              Text("${widget.data?.doctor?.specialist}",
                                                   style: TextStyle(
                                                       fontSize: 13, color: Colors.grey)),
                                             ],
@@ -1867,7 +1867,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                       fontWeight: FontWeight.bold,
                                                       fontSize: 18)),
                                               SizedBox(height: 7),
-                                              Text("${widget.data?.jam}",
+                                              Text("${widget.data?.batch?.jam}",
                                                   style: TextStyle(color: Colors.grey)),
                                             ],
                                           ),

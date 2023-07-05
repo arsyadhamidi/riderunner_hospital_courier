@@ -20,7 +20,7 @@ class NetworkProvider{
   }
 
   Future<ModelDokter?> getDataNoApplyDokter() async{
-    final response = await http.get(Uri.parse(ApiConfig.url + "api/branch"),
+    final response = await http.get(Uri.parse(ApiConfig.url + "api/broadcast"),
         headers: <String, String>{'Authorization': 'Bearer ${dataGlobal.data?.token}'});
 
     print(response.statusCode);

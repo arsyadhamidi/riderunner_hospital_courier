@@ -611,7 +611,7 @@ class _HomePageViewState extends State<HomePageView> {
                                               homeProvider
                                                   .filterDokterList?[
                                               index]
-                                                  .tanggal ??
+                                                  .batch?.tanggal ??
                                                   '',
                                               style: TextStyle(
                                                   fontWeight:
@@ -630,7 +630,7 @@ class _HomePageViewState extends State<HomePageView> {
                                               homeProvider
                                                   .filterDokterList?[
                                               index]
-                                                  .jam ??
+                                                  .batch?.jam ??
                                                   '',
                                               style: TextStyle(
                                                   fontWeight:
@@ -656,7 +656,7 @@ class _HomePageViewState extends State<HomePageView> {
                                               homeProvider
                                                   .filterDokterList?[
                                               index]
-                                                  .nama
+                                                  .batch?.nama
                                                   .toString() ??
                                                   '',
                                               style: TextStyle(
@@ -675,7 +675,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         homeProvider
                                             .listDokter?[
                                         index]
-                                            .profil !=
+                                            .tasker?.profil !=
                                             null
                                             ? Container(
                                           height: 50,
@@ -683,7 +683,7 @@ class _HomePageViewState extends State<HomePageView> {
                                           child: ClipRRect(
                                             child:
                                             Image.network(
-                                              "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].profil}",
+                                              "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].tasker?.profil}",
                                               fit: BoxFit.cover,
                                               errorBuilder:
                                                   (context,
@@ -730,7 +730,7 @@ class _HomePageViewState extends State<HomePageView> {
                                               .start,
                                           children: [
                                             Text(
-                                              "${homeProvider.filterDokterList?[index].name.toString()}",
+                                              "${homeProvider.filterDokterList?[index].doctor?.name.toString()}",
                                               style: TextStyle(
                                                   fontSize: 18,
                                                   fontWeight:
@@ -738,7 +738,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                       .bold),
                                             ),
                                             Text(
-                                              "${homeProvider.filterDokterList?[index].specialist}",
+                                              "${homeProvider.filterDokterList?[index].doctor?.specialist}",
                                               style: TextStyle(
                                                   color: Colors.grey),
                                             )

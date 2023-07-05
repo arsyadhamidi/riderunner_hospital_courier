@@ -75,10 +75,10 @@ class HomePageProvider extends ChangeNotifier {
 
   void filterPesakitList(String query) {
     filterDokterList = listDokter
-        ?.where((pesakit) {
-          return (pesakit.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
-              (pesakit.nama?.toLowerCase().contains(query.toLowerCase()) ?? false)  ||
-              (pesakit.hospital?.alamat!.toLowerCase().contains(query.toLowerCase()) ?? false);
+        ?.where((e) {
+          return (e.tasker?.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
+              (e.doctor?.name?.toLowerCase().contains(query.toLowerCase()) ?? false)  ||
+              (e.hospital?.alamat!.toLowerCase().contains(query.toLowerCase()) ?? false);
     }).where((pesakit) => pesakit.statusBatch == 'confirm courier')
         .toList();
     notifyListeners();
@@ -86,8 +86,8 @@ class HomePageProvider extends ChangeNotifier {
 
   void filterTanggalDokterList(String query) {
     filterDokterList = listDokter
-        ?.where((pesakit) =>
-            pesakit.tanggal!.toLowerCase().contains(query.toLowerCase())).where((pesakit) => pesakit.statusBatch == 'confirm courier')
+        ?.where((e) =>
+            e.batch?.tanggal?.toLowerCase().contains(query.toLowerCase()) ?? false).where((f) => f.statusBatch == 'confirm courier')
         .toList();
     notifyListeners();
   }

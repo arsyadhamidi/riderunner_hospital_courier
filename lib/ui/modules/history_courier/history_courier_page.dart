@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
-import 'package:riderunner_hospital_courier/model/history_model.dart';
 import 'package:riderunner_hospital_courier/ui/modules/detail_history_courier/detail_history_courier_page.dart';
 import 'package:riderunner_hospital_courier/ui/modules/history_courier/history_courier_provider.dart';
 
@@ -167,8 +166,8 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                           builder: (context) =>
                                               DetailHistoryCourierPage(
                                                 batchId: historyProvider.filterHistoryList?[index].id,
-                                                tglPesakit: historyProvider.filterHistoryList?[index].tanggal,
-                                                jamPesakit: historyProvider.filterHistoryList?[index].jam,)));
+                                                tglPesakit: historyProvider.filterHistoryList?[index].batch?.tanggal,
+                                                jamPesakit: historyProvider.filterHistoryList?[index].batch?.jam,)));
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 10),
@@ -192,7 +191,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                     Text(
                                                       historyProvider
                                                           .filterHistoryList?[index]
-                                                          .nama ??
+                                                          .batch?.nama ??
                                                           '',
                                                       style: TextStyle(
                                                           fontWeight:
@@ -201,7 +200,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                     ),
                                                     SizedBox(height: 5),
                                                     Text(
-                                                        "${historyProvider.filterHistoryList?[index].tanggal} | ${historyProvider.filterHistoryList?[index].jam}",
+                                                        "${historyProvider.filterHistoryList?[index].batch?.tanggal} | ${historyProvider.filterHistoryList?[index].batch?.jam}",
                                                         style: TextStyle(
                                                             color: Color.fromRGBO(
                                                                 80, 80, 80, 1))),
@@ -238,7 +237,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                     child: ClipRRect(
                                                       borderRadius: BorderRadius.circular(50),
                                                       child: Image.network(
-                                                        "${ApiConfig.urlFoto}${historyProvider.filterHistoryList?[index].profil}",
+                                                        "${ApiConfig.urlFoto}${historyProvider.filterHistoryList?[index].tasker?.profil}",
                                                         fit: BoxFit.cover,
                                                         errorBuilder: (context, error, stackTrace) {
                                                           return Container(
@@ -257,7 +256,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                   Container(
                                                       width: 100,
                                                       child: Text(
-                                                        "${historyProvider.filterHistoryList?[index].name}",
+                                                        "${historyProvider.filterHistoryList?[index].doctor?.name}",
                                                         style: TextStyle(
                                                             fontWeight:
                                                             FontWeight.w700),

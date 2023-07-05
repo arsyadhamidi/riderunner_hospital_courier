@@ -26,7 +26,7 @@ class HistoryCourierProvider extends ChangeNotifier{
       listHistory = response?.data?.where((e) => e.statusBatch == 'Telah Terselesaikan').toList() ?? [];
       filterHistoryList = response?.data?.where((e) => e.statusBatch == 'Telah Terselesaikan').toList() ?? [];
       rowPesakit = listHistory?.length ?? 0;
-      rowObat = listHistory?.map((e) => e.pesakit).length ?? 0;
+      // rowObat = listHistory?.map((e) => e..pesakit).length ?? 0;
       notifyListeners();
       return listHistory;
     }catch(e){
@@ -36,18 +36,18 @@ class HistoryCourierProvider extends ChangeNotifier{
 
   void filterPesakitList(String query) {
     filterHistoryList = listHistory
-        ?.where((pesakit) {
-      return (pesakit.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
-          (pesakit.nama?.toLowerCase().contains(query.toLowerCase()) ?? false);
-    }).where((pesakit) => pesakit.statusBatch == 'Telah Terselesaikan')
+        ?.where((e) {
+      return (e.doctor?.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
+          (e.batch?.nama?.toLowerCase().contains(query.toLowerCase()) ?? false);
+    }).where((f) => f.statusBatch == 'Telah Terselesaikan')
         .toList();
     notifyListeners();
   }
 
   void filterTanggalDokterList(String query) {
     filterHistoryList = listHistory
-        ?.where((pesakit) =>
-        pesakit.tanggal!.toLowerCase().contains(query.toLowerCase())).where((pesakit) => pesakit.statusBatch == 'Telah Terselesaikan')
+        ?.where((e) =>
+        e.batch?.tanggal?.toLowerCase().contains(query.toLowerCase()) ?? false).where((f) => f.statusBatch == 'Telah Terselesaikan')
         .toList();
     notifyListeners();
   }
