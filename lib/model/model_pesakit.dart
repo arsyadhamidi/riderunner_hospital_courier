@@ -13,12 +13,14 @@ class ModelPesakit {
   List<DataPesakit>? data;
   String? message;
   int? price;
+  String? priceMy;
 
   ModelPesakit({
     this.success,
     this.data,
     this.message,
     this.price,
+    this.priceMy,
   });
 
   factory ModelPesakit.fromJson(Map<String, dynamic> json) => ModelPesakit(
@@ -26,6 +28,7 @@ class ModelPesakit {
     data: json["data"] == null ? [] : List<DataPesakit>.from(json["data"]!.map((x) => DataPesakit.fromJson(x))),
     message: json["message"],
     price: json["price"],
+    priceMy: json["price_my"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -33,108 +36,121 @@ class ModelPesakit {
     "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
     "message": message,
     "price": price,
+    "price_my": priceMy,
   };
 }
 
 class DataPesakit {
   Pesakit? pesakit;
   List<Obat>? obats;
-  dynamic branches;
+  Branches? branches;
   int? totalHarga;
+  String? totalMy;
+  dynamic proof;
 
   DataPesakit({
     this.pesakit,
     this.obats,
     this.branches,
     this.totalHarga,
+    this.totalMy,
+    this.proof,
   });
 
   factory DataPesakit.fromJson(Map<String, dynamic> json) => DataPesakit(
     pesakit: json["pesakit"] == null ? null : Pesakit.fromJson(json["pesakit"]),
     obats: json["obats"] == null ? [] : List<Obat>.from(json["obats"]!.map((x) => Obat.fromJson(x))),
-    branches: json["branches"],
+    branches: json["branches"] == null ? null : Branches.fromJson(json["branches"]),
     totalHarga: json["total_harga"],
+    totalMy: json["total_my"],
+    proof: json["proof"],
   );
 
   Map<String, dynamic> toJson() => {
     "pesakit": pesakit?.toJson(),
     "obats": obats == null ? [] : List<dynamic>.from(obats!.map((x) => x.toJson())),
-    "branches": branches,
+    "branches": branches?.toJson(),
     "total_harga": totalHarga,
+    "total_my": totalMy,
+    "proof": proof,
   };
 }
 
-class Branch {
-  String? pesakitId;
-  String? batchId;
+class Branches {
+  int? batchId;
   String? nama;
   String? statusBatch;
-  String? tasker;
+  dynamic tasker;
   String? tanggal;
+  String? jam;
+  String? updatedJam;
 
-  Branch({
-    this.pesakitId,
+  Branches({
     this.batchId,
     this.nama,
     this.statusBatch,
     this.tasker,
     this.tanggal,
+    this.jam,
+    this.updatedJam,
   });
 
-  factory Branch.fromJson(Map<String, dynamic> json) => Branch(
-    pesakitId: json["pesakit_id"],
+  factory Branches.fromJson(Map<String, dynamic> json) => Branches(
     batchId: json["batch_id"],
     nama: json["nama"],
     statusBatch: json["status_batch"],
     tasker: json["tasker"],
     tanggal: json["tanggal"],
+    jam: json["jam"],
+    updatedJam: json["updated_jam"],
   );
 
   Map<String, dynamic> toJson() => {
-    "pesakit_id": pesakitId,
     "batch_id": batchId,
     "nama": nama,
     "status_batch": statusBatch,
     "tasker": tasker,
     "tanggal": tanggal,
+    "jam": jam,
+    "updated_jam": updatedJam,
   };
 }
 
 class Obat {
-  String? pesakitId;
-  String? obatId;
+  int? obatId;
   String? namaObat;
-  String? hargaObat;
-  String? jumlahObat;
+  int? hargaObat;
+  int? jumlahObat;
   int? totalHarga;
-  bool? isChecked;
+  String? totalMy;
+  bool isChecked;
 
   Obat({
-    this.pesakitId,
     this.obatId,
     this.namaObat,
     this.hargaObat,
     this.jumlahObat,
     this.totalHarga,
+    this.totalMy,
     this.isChecked = false,
   });
 
   factory Obat.fromJson(Map<String, dynamic> json) => Obat(
-    pesakitId: json["pesakit_id"],
     obatId: json["obat_id"],
     namaObat: json["nama_obat"],
     hargaObat: json["harga_obat"],
     jumlahObat: json["jumlah_obat"],
     totalHarga: json["total_harga"],
+    totalMy: json["total_my"],
   );
 
   Map<String, dynamic> toJson() => {
-    "pesakit_id": pesakitId,
     "obat_id": obatId,
     "nama_obat": namaObat,
     "harga_obat": hargaObat,
     "jumlah_obat": jumlahObat,
     "total_harga": totalHarga,
+    "total_my": totalMy,
   };
 }
 
@@ -142,6 +158,7 @@ class Pesakit {
   int? id;
   String? hospitalId;
   String? nama;
+  String? noic;
   String? tanggalLahir;
   String? diagnosis;
   String? jenisKelamin;
@@ -161,6 +178,7 @@ class Pesakit {
     this.id,
     this.hospitalId,
     this.nama,
+    this.noic,
     this.tanggalLahir,
     this.diagnosis,
     this.jenisKelamin,
@@ -181,6 +199,7 @@ class Pesakit {
     id: json["id"],
     hospitalId: json["hospital_id"],
     nama: json["nama"],
+    noic: json["noic"],
     tanggalLahir: json["tanggal_lahir"],
     diagnosis: json["diagnosis"],
     jenisKelamin: json["jenis_kelamin"],
@@ -201,6 +220,7 @@ class Pesakit {
     "id": id,
     "hospital_id": hospitalId,
     "nama": nama,
+    "noic": noic,
     "tanggal_lahir": tanggalLahir,
     "diagnosis": diagnosis,
     "jenis_kelamin": jenisKelamin,

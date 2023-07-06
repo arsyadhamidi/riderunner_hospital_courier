@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
+import 'package:riderunner_hospital_courier/model/model_dokter.dart';
 import 'package:riderunner_hospital_courier/model/model_pesakit.dart';
 import 'package:riderunner_hospital_courier/network/network_provider.dart';
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
@@ -18,6 +19,7 @@ class DetailCourierProvider extends ChangeNotifier {
 
   int? id;
   List<DataPesakit>? listPesakit;
+  List<DataDokter>? listDokter;
   bool isLoading = true;
   bool isApply = false;
   List<LatLng> routeCoords = [];
@@ -25,6 +27,7 @@ class DetailCourierProvider extends ChangeNotifier {
   double longMaps = 0.0;
   int rowCount = 0;
   late bool isButtonClicked = false;
+  String countDokter = '';
 
   DetailCourierProvider(this.id) {
     listDataPesakit(id);
@@ -37,18 +40,24 @@ class DetailCourierProvider extends ChangeNotifier {
     await listDataPesakit(id);
   }
 
-  // Future<void> loadButtonStatus() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   bool? buttonStatus = prefs.getBool('buttonStatus');
-  //   isButtonClicked = buttonStatus ?? false;
-  //   notifyListeners();
-  // }
-
   Future<void> listDataPesakit(id) async {
     final response = await NetworkProvider().getDataPesakit(id);
     listPesakit = response?.data ?? [];
     rowCount = listPesakit?.length ?? 0;
     notifyListeners();
+  }
+
+  Future<List<DataDokter>?> listDataDokter() async {
+    try {
+      final response = await NetworkProvider().getDataNoApplyDokter();
+      listDokter = response?.data ?? [];
+      countDokter = (response?.data?.where((e) => e.statusBatch == 'confirm courier').length).toString();
+      notifyListeners();
+      countDokter = int.parse(countDokter) > 10 ? "9+" : countDokter;
+      return listDokter;
+    } catch (e) {
+      print(e);
+    }
   }
 
   void logoutAuth(BuildContext context) async {

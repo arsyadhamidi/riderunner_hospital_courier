@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -582,7 +583,7 @@ class _HomePageViewState extends State<HomePageView> {
                                             batchId: homeProvider
                                                 .filterDokterList?[
                                             index]
-                                                .id,
+                                                .batch?.id,
                                             latitude:
                                             homeProvider.latMaps,
                                             longitude:
@@ -681,34 +682,43 @@ class _HomePageViewState extends State<HomePageView> {
                                           height: 50,
                                           width: 50,
                                           child: ClipRRect(
-                                            child:
-                                            Image.network(
-                                              "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].tasker?.profil}",
+                                            child: CachedNetworkImage(
+                                              imageUrl: "${ApiConfig.urlFoto}${homeProvider.listDokter?[index].doctor?.profil}",
                                               fit: BoxFit.cover,
-                                              errorBuilder:
-                                                  (context,
-                                                  error,
-                                                  stackTrace) {
+                                              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                              errorWidget: (context, url, error) {
                                                 return ClipRRect(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(
-                                                      50),
-                                                  child: Container(
-                                                      child: Image.asset(
-                                                          'assets/images/foto-profile.png',
-                                                          fit: BoxFit
-                                                              .cover),
-                                                      width: 50,
-                                                      height:
-                                                      50),
-                                                );
+                                                    borderRadius: BorderRadius.circular(50),
+                                                    child: Image.asset('assets/images/foto-profile.png'));
                                               },
-                                            ),
-                                            borderRadius:
-                                            BorderRadius
-                                                .circular(
-                                                50),
+                                            )
+                                            // Image.network(
+                                            //   "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].tasker?.profil}",
+                                            //   fit: BoxFit.cover,
+                                            //   errorBuilder:
+                                            //       (context,
+                                            //       error,
+                                            //       stackTrace) {
+                                            //     return ClipRRect(
+                                            //       borderRadius:
+                                            //       BorderRadius
+                                            //           .circular(
+                                            //           50),
+                                            //       child: Container(
+                                            //           child: Image.asset(
+                                            //               'assets/images/foto-profile.png',
+                                            //               fit: BoxFit
+                                            //                   .cover),
+                                            //           width: 50,
+                                            //           height:
+                                            //           50),
+                                            //     );
+                                            //   },
+                                            // ),
+                                            // borderRadius:
+                                            // BorderRadius
+                                            //     .circular(
+                                            //     50),
                                           ),
                                         )
                                             : ClipRRect(

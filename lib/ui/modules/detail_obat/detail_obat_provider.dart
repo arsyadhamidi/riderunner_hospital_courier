@@ -60,12 +60,13 @@ class DetailObatProvider extends ChangeNotifier{
 
   Future<void> pickImageFromGallery() async {
     try{
-      var image = await ImagePicker.platform.pickImage(
+      final image = await ImagePicker.platform.pickImage(
           source: ImageSource.gallery
       );
-      var takeGallery = imageFiles = File(image!.path);
-      notifyListeners();
-      print('Contoh Satunya : ${takeGallery}');
+      if(image != null){
+        imageFiles = File(image!.path);
+        notifyListeners();
+      }
     }catch(exp){
       print(exp);
     }

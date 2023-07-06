@@ -8,7 +8,7 @@ import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_p
 import 'package:riderunner_hospital_courier/ui/modules/detail_obat/detail_obat_provider.dart';
 
 class DetailGalleryPageView extends StatefulWidget {
-  final dynamic imageView;
+  final File? imageView;
   final DataPesakit? obats;
   final dynamic statusBatch;
 
@@ -38,7 +38,7 @@ class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
                   aspectRatio: MediaQuery.of(context).size.width /
                       MediaQuery.of(context).size.height,
                   child: widget.imageView != null
-                      ? Image.file(widget.imageView as File)
+                      ? Image.file(widget.imageView!)
                       : Container(
                           child: Center(
                             child: CircularProgressIndicator(),
