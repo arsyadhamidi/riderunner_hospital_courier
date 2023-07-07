@@ -8,14 +8,18 @@ import 'package:path_provider/path_provider.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:http/http.dart' as http;
+import 'package:riderunner_hospital_courier/model/model_dokter.dart';
+import 'package:riderunner_hospital_courier/network/network_provider.dart';
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailObatProvider extends ChangeNotifier{
 
+  List<DataDokter>? listDokter;
   File? imageFiles = null;
   CameraController? controller;
   String token = '';
+  String countDokter = '';
 
   DetailObatProvider(){
     getPref();
@@ -92,5 +96,21 @@ class DetailObatProvider extends ChangeNotifier{
           )));
     }
   }
+
+  Future<List<DataDokter>?> listDataDokter() async {
+    try {
+      final response = await NetworkProvider().getDataNoApplyDokter();
+      listDokter = response?.data ?? [];
+      countDokter = (response?.data?.where((e) => e.statusBatch == 'confirm courier').length).toString();
+      notifyListeners();
+      countDokter = int.parse(countDokter) > 10 ? "9+" : countDokter;
+      return listDokter;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
+
 
 }

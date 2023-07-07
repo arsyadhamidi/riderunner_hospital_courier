@@ -32,88 +32,30 @@ class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
         builder: (context, detailObatProvider, child) {
           return Scaffold(
             backgroundColor: Colors.black,
-            body: Stack(
-              children: [
-                AspectRatio(
-                  aspectRatio: MediaQuery.of(context).size.width /
-                      MediaQuery.of(context).size.height,
-                  child: widget.imageView != null
-                      ? Image.file(widget.imageView!)
-                      : Container(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40, left: 20),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              actions: [
+                TextButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailObatPage(
+                          data: widget.obats,
+                          statusBatch: widget.statusBatch,
+                          shippingCost: null,
+                          fileImage: widget.imageView!)));
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Icon(
-                          Icons.close,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                widget.imageView != false && widget.imageView != null ? Positioned(
-                  bottom: 30,
-                  right: 160,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      width: 70,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: Colors.white),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: MaterialButton(
-                          onPressed: () async {
-                            await detailObatProvider.initializeCamera();
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) => Testing(
-                            //   fileImage: widget.imageView,
-                            // )));
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DetailObatPage(
-                                    data: widget.obats,
-                                    statusBatch: widget.statusBatch,
-                                    shippingCost: null,
-                                    fileImage: widget.imageView!,
-                                  ),
-                                ));
-
-                            setState(() {
-                              var dataY = detailObatProvider.imageFiles =
-                                  widget.imageView!;
-                              print('Gambar Print : ${dataY}');
-                            });
-                          },
-                          shape: CircleBorder(),
-                          color: Colors.white,
-                          child: Center(
-                            child: Icon(Icons.check),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ) : Container(),
+                    child: Text("Selesai")
+                )
               ],
+            ),
+            body: widget.imageView != null
+                ? Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Image.file(widget.imageView!))
+                : Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
           );
         },
