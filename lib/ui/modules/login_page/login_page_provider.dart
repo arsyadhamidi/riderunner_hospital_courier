@@ -19,6 +19,7 @@ class LoginPageProvider extends ChangeNotifier{
   TextEditingController isphoneNumberTxt = TextEditingController();
   TextEditingController isPasswordTxt = TextEditingController();
   String tokenNotif = '';
+  bool isLoading = false;
 
   LoginPageProvider(BuildContext context){
     Pushy.listen();
@@ -107,11 +108,15 @@ class LoginPageProvider extends ChangeNotifier{
   }
   
   Future<ModelUser?> loginAuth(BuildContext context) async{
+
     try{
       final response = await http.post(Uri.parse(ApiConfig.url + "api/login-kkm"), body: {
         'telp': countryCode+isphoneNumberTxt.text,
         'password': isPasswordTxt.text,
       });
+
+      isLoading = false;
+      notifyListeners();
 
       print(countryCode+isphoneNumberTxt.text);
       print(isPasswordTxt.text);
@@ -125,6 +130,8 @@ class LoginPageProvider extends ChangeNotifier{
         SharedPreferences prefsUser = await SharedPreferences.getInstance();
         var dataPref = prefsUser.setString("dataUser", jsonEncode(dataUser));
         updateToken(data);
+        isLoading = false;
+        notifyListeners();
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePageView()), (route) => false);
         return dataUser;
       }else{

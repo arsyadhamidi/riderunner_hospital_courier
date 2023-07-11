@@ -11,8 +11,9 @@ class CameraPageView extends StatefulWidget {
 
   final DataPesakit? data;
   final dynamic statusBatch;
+  final dynamic batchId;
 
-  CameraPageView({Key? key, required this.data, required this.statusBatch,}) : super(key: key);
+  CameraPageView({Key? key, required this.data, required this.statusBatch, required this.batchId}) : super(key: key);
 
   @override
   State<CameraPageView> createState() => _CameraPageViewState();
@@ -66,6 +67,7 @@ class _CameraPageViewState extends State<CameraPageView> {
                                     imageView: detailObatProvider.imageFiles!,
                                       obats: widget.data,
                                       statusBatch: widget.statusBatch,
+                                      batchId: widget.batchId,
                                 )));
                               }
                             },

@@ -33,7 +33,7 @@ class DetailCourierProvider extends ChangeNotifier {
     listDataPesakit(id);
     getpositionMaps();
     refreshCourier(id);
-    // loadButtonStatus();
+    listDataDokter();
   }
 
   Future<void> refreshCourier(id) async{

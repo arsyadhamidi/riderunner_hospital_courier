@@ -138,7 +138,10 @@ class _LoginPageViewState extends State<LoginPageView> {
                       ),
                       SizedBox(height: 15),
                       MaterialButton(
-                        onPressed: (){
+                        onPressed: () {
+                          setState(() {
+                            loginProvider.isLoading = true;
+                          });
                           loginProvider.loginAuth(context);
                         },
                         minWidth: double.infinity,
@@ -147,8 +150,22 @@ class _LoginPageViewState extends State<LoginPageView> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text("Sign In", style: GoogleFonts.inter(color: Colors.white)),
-                      )
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Visibility(
+                              visible: !loginProvider.isLoading,
+                              child: Text("Sign In", style: GoogleFonts.inter(color: Colors.white)),
+                            ),
+                            Visibility(
+                              visible: loginProvider.isLoading,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

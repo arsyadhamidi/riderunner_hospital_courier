@@ -11,12 +11,14 @@ class DetailGalleryPageView extends StatefulWidget {
   final File? imageView;
   final DataPesakit? obats;
   final dynamic statusBatch;
+  final dynamic batchId;
 
   DetailGalleryPageView(
       {Key? key,
       required this.imageView,
       required this.obats,
-      required this.statusBatch})
+      required this.statusBatch,
+      required this.batchId})
       : super(key: key);
 
   @override
@@ -41,7 +43,8 @@ class _DetailGalleryPageViewState extends State<DetailGalleryPageView> {
                           data: widget.obats,
                           statusBatch: widget.statusBatch,
                           shippingCost: null,
-                          fileImage: widget.imageView!)));
+                          fileImage: widget.imageView!,
+                      batchId: widget.batchId,)));
                     },
                     child: Text("Selesai")
                 )

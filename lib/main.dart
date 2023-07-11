@@ -12,31 +12,8 @@ import 'package:pushy_flutter/pushy_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Pushy.toggleMethodSwizzling(false);
   await Firebase.initializeApp();
-
-
-  Pushy.listen();
-  Pushy.setNotificationIcon('ic_notification');
-  Pushy.toggleInAppBanner(true);
-  Pushy.setNotificationListener(backgroundNotificationListener);
-  // Inisialisasi BackgroundFetch
-  // BackgroundFetch.configure(
-  //   BackgroundFetchConfig(
-  //     minimumFetchInterval: 1, // Interval waktu pembaruan (dalam menit)
-  //     stopOnTerminate: true, // Tetap berjalan saat aplikasi di-close
-  //     enableHeadless: true, // Mengaktifkan mode headless background fetch
-  //     requiresBatteryNotLow: false,
-  //     requiresCharging: false,
-  //     requiresDeviceIdle: false,
-  //     requiresStorageNotLow: false,
-  //   ),
-  //   LocationService().backgroundFetchCallback,
-  // );
-  //
-  // BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
-
-  Timer.periodic(Duration(minutes: 1), (timer) async {
+  Timer.periodic(Duration(minutes: 5), (timer) async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -67,77 +44,95 @@ void main() async {
     double latitude = position.latitude;
     double longitude = position.longitude;
 
-    Future.delayed(Duration(minutes: 5), () async {
-      try {
-        final ref = FirebaseDatabase.instance.ref();
-        final userRef = ref.child('DriversKKM').child('${dataGlobal.data?.user?.id}');
-        final postData = {
-          'id': dataGlobal.data?.user?.id.toString(),
-          'name': dataGlobal.data?.user?.fullName.toString(),
-          'phone_number': dataGlobal.data?.user?.telp.toString(),
-          'level': dataGlobal.data?.user?.level.toString(),
-          'profil': dataGlobal.data?.user?.photo.toString(),
-          'gender': dataGlobal.data?.user?.gender.toString(),
-          'created_at': dataGlobal.data?.user?.createdAt.toString(),
-          'updated_at': dataGlobal.data?.user?.updatedAt.toString(),
-        };
+    try {
+      final ref = FirebaseDatabase.instance.ref();
+      final userRef = ref.child('DriversKKM').child('${dataGlobal.data?.user?.id}');
+      final postData = {
+        'id': dataGlobal.data?.user?.id.toString(),
+        'name': dataGlobal.data?.user?.fullName.toString(),
+        'phone_number': dataGlobal.data?.user?.telp.toString(),
+        'level': dataGlobal.data?.user?.level.toString(),
+        'profil': dataGlobal.data?.user?.photo.toString(),
+        'gender': dataGlobal.data?.user?.gender.toString(),
+        'created_at': dataGlobal.data?.user?.createdAt.toString(),
+        'updated_at': dataGlobal.data?.user?.updatedAt.toString(),
+      };
 
-        final LatLngMaps = {
-          'latitude': '$latitude',
-          'longitude': '$longitude',
-        };
+      final LatLngMaps = {
+        'latitude': '$latitude',
+        'longitude': '$longitude',
+      };
 
-        // Check if the user exists in the database
-        final dataSnapshot = await userRef.once();
-        final isUserExist = dataSnapshot.snapshot.value != null;
+      // Check if the user exists in the database
+      final dataSnapshot = await userRef.once();
+      final isUserExist = dataSnapshot.snapshot.value != null;
 
-        if (isUserExist) {
-          // User exists, update the data
-          await userRef.update(postData);
-          await userRef.child('location').update(LatLngMaps);
-        } else {
-          // User doesn't exist, add the data
-          await userRef.set(postData);
-          await userRef.child('location').set(LatLngMaps);
-        }
-      } catch (exp) {
-        print(exp);
+      if (isUserExist) {
+        // User exists, update the data
+        await userRef.update(postData);
+        await userRef.child('location').update(LatLngMaps);
+      } else {
+        // User doesn't exist, add the data
+        await userRef.set(postData);
+        await userRef.child('location').set(LatLngMaps);
       }
-    });
+    } catch (exp) {
+      print(exp);
+    }
 
 
     print('Background - Latitude: $latitude, Longitude: $longitude');
   });
 
+  // Pushy.listen();
+  // Pushy.setNotificationIcon('ic_notification');
+  // Pushy.toggleInAppBanner(true);
+  // Pushy.setNotificationListener(backgroundNotificationListener);
+  // Inisialisasi BackgroundFetch
+  // BackgroundFetch.configure(
+  //   BackgroundFetchConfig(
+  //     minimumFetchInterval: 1, // Interval waktu pembaruan (dalam menit)
+  //     stopOnTerminate: true, // Tetap berjalan saat aplikasi di-close
+  //     enableHeadless: true, // Mengaktifkan mode headless background fetch
+  //     requiresBatteryNotLow: false,
+  //     requiresCharging: false,
+  //     requiresDeviceIdle: false,
+  //     requiresStorageNotLow: false,
+  //   ),
+  //   LocationService().backgroundFetchCallback,
+  // );
+  //
+  // BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
+
   runApp(const MyApp());
 }
 
-void backgroundFetchHeadlessTask(String taskId) async {
-  print("[BackgroundFetch] Headless event received.");
-
-  // Pastikan Anda mendapatkan data notifikasi yang diperlukan dari push notification
-  Map<String, dynamic> data = {}; // Ganti dengan data notifikasi yang sesuai
-
-  String notificationTitle = data['title'] ?? 'MyApp';
-  String notificationText = data['message'] ?? 'Hello World!';
-  Pushy.notify(notificationTitle, notificationText, data);
-
-  // Clear iOS app badge number
-  Pushy.clearBadge();
-
-  BackgroundFetch.finish(taskId);
-}
-
-void backgroundNotificationListener(Map<String, dynamic> data) {
-  print('Received notification: $data');
-
-  String notificationTitle = data['title'] ?? 'MyApp';
-  String notificationText = data['message'] ?? 'Hello World!';
-  Pushy.notify(notificationTitle, notificationText, data);
-
-  // Clear iOS app badge number
-  Pushy.clearBadge();
-}
+// void backgroundFetchHeadlessTask(String taskId) async {
+//   print("[BackgroundFetch] Headless event received.");
+//
+//   // Pastikan Anda mendapatkan data notifikasi yang diperlukan dari push notification
+//   Map<String, dynamic> data = {}; // Ganti dengan data notifikasi yang sesuai
+//
+//   String notificationTitle = data['title'] ?? 'MyApp';
+//   String notificationText = data['message'] ?? 'Hello World!';
+//   Pushy.notify(notificationTitle, notificationText, data);
+//
+//   // Clear iOS app badge number
+//   Pushy.clearBadge();
+//
+//   BackgroundFetch.finish(taskId);
+// }
+//
+// void backgroundNotificationListener(Map<String, dynamic> data) {
+//   print('Received notification: $data');
+//
+//   String notificationTitle = data['title'] ?? 'MyApp';
+//   String notificationText = data['message'] ?? 'Hello World!';
+//   Pushy.notify(notificationTitle, notificationText, data);
+//
+//   // Clear iOS app badge number
+//   Pushy.clearBadge();
+// }
 
 
 class MyApp extends StatelessWidget {
