@@ -237,7 +237,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                     child: ClipRRect(
                                                       borderRadius: BorderRadius.circular(50),
                                                       child: Image.network(
-                                                        "${ApiConfig.urlFoto}${historyProvider.filterHistoryList?[index].tasker?.profil}",
+                                                        "${ApiConfig.urlFoto}${historyProvider.filterHistoryList?[index].tasker?.photo}",
                                                         fit: BoxFit.cover,
                                                         errorBuilder: (context, error, stackTrace) {
                                                           return Container(
@@ -256,7 +256,7 @@ class _HistoryCourierPageState extends State<HistoryCourierPage> {
                                                   Container(
                                                       width: 100,
                                                       child: Text(
-                                                        "${historyProvider.filterHistoryList?[index].doctor?.name}",
+                                                        "${historyProvider.filterHistoryList?[index].doctor?.fullName}",
                                                         style: TextStyle(
                                                             fontWeight:
                                                             FontWeight.w700),

@@ -40,13 +40,13 @@ class LocationService{
     Future.delayed(Duration(minutes: 5), () async {
       try {
         final ref = FirebaseDatabase.instance.ref();
-        final userRef = ref.child('DriversTesting').child('${dataGlobal.data?.user?.id}');
+        final userRef = ref.child('Drivers_kkm').child('${dataGlobal.data?.user?.id}');
         final postData = {
           'id': dataGlobal.data?.user?.id.toString(),
-          'name': dataGlobal.data?.user?.name.toString(),
-          'phone_number': dataGlobal.data?.user?.phoneNumber.toString(),
+          'name': dataGlobal.data?.user?.fullName.toString(),
+          'phone_number': dataGlobal.data?.user?.telp.toString(),
           'level': dataGlobal.data?.user?.level.toString(),
-          'profil': dataGlobal.data?.user?.profil.toString(),
+          'profil': dataGlobal.data?.user?.photo.toString(),
           'gender': dataGlobal.data?.user?.gender.toString(),
           'created_at': dataGlobal.data?.user?.createdAt.toString(),
           'updated_at': dataGlobal.data?.user?.updatedAt.toString(),

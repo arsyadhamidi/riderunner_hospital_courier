@@ -90,7 +90,7 @@ class _AttachmentsPageViewState extends State<AttachmentsPageView> {
                                           backgroundColor: Colors.white,
                                           radius: 40,
                                           child: Image.network(
-                                              "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}"),
+                                              "${ApiConfig.urlFoto}${dataGlobal.data?.user?.photo}"),
                                         ),
                                         SizedBox(width: 10),
                                         Column(
@@ -99,7 +99,7 @@ class _AttachmentsPageViewState extends State<AttachmentsPageView> {
                                           children: [
                                             Spacer(),
                                             Text(
-                                              dataGlobal.data?.user?.name ?? '',
+                                              dataGlobal.data?.user?.fullName ?? '',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.white,

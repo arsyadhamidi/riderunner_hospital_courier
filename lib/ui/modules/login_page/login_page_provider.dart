@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:pushy_flutter/pushy_flutter.dart';
 import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/conn/connectivity_check.dart';
-import 'package:riderunner_hospital_courier/model/user_model.dart';
+import 'package:riderunner_hospital_courier/model/model_user.dart';
 import 'package:riderunner_hospital_courier/ui/modules/home_page/home_page_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -108,8 +108,8 @@ class LoginPageProvider extends ChangeNotifier{
   
   Future<ModelUser?> loginAuth(BuildContext context) async{
     try{
-      final response = await http.post(Uri.parse(ApiConfig.url + "api/login"), body: {
-        'phone_number': countryCode+isphoneNumberTxt.text,
+      final response = await http.post(Uri.parse(ApiConfig.url + "api/login-kkm"), body: {
+        'telp': countryCode+isphoneNumberTxt.text,
         'password': isPasswordTxt.text,
       });
 
@@ -117,7 +117,7 @@ class LoginPageProvider extends ChangeNotifier{
       print(isPasswordTxt.text);
 
       ModelUser dataUser = modelUserFromJson(response.body);
-      print('${dataUser.user?.name}, ${dataUser.user?.level}');
+      print('${dataUser.user?.fullName}, ${dataUser.user?.level}');
 
       final data = jsonDecode(response.body)['token'];
 

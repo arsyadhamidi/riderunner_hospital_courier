@@ -11,7 +11,7 @@ import 'package:riderunner_hospital_courier/api/api_config.dart';
 import 'package:riderunner_hospital_courier/conn/connectivity_check.dart';
 import 'package:riderunner_hospital_courier/global/data_global.dart';
 import 'package:riderunner_hospital_courier/model/model_dokter.dart';
-import 'package:riderunner_hospital_courier/model/user_model.dart';
+import 'package:riderunner_hospital_courier/model/model_user.dart';
 import 'package:riderunner_hospital_courier/network/network_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:riderunner_hospital_courier/ui/modules/splashscreen_page/splashscreen_page_view.dart';
@@ -76,8 +76,8 @@ class HomePageProvider extends ChangeNotifier {
   void filterPesakitList(String query) {
     filterDokterList = listDokter
         ?.where((e) {
-          return (e.tasker?.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
-              (e.doctor?.name?.toLowerCase().contains(query.toLowerCase()) ?? false)  ||
+          return (e.tasker?.fullName?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
+              (e.doctor?.fullName?.toLowerCase().contains(query.toLowerCase()) ?? false)  ||
               (e.hospital?.alamat!.toLowerCase().contains(query.toLowerCase()) ?? false);
     }).where((pesakit) => pesakit.statusBatch == 'confirm courier')
         .toList();

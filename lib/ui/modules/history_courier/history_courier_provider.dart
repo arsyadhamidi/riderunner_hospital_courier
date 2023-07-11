@@ -37,7 +37,7 @@ class HistoryCourierProvider extends ChangeNotifier{
   void filterPesakitList(String query) {
     filterHistoryList = listHistory
         ?.where((e) {
-      return (e.doctor?.name?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
+      return (e.doctor?.fullName?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
           (e.batch?.nama?.toLowerCase().contains(query.toLowerCase()) ?? false);
     }).where((f) => f.statusBatch == 'Telah Terselesaikan')
         .toList();

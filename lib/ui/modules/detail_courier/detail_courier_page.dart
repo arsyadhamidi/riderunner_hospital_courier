@@ -114,10 +114,10 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                       backgroundColor: Colors.white,
                                                       radius: 40,
                                                       child: dataGlobal
-                                                          .data?.user?.profil !=
+                                                          .data?.user?.photo !=
                                                           null
                                                           ? Image.network(
-                                                        "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}",
+                                                        "${ApiConfig.urlFoto}${dataGlobal.data?.user?.photo}",
                                                         errorBuilder: (context, error,
                                                             stackTrace) {
                                                           return ClipRRect(
@@ -140,7 +140,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                       children: [
                                                         Spacer(),
                                                         Text(
-                                                          dataGlobal.data?.user?.name ?? '',
+                                                          dataGlobal.data?.user?.fullName ?? '',
                                                           style: TextStyle(
                                                               fontWeight: FontWeight.bold,
                                                               color: Colors.white,
@@ -480,7 +480,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                       padding: const EdgeInsets.all(20),
                                       child: Row(
                                         children: [
-                                          widget.data?.doctor?.profil != null
+                                          widget.data?.doctor?.photo != null
                                               ? Container(
                                                   height: 70,
                                                   width: 70,
@@ -494,7 +494,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                         BorderRadius.circular(
                                                             10),
                                                     child: CachedNetworkImage(
-                                                      imageUrl: "${ApiConfig.urlFoto}${widget.data?.doctor?.profil}",
+                                                      imageUrl: "${ApiConfig.urlFoto}${widget.data?.doctor?.photo}",
                                                       fit: BoxFit.cover,
                                                       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                                                       errorWidget: (context, url, error) {
@@ -539,7 +539,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                               Container(
                                                   width: 240,
                                                   child: Text(
-                                                      "${widget.data?.doctor?.name}",
+                                                      "${widget.data?.doctor?.fullName}",
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -1002,7 +1002,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                         Colors.white,
                                                     radius: 40,
                                                     child: Image.network(
-                                                        "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}"),
+                                                        "${ApiConfig.urlFoto}${dataGlobal.data?.user?.photo}"),
                                                   ),
                                                   SizedBox(width: 10),
                                                   Column(
@@ -1013,7 +1013,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                       Spacer(),
                                                       Text(
                                                         dataGlobal.data?.user
-                                                                ?.name ??
+                                                                ?.fullName ??
                                                             '',
                                                         style: TextStyle(
                                                             fontWeight:
@@ -1310,7 +1310,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                       padding: const EdgeInsets.all(20),
                                       child: Row(
                                         children: [
-                                          widget.data?.doctor?.profil == null
+                                          widget.data?.doctor?.photo == null
                                               ? CircularProgressIndicator()
                                               : Container(
                                                   height: 70,
@@ -1325,7 +1325,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                         BorderRadius.circular(
                                                             10),
                                                     child: CachedNetworkImage(
-                                                      imageUrl: "${ApiConfig.urlFoto}${widget.data?.doctor?.profil}",
+                                                      imageUrl: "${ApiConfig.urlFoto}${widget.data?.doctor?.photo}",
                                                       fit: BoxFit.cover,
                                                       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                                                       errorWidget: (context, url, error) {
@@ -1352,7 +1352,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                               Container(
                                                   width: 240,
                                                   child: Text(
-                                                      "${widget.data?.doctor?.name}",
+                                                      "${widget.data?.doctor?.fullName}",
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -1745,7 +1745,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                   backgroundColor: Colors.white,
                                                   radius: 40,
                                                   child: Image.network(
-                                                      "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}"),
+                                                      "${ApiConfig.urlFoto}${dataGlobal.data?.user?.photo}"),
                                                 ),
                                                 SizedBox(width: 10),
                                                 Column(
@@ -1755,7 +1755,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                     Spacer(),
                                                     Text(
                                                       dataGlobal.data?.user
-                                                              ?.name ??
+                                                              ?.fullName ??
                                                           '',
                                                       style: TextStyle(
                                                           fontWeight:
@@ -2051,7 +2051,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                     padding: const EdgeInsets.all(20),
                                     child: Row(
                                       children: [
-                                        widget.data?.doctor?.profil == null
+                                        widget.data?.doctor?.photo == null
                                             ? CircularProgressIndicator()
                                             : Container(
                                                 height: 70,
@@ -2064,7 +2064,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                   child: CachedNetworkImage(
-                                                    imageUrl: "${ApiConfig.urlFoto}${widget.data?.doctor?.profil}",
+                                                    imageUrl: "${ApiConfig.urlFoto}${widget.data?.doctor?.photo}",
                                                     fit: BoxFit.cover,
                                                     placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                                                     errorWidget: (context, url, error) {
@@ -2091,7 +2091,7 @@ class _DetailCourierPageState extends State<DetailCourierPage> {
                                             Container(
                                                 width: 240,
                                                 child: Text(
-                                                    "${widget.data?.doctor?.name}",
+                                                    "${widget.data?.doctor?.fullName}",
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,

@@ -25,7 +25,7 @@ class ProfilePageView extends StatelessWidget {
                         bottomLeft: Radius.circular(100),
                       )),
                 ),
-                dataGlobal.data?.user?.profil == null
+                dataGlobal.data?.user?.photo == null
                     ? Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Center(
@@ -50,7 +50,7 @@ class ProfilePageView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Image.network(
-                              "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}",
+                              "${ApiConfig.urlFoto}${dataGlobal.data?.user?.photo}",
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -60,7 +60,7 @@ class ProfilePageView extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 100),
                   child: Center(
                       child: Text(
-                    "${dataGlobal.data?.user?.name}",
+                    "${dataGlobal.data?.user?.fullName}",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   )),
                 ),
@@ -94,7 +94,7 @@ class ProfilePageView extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   child: ListTile(
                     leading: Icon(Icons.person),
-                    title: Text("${dataGlobal.data?.user?.name}"),
+                    title: Text("${dataGlobal.data?.user?.fullName}"),
                     subtitle: Text(
                       "Tasker Name",
                       style: TextStyle(fontStyle: FontStyle.italic),
@@ -128,7 +128,7 @@ class ProfilePageView extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   child: ListTile(
                     leading: Icon(Icons.phone),
-                    title: Text("${dataGlobal.data?.user?.phoneNumber}"),
+                    title: Text("${dataGlobal.data?.user?.telp}"),
                     subtitle: Text(
                       "Phone Number",
                       style: TextStyle(fontStyle: FontStyle.italic),

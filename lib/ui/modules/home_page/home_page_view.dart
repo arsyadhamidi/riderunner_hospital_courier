@@ -68,41 +68,47 @@ class _HomePageViewState extends State<HomePageView> {
                                     },
                                     child: Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         CircleAvatar(
                                           backgroundColor: Colors.white,
                                           radius: 40,
-                                          child: dataGlobal
-                                              .data?.user?.profil !=
-                                              null
-                                              ? Image.network(
-                                            "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}",
-                                            errorBuilder: (context, error,
-                                                stackTrace) {
-                                              return ClipRRect(
-                                                borderRadius: BorderRadius.circular(50),
-                                                child: Image.asset(
-                                                    'assets/images/foto-profile.png'),
-                                              );
-                                            },
-                                          )
-                                              : ClipRRect(
+                                          child: dataGlobal.data?.user?.photo !=
+                                                  null
+                                              ? ClipRRect(
                                             borderRadius: BorderRadius.circular(50),
-                                            child: Image.asset(
-                                                'assets/images/foto-profile.png'),
-                                          ),
+                                                child: Image.network(
+                                                    "${ApiConfig.urlFoto}${dataGlobal.data?.user?.photo}",
+                                                    errorBuilder: (context, error,
+                                                        stackTrace) {
+                                                      return ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                50),
+                                                        child: Image.asset(
+                                                            'assets/images/foto-profile.png'),
+                                                      );
+                                                    },
+                                                  ),
+                                              )
+                                              : ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  child: Image.asset(
+                                                      'assets/images/foto-profile.png'),
+                                                ),
                                         ),
                                         SizedBox(width: 10),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Spacer(),
                                             Text(
-                                              dataGlobal.data?.user?.name ?? '',
+                                              dataGlobal.data?.user?.fullName ??
+                                                  '',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.white,
@@ -130,7 +136,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
@@ -142,7 +148,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                 Text(
                                                   "Job List",
                                                   style:
-                                                  TextStyle(fontSize: 16),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -161,7 +167,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
@@ -173,7 +179,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                 Text(
                                                   "Waiting Confirmed",
                                                   style:
-                                                  TextStyle(fontSize: 16),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -192,7 +198,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
@@ -204,7 +210,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                 Text(
                                                   "To Be Pick Up",
                                                   style:
-                                                  TextStyle(fontSize: 16),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -223,7 +229,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
@@ -235,7 +241,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                 Text(
                                                   "Sedang Dikirim",
                                                   style:
-                                                  TextStyle(fontSize: 16),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -254,7 +260,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
@@ -266,7 +272,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                 Text(
                                                   "Complete",
                                                   style:
-                                                  TextStyle(fontSize: 16),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -285,7 +291,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
@@ -297,7 +303,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                 Text(
                                                   "History",
                                                   style:
-                                                  TextStyle(fontSize: 16),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -308,7 +314,7 @@ class _HomePageViewState extends State<HomePageView> {
                                       SizedBox(height: 20),
                                       Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
@@ -339,7 +345,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                         "Are You Sure Logout ?")),
                                                 content: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     MaterialButton(
                                                       onPressed: () {
@@ -350,21 +356,21 @@ class _HomePageViewState extends State<HomePageView> {
                                                       height: 50,
                                                       child: Text("Not Sure"),
                                                       shape:
-                                                      RoundedRectangleBorder(
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                              50),
-                                                          side: BorderSide(
-                                                              color: Colors
-                                                                  .grey)),
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                              side: BorderSide(
+                                                                  color: Colors
+                                                                      .grey)),
                                                     ),
                                                     SizedBox(width: 10),
                                                     MaterialButton(
                                                       onPressed: () async {
                                                         var prefs =
-                                                        await SharedPreferences
-                                                            .getInstance();
+                                                            await SharedPreferences
+                                                                .getInstance();
                                                         prefs.clear();
                                                         homeProvider.logoutAuth(
                                                             context);
@@ -377,13 +383,13 @@ class _HomePageViewState extends State<HomePageView> {
                                                         "Logout",
                                                         style: TextStyle(
                                                             color:
-                                                            Colors.white),
+                                                                Colors.white),
                                                       ),
                                                       shape:
-                                                      RoundedRectangleBorder(
+                                                          RoundedRectangleBorder(
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(50),
+                                                            BorderRadius
+                                                                .circular(50),
                                                       ),
                                                     ),
                                                   ],
@@ -394,7 +400,7 @@ class _HomePageViewState extends State<HomePageView> {
                                         },
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               children: [
@@ -406,7 +412,7 @@ class _HomePageViewState extends State<HomePageView> {
                                                 Text(
                                                   "Logout",
                                                   style:
-                                                  TextStyle(fontSize: 16),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -423,7 +429,7 @@ class _HomePageViewState extends State<HomePageView> {
                           context: context);
                     },
                     icon:
-                    Icon(Icons.format_align_justify, color: Colors.black)),
+                        Icon(Icons.format_align_justify, color: Colors.black)),
                 SizedBox(width: 10),
               ],
             ),
@@ -448,7 +454,7 @@ class _HomePageViewState extends State<HomePageView> {
                               hintText: "Search Alamat terdekat, Rumah...",
                               suffixIcon: Icon(Icons.search),
                               contentPadding:
-                              EdgeInsets.symmetric(horizontal: 20),
+                                  EdgeInsets.symmetric(horizontal: 20),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
                                   borderSide: BorderSide())),
@@ -490,17 +496,17 @@ class _HomePageViewState extends State<HomePageView> {
                               if (newDate == null) return;
 
                               String day =
-                              newDate.day.toString().padLeft(2, '0');
+                                  newDate.day.toString().padLeft(2, '0');
                               String month =
-                              newDate.month.toString().padLeft(2, '0');
+                                  newDate.month.toString().padLeft(2, '0');
                               String year = newDate.year.toString();
 
                               setState(() {
                                 dateSearch = !dateSearch;
                                 date =
-                                "${newDate.day}/${newDate.month}/${newDate.year}";
+                                    "${newDate.day}/${newDate.month}/${newDate.year}";
                                 homeProvider.isDateSearchTxt.text =
-                                "${newDate.day}/${newDate.month}/${newDate.year}";
+                                    "${newDate.day}/${newDate.month}/${newDate.year}";
                                 homeProvider.filterTanggalDokterList(
                                     "${day}/${month}/${year}");
                               });
@@ -519,30 +525,30 @@ class _HomePageViewState extends State<HomePageView> {
                                     width: 100,
                                     child: dateSearch
                                         ? Text(
-                                      '${datePicked.day}/${datePicked.month}/${datePicked.year}',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16),
-                                    )
+                                            '${datePicked.day}/${datePicked.month}/${datePicked.year}',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16),
+                                          )
                                         : TextFormField(
-                                      style:
-                                      TextStyle(color: Colors.white),
-                                      enabled: false,
-                                      controller:
-                                      homeProvider.isDateSearchTxt,
-                                      onChanged: (value) => homeProvider
-                                          .filterTanggalDokterList(value),
-                                      decoration: InputDecoration(
-                                          contentPadding:
-                                          EdgeInsets.symmetric(
-                                              vertical: 18),
-                                          hintStyle: TextStyle(
-                                            color: Colors.white,
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                            enabled: false,
+                                            controller:
+                                                homeProvider.isDateSearchTxt,
+                                            onChanged: (value) => homeProvider
+                                                .filterTanggalDokterList(value),
+                                            decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        vertical: 18),
+                                                hintStyle: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                                border: OutlineInputBorder(
+                                                  borderSide: BorderSide.none,
+                                                )),
                                           ),
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                          )),
-                                    ),
                                   ),
                                   Icon(Icons.arrow_drop_down,
                                       color: Colors.white),
@@ -555,357 +561,356 @@ class _HomePageViewState extends State<HomePageView> {
                       SizedBox(height: 20),
                       homeProvider.filterDokterList?.length != 0
                           ? ListView.builder(
-                        itemCount:
-                        homeProvider.filterDokterList?.length ??
-                            0,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          DetailCourierPage(
-                                            data: homeProvider
-                                                .filterDokterList?[
-                                            index],
-                                            shipping: homeProvider
-                                                .travelCost,
-                                            jarak: homeProvider
-                                                .distance >=
-                                                1000
-                                                ? '${homeProvider.kilometers.toStringAsFixed(1)} KM'
-                                                : '${homeProvider.meters} Meters',
-                                            waktu: homeProvider
-                                                .timeString,
-                                            batchId: homeProvider
-                                                .filterDokterList?[
-                                            index]
-                                                .batch?.id,
-                                            latitude:
-                                            homeProvider.latMaps,
-                                            longitude:
-                                            homeProvider.longMaps,
-                                          )));
-                            },
-                            child: Card(
-                              shape: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(20),
-                                  borderSide: BorderSide.none),
-                              elevation: 3,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment
-                                        .spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.all(10),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              homeProvider
-                                                  .filterDokterList?[
-                                              index]
-                                                  .batch?.tanggal ??
-                                                  '',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold),
-                                            ),
-                                            SizedBox(width: 10),
-                                            Container(
-                                              height: 30,
-                                              width: 3,
-                                              color: Colors.grey
-                                                  .withOpacity(0.2),
-                                            ),
-                                            SizedBox(width: 10),
-                                            Text(
-                                              homeProvider
-                                                  .filterDokterList?[
-                                              index]
-                                                  .batch?.jam ??
-                                                  '',
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 50,
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                            color: Color.fromRGBO(
-                                                0, 71, 255, 1),
-                                            borderRadius:
-                                            BorderRadius.only(
-                                              topRight:
-                                              Radius.circular(20),
-                                            )),
-                                        child: Center(
-                                          child: Text(
-                                              homeProvider
-                                                  .filterDokterList?[
-                                              index]
-                                                  .batch?.nama
-                                                  .toString() ??
-                                                  '',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight:
-                                                  FontWeight.bold,
-                                                  fontSize: 17)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(20),
-                                    child: Row(
-                                      children: [
-                                        homeProvider
-                                            .listDokter?[
-                                        index]
-                                            .tasker?.profil !=
-                                            null
-                                            ? Container(
-                                          height: 50,
-                                          width: 50,
-                                          child: ClipRRect(
-                                            child: CachedNetworkImage(
-                                              imageUrl: "${ApiConfig.urlFoto}${homeProvider.listDokter?[index].doctor?.profil}",
-                                              fit: BoxFit.cover,
-                                              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                                              errorWidget: (context, url, error) {
-                                                return ClipRRect(
-                                                    borderRadius: BorderRadius.circular(50),
-                                                    child: Image.asset('assets/images/foto-profile.png'));
-                                              },
-                                            )
-                                            // Image.network(
-                                            //   "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].tasker?.profil}",
-                                            //   fit: BoxFit.cover,
-                                            //   errorBuilder:
-                                            //       (context,
-                                            //       error,
-                                            //       stackTrace) {
-                                            //     return ClipRRect(
-                                            //       borderRadius:
-                                            //       BorderRadius
-                                            //           .circular(
-                                            //           50),
-                                            //       child: Container(
-                                            //           child: Image.asset(
-                                            //               'assets/images/foto-profile.png',
-                                            //               fit: BoxFit
-                                            //                   .cover),
-                                            //           width: 50,
-                                            //           height:
-                                            //           50),
-                                            //     );
-                                            //   },
-                                            // ),
-                                            // borderRadius:
-                                            // BorderRadius
-                                            //     .circular(
-                                            //     50),
-                                          ),
-                                        )
-                                            : ClipRRect(
-                                          child: Container(
-                                              child: Image.asset(
-                                                  'assets/images/foto-profile.png',
-                                                  fit: BoxFit
-                                                      .cover),
-                                              width: 50,
-                                              height: 50),
-                                          borderRadius:
-                                          BorderRadius
-                                              .circular(50),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .start,
-                                          children: [
-                                            Text(
-                                              "${homeProvider.filterDokterList?[index].doctor?.name.toString()}",
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold),
-                                            ),
-                                            Text(
-                                              "${homeProvider.filterDokterList?[index].doctor?.specialist}",
-                                              style: TextStyle(
-                                                  color: Colors.grey),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 3),
-                                  Container(
-                                    height: 2,
-                                    width: double.infinity,
-                                    color: Colors.black,
-                                  ),
-                                  SizedBox(height: 10),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 30,
-                                        right: 20,
-                                        top: 20,
-                                        bottom: 20),
+                              itemCount:
+                                  homeProvider.filterDokterList?.length ?? 0,
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DetailCourierPage(
+                                                  data: homeProvider
+                                                      .filterDokterList?[index],
+                                                  shipping:
+                                                      homeProvider.travelCost,
+                                                  jarak: homeProvider
+                                                              .distance >=
+                                                          1000
+                                                      ? '${homeProvider.kilometers.toStringAsFixed(1)} KM'
+                                                      : '${homeProvider.meters} Meters',
+                                                  waktu:
+                                                      homeProvider.timeString,
+                                                  batchId: homeProvider
+                                                      .filterDokterList?[index]
+                                                      .batch
+                                                      ?.id,
+                                                  latitude:
+                                                      homeProvider.latMaps,
+                                                  longitude:
+                                                      homeProvider.longMaps,
+                                                )));
+                                  },
+                                  child: Card(
+                                    shape: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide.none),
+                                    elevation: 3,
                                     child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
                                       children: [
                                         Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            CircleAvatar(
-                                              backgroundColor:
-                                              Color.fromRGBO(
-                                                  203, 158, 0, 1),
-                                              child: Icon(
-                                                Icons
-                                                    .local_hospital_rounded,
-                                                color: Colors.white,
-                                                size: 30,
-                                              ),
-                                              radius: 25,
-                                            ),
-                                            SizedBox(width: 15),
-                                            Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment
-                                                  .start,
-                                              children: [
-                                                Text(
-                                                  "${homeProvider.filterDokterList?[index].hospital?.rumahSakit}",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .bold,
-                                                      fontSize: 16),
-                                                ),
-                                                Text(
-                                                    "Tempat Pengambilan Obat Untuk Pesakit",
+                                            Padding(
+                                              padding: const EdgeInsets.all(10),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    homeProvider
+                                                            .filterDokterList?[
+                                                                index]
+                                                            .batch
+                                                            ?.tanggal ??
+                                                        '',
                                                     style: TextStyle(
-                                                        fontSize: 12,
                                                         fontWeight:
-                                                        FontWeight
-                                                            .bold,
-                                                        color: Colors
-                                                            .grey)),
-                                                SizedBox(height: 10),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      decoration:
-                                                      BoxDecoration(
-                                                        color: Colors
-                                                            .grey
-                                                            .withOpacity(
-                                                            0.2),
-                                                        borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                            50),
-                                                      ),
-                                                      child: Padding(
-                                                        padding: const EdgeInsets
-                                                            .only(
-                                                            left: 10,
-                                                            right: 10,
-                                                            bottom: 3,
-                                                            top: 3),
-                                                        child: Center(
-                                                          child: Row(
-                                                            children: [
-                                                              Text(homeProvider.distance >=
-                                                                  1000
-                                                                  ? '${homeProvider.kilometers.toStringAsFixed(1)} KM'
-                                                                  : '${homeProvider.meters} Meters'),
-                                                              SizedBox(
-                                                                  width:
-                                                                  5),
-                                                              Text(
-                                                                  "-"),
-                                                              SizedBox(
-                                                                  width:
-                                                                  5),
-                                                              Text(
-                                                                  '${homeProvider.timeString}')
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            )
+                                                            FontWeight.bold),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Container(
+                                                    height: 30,
+                                                    width: 3,
+                                                    color: Colors.grey
+                                                        .withOpacity(0.2),
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Text(
+                                                    homeProvider
+                                                            .filterDokterList?[
+                                                                index]
+                                                            .batch
+                                                            ?.jam ??
+                                                        '',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 50,
+                                              width: 120,
+                                              decoration: BoxDecoration(
+                                                  color: Color.fromRGBO(
+                                                      0, 71, 255, 1),
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(20),
+                                                  )),
+                                              child: Center(
+                                                child: Text(
+                                                    homeProvider
+                                                            .filterDokterList?[
+                                                                index]
+                                                            .batch
+                                                            ?.nama
+                                                            .toString() ??
+                                                        '',
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 17)),
+                                              ),
+                                            ),
                                           ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(20),
+                                          child: Row(
+                                            children: [
+                                              homeProvider.listDokter?[index]
+                                                          .tasker?.photo !=
+                                                      null
+                                                  ? Container(
+                                                      height: 50,
+                                                      width: 50,
+                                                      child: ClipRRect(
+                                                        borderRadius: BorderRadius.circular(50),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                        imageUrl:
+                                                            "${ApiConfig.urlFoto}${homeProvider.listDokter?[index].doctor?.photo}",
+                                                        fit: BoxFit.cover,
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            Center(
+                                                                child:
+                                                                    CircularProgressIndicator()),
+                                                        errorWidget: (context,
+                                                            url, error) {
+                                                          return ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                              child: Image.asset(
+                                                                  'assets/images/foto-profile.png'));
+                                                        },
+                                                      )
+                                                          // Image.network(
+                                                          //   "${ApiConfig.urlFoto}${homeProvider.filterDokterList?[index].tasker?.profil}",
+                                                          //   fit: BoxFit.cover,
+                                                          //   errorBuilder:
+                                                          //       (context,
+                                                          //       error,
+                                                          //       stackTrace) {
+                                                          //     return ClipRRect(
+                                                          //       borderRadius:
+                                                          //       BorderRadius
+                                                          //           .circular(
+                                                          //           50),
+                                                          //       child: Container(
+                                                          //           child: Image.asset(
+                                                          //               'assets/images/foto-profile.png',
+                                                          //               fit: BoxFit
+                                                          //                   .cover),
+                                                          //           width: 50,
+                                                          //           height:
+                                                          //           50),
+                                                          //     );
+                                                          //   },
+                                                          // ),
+                                                          // borderRadius:
+                                                          // BorderRadius
+                                                          //     .circular(
+                                                          //     50),
+                                                          ),
+                                                    )
+                                                  : ClipRRect(
+                                                      child: Container(
+                                                          child: Image.asset(
+                                                              'assets/images/foto-profile.png',
+                                                              fit:
+                                                                  BoxFit.cover),
+                                                          width: 50,
+                                                          height: 50),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                    ),
+                                              SizedBox(width: 10),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "${homeProvider.filterDokterList?[index].doctor?.fullName.toString()}",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    "${homeProvider.filterDokterList?[index].doctor?.specialist}",
+                                                    style: TextStyle(
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(height: 3),
+                                        Container(
+                                          height: 2,
+                                          width: double.infinity,
+                                          color: Colors.black,
+                                        ),
+                                        SizedBox(height: 10),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 30,
+                                              right: 20,
+                                              top: 20,
+                                              bottom: 20),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  CircleAvatar(
+                                                    backgroundColor:
+                                                        Color.fromRGBO(
+                                                            203, 158, 0, 1),
+                                                    child: Icon(
+                                                      Icons
+                                                          .local_hospital_rounded,
+                                                      color: Colors.white,
+                                                      size: 30,
+                                                    ),
+                                                    radius: 25,
+                                                  ),
+                                                  SizedBox(width: 15),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "${homeProvider.filterDokterList?[index].hospital?.rumahSakit}",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 16),
+                                                      ),
+                                                      Text(
+                                                          "Tempat Pengambilan Obat Untuk Pesakit",
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.grey)),
+                                                      SizedBox(height: 10),
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      0.2),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right: 10,
+                                                                      bottom: 3,
+                                                                      top: 3),
+                                                              child: Center(
+                                                                child: Row(
+                                                                  children: [
+                                                                    Text(homeProvider.distance >=
+                                                                            1000
+                                                                        ? '${homeProvider.kilometers.toStringAsFixed(1)} KM'
+                                                                        : '${homeProvider.meters} Meters'),
+                                                                    SizedBox(
+                                                                        width:
+                                                                            5),
+                                                                    Text("-"),
+                                                                    SizedBox(
+                                                                        width:
+                                                                            5),
+                                                                    Text(
+                                                                        '${homeProvider.timeString}')
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 48,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              color: Color.fromRGBO(
+                                                  100, 169, 0, 1),
+                                              borderRadius: BorderRadius.only(
+                                                bottomRight:
+                                                    Radius.circular(20),
+                                                bottomLeft: Radius.circular(20),
+                                              )),
+                                          child: Center(
+                                              child: Text(
+                                            "RM${homeProvider.travelCost.toStringAsFixed(2)}",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w700),
+                                          )),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Container(
-                                    height: 48,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                        color: Color.fromRGBO(
-                                            100, 169, 0, 1),
-                                        borderRadius:
-                                        BorderRadius.only(
-                                          bottomRight:
-                                          Radius.circular(20),
-                                          bottomLeft:
-                                          Radius.circular(20),
-                                        )),
-                                    child: Center(
-                                        child: Text(
-                                          "RM${homeProvider.travelCost.toStringAsFixed(2)}",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontWeight:
-                                              FontWeight.w700),
-                                        )),
-                                  ),
+                                );
+                              },
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: Column(
+                                children: [
+                                  Image.asset('assets/images/empty.png'),
+                                  SizedBox(height: 20),
+                                  Text(
+                                    "No Order Available",
+                                    style: TextStyle(fontSize: 20),
+                                  )
                                 ],
                               ),
-                            ),
-                          );
-                        },
-                      )
-                          : Padding(
-                        padding: const EdgeInsets.only(top: 30),
-                        child: Column(
-                          children: [
-                            Image.asset('assets/images/empty.png'),
-                            SizedBox(height: 20),
-                            Text(
-                              "No Order Available",
-                              style: TextStyle(fontSize: 20),
                             )
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 ),

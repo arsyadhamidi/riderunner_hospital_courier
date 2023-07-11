@@ -88,10 +88,10 @@ class _DetailObatPageState extends State<DetailObatPage> {
                                           backgroundColor: Colors.white,
                                           radius: 40,
                                           child: dataGlobal
-                                              .data?.user?.profil !=
+                                              .data?.user?.photo !=
                                               null
                                               ? Image.network(
-                                            "${ApiConfig.urlFoto}${dataGlobal.data?.user?.profil}",
+                                            "${ApiConfig.urlFoto}${dataGlobal.data?.user?.photo}",
                                             errorBuilder: (context, error,
                                                 stackTrace) {
                                               return ClipRRect(
@@ -114,7 +114,7 @@ class _DetailObatPageState extends State<DetailObatPage> {
                                           children: [
                                             Spacer(),
                                             Text(
-                                              dataGlobal.data?.user?.name ?? '',
+                                              dataGlobal.data?.user?.fullName ?? '',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.white,

@@ -1,5 +1,5 @@
 
-import 'package:riderunner_hospital_courier/model/user_model.dart';
+import 'package:riderunner_hospital_courier/model/model_user.dart';
 
 class DataGlobal {
   ModelUser? data;
