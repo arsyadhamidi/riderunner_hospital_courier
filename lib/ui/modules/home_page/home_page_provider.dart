@@ -59,30 +59,36 @@ class HomePageProvider extends ChangeNotifier {
     listDataDokter();
   }
 
-  Future<List<DataDokter>?> listDataDokter() async {
-    try {
-      final response = await NetworkProvider().getDataNoApplyDokter();
+  Future<List<DataDokter>?> listDataDokter() {
+    return NetworkProvider().getDataNoApplyDokter().then((response) {
       listDokter = response?.data ?? [];
-      filterDokterList = response?.data?.where((e) => e.statusBatch == 'confirm courier').toList() ?? [];
-      countDokter = (response?.data?.where((e) => e.statusBatch == 'confirm courier').length).toString();
-      notifyListeners();
+      filterDokterList = listDokter;
+      countDokter = filterDokterList?.where((e) => e.statusBatch == 'confirm courier').length.toString() ?? '';
       countDokter = int.parse(countDokter) > 10 ? "9+" : countDokter;
-      return listDokter;
-    } catch (e) {
-      print(e);
-    }
+      return filterDokterList;
+    }).catchError((error) {
+      print(error);
+      return null;
+    });
   }
 
-  void filterPesakitList(String query) {
-    filterDokterList = listDokter
-        ?.where((e) {
-          return (e.tasker?.fullName?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
-              (e.doctor?.fullName?.toLowerCase().contains(query.toLowerCase()) ?? false)  ||
-              (e.hospital?.alamat!.toLowerCase().contains(query.toLowerCase()) ?? false);
-    }).where((pesakit) => pesakit.statusBatch == 'confirm courier')
-        .toList();
+
+  void filterPesakitList(String searchQuery) {
+    if (searchQuery.isNotEmpty) {
+      filterDokterList = listDokter?.where((dokter) {
+        final fullName = dokter.doctor?.fullName?.toLowerCase() ?? '';
+        final specialist = dokter.doctor?.specialist?.toLowerCase() ?? '';
+        final rumahSakit = dokter.hospital?.rumahSakit?.toLowerCase() ?? '';
+        return fullName.contains(searchQuery.toLowerCase()) ||
+            specialist.contains(searchQuery.toLowerCase()) ||
+            rumahSakit.contains(searchQuery.toLowerCase());
+      }).toList();
+    } else {
+      filterDokterList = listDokter;
+    }
     notifyListeners();
   }
+
 
   void filterTanggalDokterList(String query) {
     filterDokterList = listDokter
